@@ -1,0 +1,41 @@
+<div class="item">
+	<div class="product-card">
+		<div class="card-img-wrap">
+			<img class="img-wrap" src="img/p2.jpg"/>
+		</div>
+		<div class="card-body text-center">
+			<div class="product-card-title">Product Title Here</div>
+			<div class="product-card-price">
+				<span class="after-discount"><b>Rs. 2,390</b></span>
+			</div>
+			
+			<div class="def-number-input number-input safari_only mx-auto">
+				  <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+				  <input class="quantity" min="0" name="quantity" value="1" type="number">
+				  <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+			</div>
+
+			<div class="card-btn">
+				<a href="#" class="btn-primary add-to-cart">Add To Cart</a>
+			</div>
+		</div>
+		<div class="product-card-id">#030202</div>
+		
+	</div>
+</div>
+
+
+
+
+
+
+<p style="text-align:center"><button class="w3-button w3-brown w3-small w3-hover-black" onclick="addToCartAndRedirect()">Add To Cart</button></p>
+
+<script>
+	function addToCartAndRedirect {
+		// Your existing code for adding to the cart
+
+		// Redirect to cartpage.html
+		window.location.href = 'cartpage.html';
+	}
+</script>

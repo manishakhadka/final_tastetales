@@ -1,0 +1,124 @@
+<div class="item">
+	<div class="product-card">
+		<div class="card-img-wrap">
+			<img class="img-wrap" src="images/beer.webp"/>
+		</div>
+		<div class="card-body text-center">
+			<div class="product-card-title">7 UP</div>
+			<div class="product-card-price">
+				<span class="before-discount"><b>Rs. 30</b></span>
+				<span class="after-discount"><b>Rs. 20</b></span>
+			</div>
+
+			
+
+
+			 
+			<div class="def-number-input number-input safari_only mx-auto">
+				<button onclick="decrement()" class="minus"></button>
+				<!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
+				<input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantityAndPrice()">
+
+				<button onclick="increment()" class="plus"></button>
+				
+			</div>
+			
+
+
+
+
+			
+			<div class="card-btn">
+				<!-- Add a form around the "Add to Cart" button -->
+				<form action="addToCart.php" method="post">
+					<!-- Hidden input fields to store product information -->
+					<input type="hidden" name="image_url" value="images/beer.webp">
+					<input type="hidden" name="product_name" value="7 UP">
+					<input type="hidden" name="price" id="price" value="20">
+					<input type="hidden" name="total_quantity" id="total_quantity" value="1">
+					<!-- Add this hidden input to store the total price -->
+					<input type="hidden" name="total_price" id="total_price" value="20">
+
+
+
+					<!-- <input type="hidden" name="quantity" value="1"> -->
+
+
+					<!-- Add to Cart button inside the form -->
+					<button type="submit" class="btn-primary add-to-cart">Add To Cart</button>
+				</form>
+			</div>
+		</div>
+		<div class="product-card-id">#030202</div>
+		<div class="product-card-offer text-center">
+			<div class="product-card-discount mx-auto">
+				<div class="percent">40%</div>
+				<div class="text">OFF</div>
+			</div>
+			<div class="product-card-offer-valid">
+				<div class="text1">Offer valid until</div>
+				<div class="text2">MAR 01,2024</div>
+			</div>
+		</div>
+	</div>
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	
+	function goToCartPage() {
+	// Add any additional logic here if needed
+	window.location.href = "cartpage.html";
+}
+</script>
+
+
+
+	
+
+
+<!-- quantity functional banaunalai haleko -->
+<script>
+	function increment() {
+		var quantityInput = document.getElementById("quantity");
+		quantityInput.stepUp();
+		updateTotalQuantityAndPrice();
+	}
+
+	function decrement() {
+		var quantityInput = document.getElementById("quantity");
+		quantityInput.stepDown();
+		updateTotalQuantityAndPrice();
+	}
+
+	function updateTotalQuantityAndPrice() {
+		var quantityInput = document.getElementById("quantity");
+		var totalQuantityInput = document.getElementById("total_quantity");
+		var priceInput = document.getElementById("price");
+
+		// Update the total quantity
+		totalQuantityInput.value = quantityInput.value;
+
+		// Update the total price by multiplying quantity with the actual price
+		var totalPrice = totalQuantityInput.value * parseInt(priceInput.value);
+		document.getElementById("total_price").value = totalPrice;
+	}
+</script>
+
+
+
+
+

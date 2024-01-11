@@ -1,0 +1,1863 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="font-awesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css"/>
+	<link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/custom.css"/>
+	<link rel="stylesheet" type="text/css" href="css/responsive.css"/> -->
+
+	<script src="js/custom.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+	<script src="C:\project\TasteTales\project\static\js\age_detection.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='C:\project\age-integrate-pachiko-tastetales\static\js\recommendation.js') }}"></script>
+
+	<!-- <script src="{{ url_for('static', filename='recommendation.js') }}"></script> -->
+
+
+	<!-- flask ko lagi gareko -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='C:\project\TasteTales\project\static\css\bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='static\font-awesome/css/all.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='static\css/owl.carousel.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='static\css/owl.theme.default.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='static\css/css/css/custom.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='static\css/responsive.css') }}">
+
+
+
+
+
+
+
+
+	<title>Taste Tales</title>
+	
+  </head>
+	<body>
+		<div id="app">
+			<header>
+				<div id="logo-header">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-4"></div>
+							<div class="col-md-4 text-center">
+								<a class="navbar-brand" href="#">
+									<img src="static/img/logo-removebg-preview.png" width="160"/>
+								</a>
+							</div>
+							<div class="col-md-4 my-auto text-right">
+								<div class="header-right ml-auto">
+									<form id="search-form">
+										<div class="search-box">
+											<input type="text" name="" class="search-input" placeholder="Search...."/> 
+								        	<button class="search-btn"><i class="fa fa-search"></i></button>
+										</div>						        
+								    </form>
+									<div class="dropdown">
+									    <a href="#" class="dropdown" data-toggle="dropdown">
+											<i class="fa fa-user"></i>
+										</a>
+									    <div class="dropdown-menu">
+									      <a class="dropdown-item" href="login.html">Sign in</a>
+									      <a class="dropdown-item" href="register.html">Register</a>
+									    </div>
+									</div>
+									<!--hatako cart symbol
+									<div class="nav-item dropdown mega-dropdown">
+										<a class="nav-link" href="#" id="minicart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="goToCartPage()" >
+	                                        <i class="fa fa-shopping-cart">
+												<span id="cart-count"></span>
+											</i>-->
+	                                    </a>
+									
+										<!--cart ma dekhauney tarika milauna baki,remove buttonma js halna baki,aru classma pani js halna baki
+	                                    <ul class="dropdown-menu mega-dropdown-menu" aria-labelledby="minicart">
+	                                    	<li class="row">
+	                                    		<ul class="col-1">
+	                                    			<div class="remove-btn">
+														<button class="remove-item-btn">
+															<i class="fa fa-times"></i>
+														</button>
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+	                                    			<div class="text-center">
+														<img class="cart-item-img" src="img/p4.jpg">
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-5">
+	                                    			<div class="cart-product-title">
+														iRobot Roomba 615 Vacuum Cleaner
+													</div>
+													<div class="cart-product-id">
+														#330338
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+													<div class="cart-qty">
+														x2
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+	                                    			<div class="cart-price">
+														Rs.<br>4350
+													</div>
+	                                    		</ul>
+	                                    	</li>
+	                                    	<li class="row">
+	                                    		<ul class="col-1">
+	                                    			<div class="remove-btn">
+														<button class="remove-item-btn">
+															<i class="fa fa-times"></i>
+														</button>
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+	                                    			<div class="text-center">
+														<img class="cart-item-img" src="img/p1.jpg">
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-5">
+	                                    			<div class="cart-product-title">
+														iRobot Roomba 615 Vacuum Cleaner
+													</div>
+													<div class="cart-product-id">
+														#330338
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+													<div class="cart-qty">
+														x2
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+	                                    			<div class="cart-price">
+														Rs.<br>4350
+													</div>
+	                                    		</ul>
+	                                    	</li>
+	                                    	<li class="row">
+	                                    		<ul class="col-1">
+	                                    			<div class="remove-btn">
+														<button class="remove-item-btn">
+															<i class="fa fa-times"></i>
+														</button>
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+	                                    			<div class="text-center">
+														<img class="cart-item-img" src="img/p2.jpg">
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-5">
+	                                    			<div class="cart-product-title">
+														iRobot Roomba 615 Vacuum Cleaner
+													</div>
+													<div class="cart-product-id">
+														#330338
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+													<div class="cart-qty">
+														x2
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+	                                    			<div class="cart-price">
+														Rs.<br>4350
+													</div>
+	                                    		</ul>
+	                                    	</li>
+	                                    	<li class="row">
+	                                    		<ul class="col-1">
+	                                    			<div class="remove-btn">
+														<button class="remove-item-btn">
+															<i class="fa fa-times"></i>
+														</button>
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+	                                    			<div class="text-center">
+														<img class="cart-item-img" src="img/p3.jpg">
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-5">
+	                                    			<div class="cart-product-title">
+														iRobot Roomba 615 Vacuum Cleaner
+													</div>
+													<div class="cart-product-id">
+														#330338
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+													<div class="cart-qty">
+														x2
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+	                                    			<div class="cart-price">
+														Rs.<br>4350
+													</div>
+	                                    		</ul>
+	                                    	</li>
+	                                    	<li class="row">
+	                                    		<ul class="col-1">
+	                                    			<div class="remove-btn">
+														<button class="remove-item-btn">
+															<i class="fa fa-times"></i>
+														</button>
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+	                                    			<div class="text-center">
+														<img class="cart-item-img" src="img/vodka.jpg">
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-5">
+	                                    			<div class="cart-product-title">
+														iRobot Roomba 615 Vacuum Cleaner
+													</div>
+													<div class="cart-product-id">
+														#330338
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+													<div class="cart-qty">
+														x2
+													</div>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+	                                    			<div class="cart-price">
+														Rs.<br>4350
+													</div>
+	                                    		</ul>
+	                                    	</li>
+	                                    	<li class="row mini-total"> 
+	                                    		<ul class="col-10">
+	                                    			<b>Subtotal</b>
+	                                    		</ul>
+	                                    		<ul class="col-2">
+	                                    			<b>Rs.10000</b>
+	                                    		</ul>
+	                                    	</li>
+	                                    	<li class="">
+	                                    		
+	                                    	</li>
+	                                    </ul>
+									-->
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+					<div id="main-menu">
+					<div class="container">
+
+						<nav class="navbar navbar-toggleable-md navbar-expand-lg">
+							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+								<i class="fa fa-bars"></i>
+							</button>			
+							<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+								<ul class="navbar-nav mx-auto">
+
+
+									<li class="nav-item">
+										<div class="dropdown header">
+
+											<a class="nav-link" href="index.html">Home</a>
+											  
+										</div>										
+									</li>
+									<li class="nav-item">
+										<div class="dropdown header">
+											<a class="nav-link" href="contact.html">Contact Us</a>
+											  
+										</div>										
+									</li>
+
+                                    <li class="nav-item">
+										<div class="dropdown header">
+											<a class="nav-link" href="#">Drinks</a>
+											  <div class="dropdown-menu">
+												<a class="dropdown-item" href="softdrinks.html">Soft Drinks</a>
+
+
+
+												<!-- <button onclick="performAgeDetection()">Go to Hard Drinks</button>  -->
+												<!-- <a class="dropdown-item" href="harddrinks.html">Hard Drinks</a> -->
+												<!-- <a class="dropdown-item" href="#" onclick="redirectToHardDrinks()">Hard Drinks</a> -->
+
+												<!-- <a class="dropdown-item" id="hardDrinksButton" onclick="triggerAgeDetection()"href="harddrinks">Hard Drinks</a>
+
+												<video id="webcam-stream" width="640" height="480" autoplay></video>
+												 -->
+												
+												<!-- Your index page content -->
+												<a href="{{ url_for('permission') }}" class="dropdown-item">Hard Drinks</a>
+
+											  </div>
+										</div>										
+									</li>
+
+
+									<li class="nav-item">
+										<div class="dropdown header">
+											<a class="nav-link" href="{{ url_for('recommendation') }}">Search</a>
+											
+											  
+										</div>										
+									</li>
+
+
+
+										</div>										
+									</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</div>
+			
+			</header>
+			
+			<div class="main-body">
+				<section id="home-slider" class="homeSection">
+						<div class="owl-carousel owl-theme" id="home-slide">
+							<div class="item">
+								<img src="img/s1.jpg"/>
+							</div>
+							<div class="item">
+								<img src="img/s2.jpg"/>
+							</div>
+							<div class="item">
+								<img src="img/s3.jpg"/>
+							</div>
+							<div class="item">
+								<img src="img/s4.jpg"/>
+							</div>
+						</div>
+					</section>
+
+				<div class="container">
+					<section id="home-banner-section" class="homeSection">
+						<div class="row">
+							<div class="col-md-4">
+								<a href="#"><img class="banner-img" src="img/banner-1.jpg">
+								</a>
+							</div>
+							<div class="col-md-4">
+								<a href="#"><img class="banner-img" src="img/banner-2.jpg">
+								</a>
+							</div>
+							<div class="col-md-4">
+								<a href="#"><img class="banner-img" src="img/banner-3.jpg">
+								</a>
+							</div>
+						</div>
+					</section>
+
+					<section id="homeIconSection" class="homeSection">
+						<div class="row icon-list">
+							<div class="col-md-4 p-0">
+								<div class="icon-block-left">
+									<div class="icon-block">
+										<div class="left-block">
+											<img class="icon-img" src="img/icon1.png">
+										</div>
+										<div class="right-block">
+											<h4 style="margin-bottom: 5px;">
+												Free Shipping
+											</h4>
+											<div>On order over NPR9000</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 p-0">
+								<div class="icon-block-center">
+									<div class="icon-block">
+										<div class="left-block">
+											<img class="icon-img" src="img/icon2.png">
+										</div>
+										<div class="right-block">
+											<h4 style="margin-bottom: 5px;">
+												Discount on Offers
+											</h4>
+											<div>Tellus aodio consequat odio sed.</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 p-0">
+								<div class="icon-block-right">
+									<div class="icon-block">
+										<div class="left-block">
+											<img class="icon-img" src="img/icon3.png">
+										</div>
+										<div class="right-block">
+											<h4 style="margin-bottom: 5px;">
+												Need on Help
+											</h4>
+											<div>On order over NPR9000</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section id="recent-slider" class="homeSection">
+						<div class="text-center">
+							<h3 class="section-header text-center">RECENT PRODUCTS</h3>
+						</div>
+						<div class="owl-carousel owl-theme" id="recent-slide">
+
+
+
+
+
+							
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							<div class="item">
+								<div class="product-card">
+									<div class="card-img-wrap">
+										<img class="img-wrap" src="images/7 UP.jpg"/>
+									</div>
+									<div class="card-body text-center">
+										<div class="product-card-title">7 UP</div>
+										<div class="product-card-price">
+											<span class="before-discount"><b>Rs. 30</b></span>
+											<span class="after-discount"><b>Rs. 20</b></span>
+										</div>
+							
+										
+
+
+                                         
+										<div class="def-number-input number-input safari_only mx-auto">
+											<button onclick="decrement()" class="minus"></button>
+											<!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
+											<input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantityAndPrice()">
+
+											<button onclick="increment()" class="plus"></button>
+											
+										</div>
+										
+
+
+
+
+										
+										<div class="card-btn">
+											<!-- Add a form around the "Add to Cart" button -->
+											<form action="addToCart.php" method="post">
+												<!-- Hidden input fields to store product information -->
+												<input type="hidden" name="image_url" value="images/7 UP.jpg">
+												<input type="hidden" name="product_name" value="7 UP">
+												<input type="hidden" name="price" id="price" value="20">
+												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
+												<!-- Add this hidden input to store the total price -->
+												<input type="hidden" name="total_price" id="total_price" value="20">
+
+
+
+												<!-- <input type="hidden" name="quantity" value="1"> -->
+
+							
+												<!-- Add to Cart button inside the form -->
+												<button type="submit" class="btn-primary add-to-cart">Add To Cart</button>
+											</form>
+										</div>
+									</div>
+									<div class="product-card-id">#030202</div>
+									<div class="product-card-offer text-center">
+										<div class="product-card-discount mx-auto">
+											<div class="percent">40%</div>
+											<div class="text">OFF</div>
+										</div>
+										<div class="product-card-offer-valid">
+											<div class="text1">Offer valid until</div>
+											<div class="text2">MAR 01,2024</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+							
+
+
+
+
+
+
+
+							
+
+
+
+
+
+
+
+							
+
+
+
+							<div class="item">
+								<div class="product-card">
+									<div class="card-img-wrap">
+										<img class="img-wrap" src="images/coca cola.webp"/>
+									</div>
+									<div class="card-body text-center">
+										<div class="product-card-title">Coke</div>
+										<div class="product-card-price">
+											<span class="before-discount"><b>Rs. 30</b></span>
+											<span class="after-discount"><b>Rs. 20</b></span>
+										</div>
+							
+										
+
+
+                                         
+										<div class="def-number-input number-input safari_only mx-auto">
+											<button onclick="decrement()" class="minus"></button>
+											<!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
+											<input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantityAndPrice()">
+
+											<button onclick="increment()" class="plus"></button>
+											
+										</div>
+										
+
+
+
+
+
+										
+										
+										<div class="card-btn">
+											<!-- Add a form around the "Add to Cart" button -->
+											<form action="addToCart.php" method="post">
+												<!-- Hidden input fields to store product information -->
+												<input type="hidden" name="image_url" value="images/coca cola.webp">
+												<input type="hidden" name="product_name" value="Coke">
+												<input type="hidden" name="price" id="price" value="20">
+												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
+												<!-- Add this hidden input to store the total price -->
+												<input type="hidden" name="total_price" id="total_price" value="20">
+
+
+
+												<!-- <input type="hidden" name="quantity" value="1"> -->
+
+							
+												<!-- Add to Cart button inside the form -->
+												<button type="submit" class="btn-primary add-to-cart">Add To Cart</button>
+											</form>
+										</div>
+									</div>
+									<div class="product-card-id">#030202</div>
+									<div class="product-card-offer text-center">
+										<div class="product-card-discount mx-auto">
+											<div class="percent">40%</div>
+											<div class="text">OFF</div>
+										</div>
+										<div class="product-card-offer-valid">
+											<div class="text1">Offer valid until</div>
+											<div class="text2">MAR 01,2024</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+							
+
+
+
+
+
+
+
+
+
+
+
+							
+
+
+
+
+
+
+							
+
+
+
+							<div class="item">
+								<div class="product-card">
+									<div class="card-img-wrap">
+										<img class="img-wrap" src="images/charged.webp"/>
+									</div>
+									<div class="card-body text-center">
+										<div class="product-card-title">Charged</div>
+										<div class="product-card-price">
+											<span class="before-discount"><b>Rs. 30</b></span>
+											<span class="after-discount"><b>Rs. 20</b></span>
+										</div>
+							
+										
+
+
+                                         
+										<div class="def-number-input number-input safari_only mx-auto">
+											<button onclick="decrement()" class="minus"></button>
+											<!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
+											<input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantityAndPrice()">
+
+											<button onclick="increment()" class="plus"></button>
+											
+										</div>
+										
+
+
+
+
+
+										
+										
+										<div class="card-btn">
+											<!-- Add a form around the "Add to Cart" button -->
+											<form action="addToCart.php" method="post">
+												<!-- Hidden input fields to store product information -->
+												<input type="hidden" name="image_url" value="images/charged.webp">
+												<input type="hidden" name="product_name" value="Charged">
+												<input type="hidden" name="price" id="price" value="20">
+												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
+												<!-- Add this hidden input to store the total price -->
+												<input type="hidden" name="total_price" id="total_price" value="20">
+
+
+
+												<!-- <input type="hidden" name="quantity" value="1"> -->
+
+							
+												<!-- Add to Cart button inside the form -->
+												<button type="submit" class="btn-primary add-to-cart">Add To Cart</button>
+											</form>
+										</div>
+									</div>
+									<div class="product-card-id">#030202</div>
+									<div class="product-card-offer text-center">
+										<div class="product-card-discount mx-auto">
+											<div class="percent">40%</div>
+											<div class="text">OFF</div>
+										</div>
+										<div class="product-card-offer-valid">
+											<div class="text1">Offer valid until</div>
+											<div class="text2">MAR 01,2024</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+
+
+
+
+
+
+
+							
+
+
+							
+
+
+
+							<div class="item">
+								<div class="product-card">
+									<div class="card-img-wrap">
+										<img class="img-wrap" src="images/ENO.jpg"/>
+									</div>
+									<div class="card-body text-center">
+										<div class="product-card-title">ENO</div>
+										<div class="product-card-price">
+											<span class="before-discount"><b>Rs. 30</b></span>
+											<span class="after-discount"><b>Rs. 20</b></span>
+										</div>
+							
+										
+
+
+                                         
+										<div class="def-number-input number-input safari_only mx-auto">
+											<button onclick="decrement()" class="minus"></button>
+											<!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
+											<input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantityAndPrice()">
+
+											<button onclick="increment()" class="plus"></button>
+											
+										</div>
+										
+
+
+
+
+
+										
+										
+										<div class="card-btn">
+											<!-- Add a form around the "Add to Cart" button -->
+											<form action="addToCart.php" method="post">
+												<!-- Hidden input fields to store product information -->
+												<input type="hidden" name="image_url" value="images/ENO.jpg">
+												<input type="hidden" name="product_name" value="ENO">
+												<input type="hidden" name="price" id="price" value="20">
+												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
+												<!-- Add this hidden input to store the total price -->
+												<input type="hidden" name="total_price" id="total_price" value="20">
+
+
+
+												<!-- <input type="hidden" name="quantity" value="1"> -->
+
+							
+												<!-- Add to Cart button inside the form -->
+												<button type="submit" class="btn-primary add-to-cart">Add To Cart</button>
+											</form>
+										</div>
+									</div>
+									<div class="product-card-id">#030202</div>
+									<div class="product-card-offer text-center">
+										<div class="product-card-discount mx-auto">
+											<div class="percent">40%</div>
+											<div class="text">OFF</div>
+										</div>
+										<div class="product-card-offer-valid">
+											<div class="text1">Offer valid until</div>
+											<div class="text2">MAR 01,2024</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							<div class="item">
+								<div class="product-card">
+									<div class="card-img-wrap">
+										<img class="img-wrap" src="images/7 UP.jpg"/>
+									</div>
+									<div class="card-body text-center">
+										<div class="product-card-title">7 UP</div>
+										<div class="product-card-price">
+											<span class="before-discount"><b>Rs. 30</b></span>
+											<span class="after-discount"><b>Rs. 20</b></span>
+										</div>
+							
+										
+
+
+                                         
+										<div class="def-number-input number-input safari_only mx-auto">
+											<button onclick="decrement()" class="minus"></button>
+											<!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
+											<input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantityAndPrice()">
+
+											<button onclick="increment()" class="plus"></button>
+											
+										</div>
+										
+
+
+
+
+										
+										<div class="card-btn">
+											<!-- Add a form around the "Add to Cart" button -->
+											<form action="addToCart.php" method="post">
+												<!-- Hidden input fields to store product information -->
+												<input type="hidden" name="image_url" value="img/p1.jpg">
+												<input type="hidden" name="product_name" value="Finlandia">
+												<input type="hidden" name="price" id="price" value="20">
+												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
+												<!-- Add this hidden input to store the total price -->
+												<input type="hidden" name="total_price" id="total_price" value="20">
+
+
+
+												<!-- <input type="hidden" name="quantity" value="1"> -->
+
+							
+												<!-- Add to Cart button inside the form -->
+												<button type="submit" class="btn-primary add-to-cart">Add To Cart</button>
+											</form>
+										</div>
+									</div>
+									<div class="product-card-id">#030202</div>
+									<div class="product-card-offer text-center">
+										<div class="product-card-discount mx-auto">
+											<div class="percent">40%</div>
+											<div class="text">OFF</div>
+										</div>
+										<div class="product-card-offer-valid">
+											<div class="text1">Offer valid until</div>
+											<div class="text2">MAR 01,2024</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+							
+
+
+
+
+
+
+
+
+
+
+							
+
+
+
+							<div class="item">
+								<div class="product-card">
+									<div class="card-img-wrap">
+										<img class="img-wrap" src="images/coca cola.webp"/>
+									</div>
+									<div class="card-body text-center">
+										<div class="product-card-title">Coke</div>
+										<div class="product-card-price">
+											<span class="before-discount"><b>Rs. 30</b></span>
+											<span class="after-discount"><b>Rs. 20</b></span>
+										</div>
+							
+										
+
+
+                                         
+										<div class="def-number-input number-input safari_only mx-auto">
+											<button onclick="decrement()" class="minus"></button>
+											<!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
+											<input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantityAndPrice()">
+
+											<button onclick="increment()" class="plus"></button>
+											
+										</div>
+										
+
+
+
+
+
+										
+										
+										<div class="card-btn">
+											<!-- Add a form around the "Add to Cart" button -->
+											<form action="addToCart.php" method="post">
+												<!-- Hidden input fields to store product information -->
+												<input type="hidden" name="image_url" value="images/coca cola.webp">
+												<input type="hidden" name="product_name" value="Coke">
+												<input type="hidden" name="price" id="price" value="20">
+												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
+												<!-- Add this hidden input to store the total price -->
+												<input type="hidden" name="total_price" id="total_price" value="20">
+
+
+
+												<!-- <input type="hidden" name="quantity" value="1"> -->
+
+							
+												<!-- Add to Cart button inside the form -->
+												<button type="submit" class="btn-primary add-to-cart">Add To Cart</button>
+											</form>
+										</div>
+									</div>
+									<div class="product-card-id">#030202</div>
+									<div class="product-card-offer text-center">
+										<div class="product-card-discount mx-auto">
+											<div class="percent">40%</div>
+											<div class="text">OFF</div>
+										</div>
+										<div class="product-card-offer-valid">
+											<div class="text1">Offer valid until</div>
+											<div class="text2">MAR 01,2024</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+							
+
+
+
+
+
+
+
+
+
+
+
+							
+
+
+
+
+
+
+							
+
+
+
+							<div class="item">
+								<div class="product-card">
+									<div class="card-img-wrap">
+										<img class="img-wrap" src="images/charged.webp"/>
+									</div>
+									<div class="card-body text-center">
+										<div class="product-card-title">Charged</div>
+										<div class="product-card-price">
+											<span class="before-discount"><b>Rs. 30</b></span>
+											<span class="after-discount"><b>Rs. 20</b></span>
+										</div>
+							
+										
+
+
+                                         
+										<div class="def-number-input number-input safari_only mx-auto">
+											<button onclick="decrement()" class="minus"></button>
+											<!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
+											<input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantityAndPrice()">
+
+											<button onclick="increment()" class="plus"></button>
+											
+										</div>
+										
+
+
+
+
+
+										
+										
+										<div class="card-btn">
+											<!-- Add a form around the "Add to Cart" button -->
+											<form action="addToCart.php" method="post">
+												<!-- Hidden input fields to store product information -->
+												<input type="hidden" name="image_url" value="images/charged.webp">
+												<input type="hidden" name="product_name" value="Charged">
+												<input type="hidden" name="price" id="price" value="20">
+												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
+												<!-- Add this hidden input to store the total price -->
+												<input type="hidden" name="total_price" id="total_price" value="20">
+
+
+
+												<!-- <input type="hidden" name="quantity" value="1"> -->
+
+							
+												<!-- Add to Cart button inside the form -->
+												<button type="submit" class="btn-primary add-to-cart">Add To Cart</button>
+											</form>
+										</div>
+									</div>
+									<div class="product-card-id">#030202</div>
+									<div class="product-card-offer text-center">
+										<div class="product-card-discount mx-auto">
+											<div class="percent">40%</div>
+											<div class="text">OFF</div>
+										</div>
+										<div class="product-card-offer-valid">
+											<div class="text1">Offer valid until</div>
+											<div class="text2">MAR 01,2024</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+
+
+
+
+
+
+
+							
+
+
+							
+
+
+
+							<div class="item">
+								<div class="product-card">
+									<div class="card-img-wrap">
+										<img class="img-wrap" src="images/ENO.jpg"/>
+									</div>
+									<div class="card-body text-center">
+										<div class="product-card-title">ENO</div>
+										<div class="product-card-price">
+											<span class="before-discount"><b>Rs. 30</b></span>
+											<span class="after-discount"><b>Rs. 20</b></span>
+										</div>
+							
+										
+
+
+                                         
+										<div class="def-number-input number-input safari_only mx-auto">
+											<button onclick="decrement()" class="minus"></button>
+											<!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
+											<input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantityAndPrice()">
+
+											<button onclick="increment()" class="plus"></button>
+											
+										</div>
+										
+
+
+
+
+
+										
+										
+										<div class="card-btn">
+											<!-- Add a form around the "Add to Cart" button -->
+											<form action="addToCart.php" method="post">
+												<!-- Hidden input fields to store product information -->
+												<input type="hidden" name="image_url" value="images/ENO.jpg">
+												<input type="hidden" name="product_name" value="ENO">
+												<input type="hidden" name="price" id="price" value="20">
+												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
+												<!-- Add this hidden input to store the total price -->
+												<input type="hidden" name="total_price" id="total_price" value="20">
+
+
+
+												<!-- <input type="hidden" name="quantity" value="1"> -->
+
+							
+												<!-- Add to Cart button inside the form -->
+												<button type="submit" class="btn-primary add-to-cart">Add To Cart</button>
+											</form>
+										</div>
+									</div>
+									<div class="product-card-id">#030202</div>
+									<div class="product-card-offer text-center">
+										<div class="product-card-discount mx-auto">
+											<div class="percent">40%</div>
+											<div class="text">OFF</div>
+										</div>
+										<div class="product-card-offer-valid">
+											<div class="text1">Offer valid until</div>
+											<div class="text2">MAR 01,2024</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							<div class="item">
+								<div class="product-card">
+									<div class="card-img-wrap">
+										<img class="img-wrap" src="images/7 UP.jpg"/>
+									</div>
+									<div class="card-body text-center">
+										<div class="product-card-title">7 UP</div>
+										<div class="product-card-price">
+											<span class="before-discount"><b>Rs. 30</b></span>
+											<span class="after-discount"><b>Rs. 20</b></span>
+										</div>
+							
+										
+
+
+                                         
+										<div class="def-number-input number-input safari_only mx-auto">
+											<button onclick="decrement()" class="minus"></button>
+											<!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
+											<input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantityAndPrice()">
+
+											<button onclick="increment()" class="plus"></button>
+											
+										</div>
+										
+
+
+
+
+										
+										<div class="card-btn">
+											<!-- Add a form around the "Add to Cart" button -->
+											<form action="addToCart.php" method="post">
+												<!-- Hidden input fields to store product information -->
+												<input type="hidden" name="image_url" value="img/p1.jpg">
+												<input type="hidden" name="product_name" value="Finlandia">
+												<input type="hidden" name="price" id="price" value="20">
+												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
+												<!-- Add this hidden input to store the total price -->
+												<input type="hidden" name="total_price" id="total_price" value="20">
+
+
+
+												<!-- <input type="hidden" name="quantity" value="1"> -->
+
+							
+												<!-- Add to Cart button inside the form -->
+												<button type="submit" class="btn-primary add-to-cart">Add To Cart</button>
+											</form>
+										</div>
+									</div>
+									<div class="product-card-id">#030202</div>
+									<div class="product-card-offer text-center">
+										<div class="product-card-discount mx-auto">
+											<div class="percent">40%</div>
+											<div class="text">OFF</div>
+										</div>
+										<div class="product-card-offer-valid">
+											<div class="text1">Offer valid until</div>
+											<div class="text2">MAR 01,2024</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+							
+
+
+
+
+
+
+
+
+
+
+							
+
+
+
+							<div class="item">
+								<div class="product-card">
+									<div class="card-img-wrap">
+										<img class="img-wrap" src="images/coca cola.webp"/>
+									</div>
+									<div class="card-body text-center">
+										<div class="product-card-title">Coke</div>
+										<div class="product-card-price">
+											<span class="before-discount"><b>Rs. 30</b></span>
+											<span class="after-discount"><b>Rs. 20</b></span>
+										</div>
+							
+										
+
+
+                                         
+										<div class="def-number-input number-input safari_only mx-auto">
+											<button onclick="decrement()" class="minus"></button>
+											<!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
+											<input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantityAndPrice()">
+
+											<button onclick="increment()" class="plus"></button>
+											
+										</div>
+										
+
+
+
+
+
+										
+										
+										<div class="card-btn">
+											<!-- Add a form around the "Add to Cart" button -->
+											<form action="addToCart.php" method="post">
+												<!-- Hidden input fields to store product information -->
+												<input type="hidden" name="image_url" value="images/coca cola.webp">
+												<input type="hidden" name="product_name" value="Coke">
+												<input type="hidden" name="price" id="price" value="20">
+												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
+												<!-- Add this hidden input to store the total price -->
+												<input type="hidden" name="total_price" id="total_price" value="20">
+
+
+
+												<!-- <input type="hidden" name="quantity" value="1"> -->
+
+							
+												<!-- Add to Cart button inside the form -->
+												<button type="submit" class="btn-primary add-to-cart">Add To Cart</button>
+											</form>
+										</div>
+									</div>
+									<div class="product-card-id">#030202</div>
+									<div class="product-card-offer text-center">
+										<div class="product-card-discount mx-auto">
+											<div class="percent">40%</div>
+											<div class="text">OFF</div>
+										</div>
+										<div class="product-card-offer-valid">
+											<div class="text1">Offer valid until</div>
+											<div class="text2">MAR 01,2024</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+							
+
+
+
+
+
+
+
+
+
+
+
+							
+
+
+
+
+
+
+							
+
+
+
+							<div class="item">
+								<div class="product-card">
+									<div class="card-img-wrap">
+										<img class="img-wrap" src="images/charged.webp"/>
+									</div>
+									<div class="card-body text-center">
+										<div class="product-card-title">Charged</div>
+										<div class="product-card-price">
+											<span class="before-discount"><b>Rs. 30</b></span>
+											<span class="after-discount"><b>Rs. 20</b></span>
+										</div>
+							
+										
+
+
+                                         
+										<div class="def-number-input number-input safari_only mx-auto">
+											<button onclick="decrement()" class="minus"></button>
+											<!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
+											<input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantityAndPrice()">
+
+											<button onclick="increment()" class="plus"></button>
+											
+										</div>
+										
+
+
+
+
+
+										
+										
+										<div class="card-btn">
+											<!-- Add a form around the "Add to Cart" button -->
+											<form action="addToCart.php" method="post">
+												<!-- Hidden input fields to store product information -->
+												<input type="hidden" name="image_url" value="images/charged.webp">
+												<input type="hidden" name="product_name" value="Charged">
+												<input type="hidden" name="price" id="price" value="20">
+												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
+												<!-- Add this hidden input to store the total price -->
+												<input type="hidden" name="total_price" id="total_price" value="20">
+
+
+
+												<!-- <input type="hidden" name="quantity" value="1"> -->
+
+							
+												<!-- Add to Cart button inside the form -->
+												<button type="submit" class="btn-primary add-to-cart">Add To Cart</button>
+											</form>
+										</div>
+									</div>
+									<div class="product-card-id">#030202</div>
+									<div class="product-card-offer text-center">
+										<div class="product-card-discount mx-auto">
+											<div class="percent">40%</div>
+											<div class="text">OFF</div>
+										</div>
+										<div class="product-card-offer-valid">
+											<div class="text1">Offer valid until</div>
+											<div class="text2">MAR 01,2024</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+
+
+
+
+
+
+
+							
+
+
+							
+
+
+
+							<div class="item">
+								<div class="product-card">
+									<div class="card-img-wrap">
+										<img class="img-wrap" src="images/ENO.jpg"/>
+									</div>
+									<div class="card-body text-center">
+										<div class="product-card-title">ENO</div>
+										<div class="product-card-price">
+											<span class="before-discount"><b>Rs. 30</b></span>
+											<span class="after-discount"><b>Rs. 20</b></span>
+										</div>
+							
+										
+
+
+                                         
+										<div class="def-number-input number-input safari_only mx-auto">
+											<button onclick="decrement()" class="minus"></button>
+											<!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
+											<input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantityAndPrice()">
+
+											<button onclick="increment()" class="plus"></button>
+											
+										</div>
+										
+
+
+
+
+
+										
+										
+										<div class="card-btn">
+											<!-- Add a form around the "Add to Cart" button -->
+											<form action="addToCart.php" method="post">
+												<!-- Hidden input fields to store product information -->
+												<input type="hidden" name="image_url" value="images/ENO.jpg">
+												<input type="hidden" name="product_name" value="ENO">
+												<input type="hidden" name="price" id="price" value="20">
+												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
+												<!-- Add this hidden input to store the total price -->
+												<input type="hidden" name="total_price" id="total_price" value="20">
+
+
+
+												<!-- <input type="hidden" name="quantity" value="1"> -->
+
+							
+												<!-- Add to Cart button inside the form -->
+												<button type="submit" class="btn-primary add-to-cart">Add To Cart</button>
+											</form>
+										</div>
+									</div>
+									<div class="product-card-id">#030202</div>
+									<div class="product-card-offer text-center">
+										<div class="product-card-discount mx-auto">
+											<div class="percent">40%</div>
+											<div class="text">OFF</div>
+										</div>
+										<div class="product-card-offer-valid">
+											<div class="text1">Offer valid until</div>
+											<div class="text2">MAR 01,2024</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+
+
+
+
+
+
+							
+							
+						</div>
+					</section>
+					
+					<section id="homeCategory"  class="homeSection">
+						<div class="category-home">
+							<div class="category-home-block">
+								<img class="category-img" src="img/s1.jpg">
+								<div class="black-overlay"></div>
+								<div class="category-home-block-content">
+									<div class="category-home-block-title">
+										RUM
+									</div>
+									<div class="category-home-block-subtitles">
+										Gold / Black / White / Domestic
+									</div>
+									<div class="see-more-btn">
+										<a href="#" class="see-more-link">SEE MORE</a>
+									</div>
+								</div>
+							</div>
+							<div class="category-home-block">
+								<img class="category-img" src="img/vodka.jpg">
+								<div class="black-overlay"></div>
+								<div class="category-home-block-content">
+									<div class="category-home-block-title">
+										VODKA
+									</div>
+									<div class="category-home-block-subtitles">
+										Premium / Regular / Flavoured / Domestic
+									</div>
+									<div class="see-more-btn">
+										<a href="#" class="see-more-link">SEE MORE</a>
+									</div>
+								</div>
+							</div>
+							<div class="category-home-block">
+								<img class="category-img" src="img/s3.jpg">
+								<div class="black-overlay"></div>
+								<div class="category-home-block-content">
+									<div class="category-home-block-title">
+										WHISKY
+									</div>
+									<div class="category-home-block-subtitles">
+										Malt / Blended Scotch / Ultra Premium / Premium / Regular / Bourbon / Domestic
+									</div>
+									<div class="see-more-btn">
+										<a href="#" class="see-more-link">SEE MORE</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section id="homeBrand" class="homeSection">
+						<div class="text-center">
+							<h3 class="section-header text-center">BRAND SPOTLIGHT</h3>
+						</div>
+						<div class="row">
+							<div class="col-md-6 text-center">
+								<div class="brand-block">
+									<img class="home-brand-img" src="img/s1.jpg">
+									<div class="home-brand-title">Brand 1</div>
+									<div class="home-brand-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+									consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+									cillum dolore eu fugiat nulla pariatur.</div>
+									<div class="my-4">
+										<a class="shop-now-btn" href="#">Shop Now <i class="fa fa-chevron-right"></i></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="brand-block text-center">
+									<img  class="home-brand-img" src="img/s2.jpg">
+									<div class="home-brand-title">Brand 2</div>
+									<div class="home-brand-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+									consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+									cillum dolore eu fugiat nulla pariatur.</div>
+									<div class="my-4">
+										<a class="shop-now-btn" href="#">Shop Now <i class="fa fa-chevron-right"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section id="homeTestimonial" class="homeSection">
+						<div class="text-center">
+							<h3 class="section-header text-center">Few Words from our Clients</h3>
+						</div>
+						<div class="owl-carousel owl-theme" id="testimonialSlider">
+							<div class="item">
+								<div class="testimonial-block">
+									<div class="testimonial-title">
+										Easy to order
+									</div>
+									<div class="testimonial-text">
+										"Taste Tales is simply the best in terms of quality of the products and the price. It is easy to order and you receive your products on time and well-handled."
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="testimonial-block">
+									<div class="testimonial-title">
+										Very happy
+									</div>
+									<div class="testimonial-text">
+										"I have been shopping at TasteTales for years and I am very happy. So I want to share that with my colleagues."
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="testimonial-block">
+									<div class="testimonial-title">
+										Fast response
+									</div>
+									<div class="testimonial-text">
+										"High professionalism, fast response and mutual understanding. Never had any problem with TasteTales and the prices are reasonable."
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="testimonial-block">
+									<div class="testimonial-title">
+										A fan of Taste Tales
+									</div>
+									<div class="testimonial-text">
+										"I have been a fan of TasteTales all my life! It's the first thing I check when I am posted overseas - to see if it's operating in the country I am posted to. Reliable, efficient and friendly service."
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="testimonial-block">
+									<div class="testimonial-title">
+										Good quality
+									</div>
+									<div class="testimonial-text">
+										"Reliable service and good quality of products. Beside this, I have the possibility to find products not available locally."
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="testimonial-block">
+									<div class="testimonial-title">
+										Fast delivery
+									</div>
+									<div class="testimonial-text">
+										"Trusted, good quality, and good range of liquors."
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+			
+			<section id="callSubscribe" class="homeSection" style="background: url('img/s2.jpg'); background-attachment: fixed;">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="call-us">
+								<span>CALL US: <span style="color: #009a46;">+9779812345678</span></span>
+								<i class="fa fa-phone"></i>
+							</div>
+						</div>
+						<div class="col-md-8">
+							<div class="subscribe">
+								<div class="subscribe-text">
+									<div class="subscribe-text1">NEWSLETTER</div>
+									<div class="subscribe-text2">Subscribe for Latest News and Offers</div>
+								</div>
+								<div class="newsletter-form">									<input id="subscribeInput" type="email" name="email">
+									<button class="subscribe-btn" type="submit">Subscribe</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="subscribe-overlay"></div>
+			</section>
+			
+			<footer>
+				<div class="container">
+					<div id="footer-top">
+						<div class="row">
+							<div class="col-md-4 first">
+								<h4>Contact Details</h4>
+								<hr style="margin: 10px 0; border-top: 3px solid #009a46; width: 80px;">
+								<div><i class="fa fa-map-marker-alt"></i>Kathmandu, Nepal</div>
+								<div><i class="fa fa-phone"></i> +9779812345678/ +9779801234567</div>
+								<div><i class="fa fa-envelope"></i><a href="mailto:info@greeline.com">info@TasteTales.com</a></div>
+							</div>
+							<div class="col-md-4 second">
+								<h4>Quick Links</h4>
+								<hr style="margin: 10px 0; border-top: 3px solid #009a46; width: 80px;">
+								<p><a href="#">Home</a></p>
+								<p><a href="#">About Us</a></p>
+								<p><a href="#">Contact Us</a></p>
+							</div>
+							<div class="col-md-4 third">
+								<h4>Useful Links</h4>
+								<hr style="margin: 10px 0; border-top: 3px solid #009a46; width: 80px;">
+								<div class="social">
+									<p><a href="#">Offers</a></p>
+									<p><a href="#">Terms & Conditions</a></p>
+									<p><a href="#">Return Policy</a></p>
+									<p><a href="#">Privacy Policy</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="footer-bottom">
+					<div class="container">
+						<div class="footer-social-section">
+							<div class="footer-social">
+								<div class="footer-social-text">
+									Find us on Social Media
+								</div>
+								<div class="footer-social-icons">
+									<a href="#" target="_blank">
+										<i class="fab fa-facebook-f"></i>
+									</a>
+									<a href="#" target="_blank">
+										<i class="fab fa-linkedin-in"></i>
+									</a>
+									<a href="#" target="_blank">
+										<i class="fab fa-twitter"></i>
+									</a>
+									<a href="#" target="_blank">
+										<i class="fab fa-instagram"></i>
+									</a>
+									<a href="#" target="_blank">
+										<i class="fab fa-youtube"></i>
+									</a>	
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+								<div class="payments-footer">
+									<img src="img/payment.png"/>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="copyright">© 2023 Taste Tales Pvt. Ltd. All Rights Reserved.
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</footer>
+		
+		</div>
+		
+		<a id="back-to-top" href="#" class="btn back-to-top" role="button"><i class="fa fa-chevron-up"></i></a>	
+		
+		
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/popper.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/owl.carousel.js"></script>
+
+		<script>
+			$(document).ready(function(){
+				$(window).scroll(function () {
+				if ($(this).scrollTop() > 50) {
+					$('#back-to-top').fadeIn();
+				} else {
+					$('#back-to-top').fadeOut();
+				}
+			});
+			// scroll body to 0px on click
+			$('#back-to-top').click(function () {
+				$('body,html').animate({
+					scrollTop: 0
+				}, 400);
+				return false;
+			});
+			});
+		</script>
+		
+		<script>
+			$('#home-slide').owlCarousel({
+				loop:true,
+				autoplay:true,
+				autoplayTimeout:3000,
+				autoplayHoverPause:true,
+				nav:true,
+				navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
+				responsive:{
+					0:{
+						items:1
+					},
+					600:{
+						items:1
+					},
+					1000:{
+						items:1
+					}
+				}
+			})
+		
+			$('#recent-slide').owlCarousel({
+				nav:true,
+				margin:15,
+				slideBy:'page',
+				navText : ["<i class='fa fa-arrow-circle-left'></i>","<i class='fa fa-arrow-circle-right'></i>"],
+				responsive:{
+					0:{
+						items:1
+					},
+					600:{
+						items:2
+					},
+					1000:{
+						items:4
+					}
+				}
+			})
+
+			$('#testimonialSlider').owlCarousel({
+				nav:true,
+				dots:false,
+				margin:15,
+				slideBy:'page',
+				navText : ["<i class='fa fa-arrow-circle-left'></i>","<i class='fa fa-arrow-circle-right'></i>"],
+				responsive:{
+					0:{
+						items:1
+					},
+					600:{
+						items:2
+					},
+					1000:{
+						items:3
+					}
+				}
+			})
+		</script>
+
+
+
+
+
+
+
+
+
+
+<script>
+	
+	function goToCartPage() {
+	// Add any additional logic here if needed
+	window.location.href = "cartpage.html";
+}
+</script>
+
+
+
+	
+
+
+<!-- quantity functional banaunalai haleko -->
+<script>
+	function increment() {
+		var quantityInput = document.getElementById("quantity");
+		quantityInput.stepUp();
+		updateTotalQuantityAndPrice();
+	}
+
+	function decrement() {
+		var quantityInput = document.getElementById("quantity");
+		quantityInput.stepDown();
+		updateTotalQuantityAndPrice();
+	}
+
+	function updateTotalQuantityAndPrice() {
+		var quantityInput = document.getElementById("quantity");
+		var totalQuantityInput = document.getElementById("total_quantity");
+		var priceInput = document.getElementById("price");
+
+		// Update the total quantity
+		totalQuantityInput.value = quantityInput.value;
+
+		// Update the total price by multiplying quantity with the actual price
+		var totalPrice = totalQuantityInput.value * parseInt(priceInput.value);
+		document.getElementById("total_price").value = totalPrice;
+	}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- flask ko lagi -->
+<script>
+	function triggerAgeDetection() {
+		$.ajax({
+			type: 'GET',
+			url: '/detect_age',
+			success: function(response) {
+				console.log('Age detection successful:', response);
+				// Handle the response as needed (e.g., redirect to the appropriate page)
+				window.location.href = response.redirect_url; // Adjust the response format based on your implementation
+			},
+			error: function(error) {
+				console.error('Error during age detection:', error);
+				// Handle the error as needed
+			}
+		});
+	}
+	</script>
+	
+
+	</body>
+</html>

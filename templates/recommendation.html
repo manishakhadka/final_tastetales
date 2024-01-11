@@ -1,0 +1,437 @@
+<!-- recommendation.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <!-- Bootstrap CSS -->
+        <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="font-awesome/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="css/owl.carousel.css"/>
+        <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/custom.css"/>
+        <link rel="stylesheet" type="text/css" href="css/responsive.css"/> -->
+    
+        <script src="js/custom.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+        <script src="C:\project\TasteTales\project\static\js\age_detection.js"></script>
+    
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+        <!-- flask ko lagi gareko -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='C:\project\TasteTales\project\static\css\bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='static/font-awesome/css/all.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='static/css/owl.carousel.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='static/css/owl.theme.default.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='static/css/css/css/custom.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='static\css/responsive.css') }}">
+    
+    
+    
+    
+    
+    
+    
+    
+      
+        
+      </head>
+        <body>
+            <h1>Liquor Recommendations</h1>
+            <div id="app">
+                <header>
+                    <div id="logo-header">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4 text-center">
+                                    <a class="navbar-brand" href="#">
+                                        <img src="static/img/logo-removebg-preview.png" width="160"/>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 my-auto text-right">
+                                    <div class="header-right ml-auto">
+                                        <form id="search-form">
+                                            <div class="search-box">
+                                                <input type="text" name="" class="search-input" placeholder="Search...."/> 
+                                                <button class="search-btn"><i class="fa fa-search"></i></button>
+                                            </div>						        
+                                        </form>
+                                        <div class="dropdown">
+                                            <a href="#" class="dropdown" data-toggle="dropdown">
+                                                <i class="fa fa-user"></i>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                              <a class="dropdown-item" href="login.html">Sign in</a>
+                                              <a class="dropdown-item" href="register.html">Register</a>
+                                            </div>
+                                        </div>
+                                        <!--hatako cart symbol
+                                        <div class="nav-item dropdown mega-dropdown">
+                                            <a class="nav-link" href="#" id="minicart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="goToCartPage()" >
+                                                <i class="fa fa-shopping-cart">
+                                                    <span id="cart-count"></span>
+                                                </i>-->
+                                            </a>
+                                        
+                                            <!--cart ma dekhauney tarika milauna baki,remove buttonma js halna baki,aru classma pani js halna baki
+                                            <ul class="dropdown-menu mega-dropdown-menu" aria-labelledby="minicart">
+                                                <li class="row">
+                                                    <ul class="col-1">
+                                                        <div class="remove-btn">
+                                                            <button class="remove-item-btn">
+                                                                <i class="fa fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="text-center">
+                                                            <img class="cart-item-img" src="img/p4.jpg">
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-5">
+                                                        <div class="cart-product-title">
+                                                            iRobot Roomba 615 Vacuum Cleaner
+                                                        </div>
+                                                        <div class="cart-product-id">
+                                                            #330338
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="cart-qty">
+                                                            x2
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="cart-price">
+                                                            Rs.<br>4350
+                                                        </div>
+                                                    </ul>
+                                                </li>
+                                                <li class="row">
+                                                    <ul class="col-1">
+                                                        <div class="remove-btn">
+                                                            <button class="remove-item-btn">
+                                                                <i class="fa fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="text-center">
+                                                            <img class="cart-item-img" src="img/p1.jpg">
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-5">
+                                                        <div class="cart-product-title">
+                                                            iRobot Roomba 615 Vacuum Cleaner
+                                                        </div>
+                                                        <div class="cart-product-id">
+                                                            #330338
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="cart-qty">
+                                                            x2
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="cart-price">
+                                                            Rs.<br>4350
+                                                        </div>
+                                                    </ul>
+                                                </li>
+                                                <li class="row">
+                                                    <ul class="col-1">
+                                                        <div class="remove-btn">
+                                                            <button class="remove-item-btn">
+                                                                <i class="fa fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="text-center">
+                                                            <img class="cart-item-img" src="img/p2.jpg">
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-5">
+                                                        <div class="cart-product-title">
+                                                            iRobot Roomba 615 Vacuum Cleaner
+                                                        </div>
+                                                        <div class="cart-product-id">
+                                                            #330338
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="cart-qty">
+                                                            x2
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="cart-price">
+                                                            Rs.<br>4350
+                                                        </div>
+                                                    </ul>
+                                                </li>
+                                                <li class="row">
+                                                    <ul class="col-1">
+                                                        <div class="remove-btn">
+                                                            <button class="remove-item-btn">
+                                                                <i class="fa fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="text-center">
+                                                            <img class="cart-item-img" src="img/p3.jpg">
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-5">
+                                                        <div class="cart-product-title">
+                                                            iRobot Roomba 615 Vacuum Cleaner
+                                                        </div>
+                                                        <div class="cart-product-id">
+                                                            #330338
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="cart-qty">
+                                                            x2
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="cart-price">
+                                                            Rs.<br>4350
+                                                        </div>
+                                                    </ul>
+                                                </li>
+                                                <li class="row">
+                                                    <ul class="col-1">
+                                                        <div class="remove-btn">
+                                                            <button class="remove-item-btn">
+                                                                <i class="fa fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="text-center">
+                                                            <img class="cart-item-img" src="img/vodka.jpg">
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-5">
+                                                        <div class="cart-product-title">
+                                                            iRobot Roomba 615 Vacuum Cleaner
+                                                        </div>
+                                                        <div class="cart-product-id">
+                                                            #330338
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="cart-qty">
+                                                            x2
+                                                        </div>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <div class="cart-price">
+                                                            Rs.<br>4350
+                                                        </div>
+                                                    </ul>
+                                                </li>
+                                                <li class="row mini-total"> 
+                                                    <ul class="col-10">
+                                                        <b>Subtotal</b>
+                                                    </ul>
+                                                    <ul class="col-2">
+                                                        <b>Rs.10000</b>
+                                                    </ul>
+                                                </li>
+                                                <li class="">
+                                                    
+                                                </li>
+                                            </ul>
+                                        -->
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+    
+    
+    
+    
+    
+                        <div id="main-menu">
+                        <div class="container">
+    
+                            <nav class="navbar navbar-toggleable-md navbar-expand-lg">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                                    <i class="fa fa-bars"></i>
+                                </button>			
+                                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    
+                                    <ul class="navbar-nav mx-auto">
+    
+    
+                                        <li class="nav-item">
+                                            <div class="dropdown header">
+    
+                                                <a class="nav-link" href="index.html">Home</a>
+                                                  
+                                            </div>										
+                                        </li>
+                                        <li class="nav-item">
+                                            <div class="dropdown header">
+                                                <a class="nav-link" href="contact.html">Contact Us</a>
+                                                  
+                                            </div>										
+                                        </li>
+    
+                                        <li class="nav-item">
+                                            <div class="dropdown header">
+                                                <a class="nav-link" href="#">Drinks</a>
+                                                  <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="softdrinks.html">Soft Drinks</a>
+    
+    
+    
+                                                    <!-- <button onclick="performAgeDetection()">Go to Hard Drinks</button>  -->
+                                                    <!-- <a class="dropdown-item" href="harddrinks.html">Hard Drinks</a> -->
+                                                    <!-- <a class="dropdown-item" href="#" onclick="redirectToHardDrinks()">Hard Drinks</a> -->
+    
+                                                    <!-- <a class="dropdown-item" id="hardDrinksButton" onclick="triggerAgeDetection()"href="harddrinks">Hard Drinks</a>
+    
+                                                    <video id="webcam-stream" width="640" height="480" autoplay></video>
+                                                     -->
+                                                    
+                                                    <!-- Your index page content -->
+                                                    <a href="{{ url_for('permission') }}" class="dropdown-item">Hard Drinks</a>
+    
+                                                  </div>
+                                            </div>										
+                                        </li>
+    
+    
+                                        <li class="nav-item">
+                                            <div class="dropdown header">
+                                                <a class="nav-link" href="{{ url_for('recommendation') }}">Search</a>
+                                                
+                                                  
+                                            </div>										
+                                        </li>
+    
+    
+    
+                                            </div>										
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                
+                </header>
+
+
+
+
+                
+                    <h1>Product Recommendations</h1>
+                
+                    <label for="name">Enter Product Name:</label>
+                    <input type="text" id="name" placeholder="Type a product name...">
+                    <button onclick="getNameRecommendations()">Get Name Recommendations</button>
+                    <br>
+                
+                    <label for="brand">Enter Brand:</label>
+                    <input type="text" id="brand" placeholder="Type a brand...">
+                    <button onclick="getBrandRecommendations()">Get Brand Recommendations</button>
+                    <br>
+                
+                    <label for="price">Enter Price:</label>
+                    <input type="number" id="price" placeholder="Enter a price...">
+                    <button onclick="getPriceRecommendations()">Get Price Recommendations</button>
+                    <br>
+                
+                    <div id="name-recommendations"></div>
+                    <div id="brand-recommendations"></div>
+                    <div id="price-recommendations"></div>
+                
+                    <script>
+                        function getNameRecommendations() {
+                            const productName = document.getElementById('name').value;
+                            fetch('/get_name_recommendations', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ name: productName }),
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                const recommendationsDiv = document.getElementById('name-recommendations');
+                                recommendationsDiv.innerHTML = '<h3>Name Recommendations:</h3>';
+                                data.forEach(product => {
+                                    recommendationsDiv.innerHTML += `<p>${product}</p>`;
+                                });
+                            });
+                        }
+                
+                        function getBrandRecommendations() {
+                            const brandName = document.getElementById('brand').value;
+                            fetch('/get_brand_recommendations', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ brand: brandName }),
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                const recommendationsDiv = document.getElementById('brand-recommendations');
+                                recommendationsDiv.innerHTML = '<h3>Brand Recommendations:</h3>';
+                                data.forEach(product => {
+                                    recommendationsDiv.innerHTML += `<p>${product}</p>`;
+                                });
+                            });
+                        }
+                
+                        function getPriceRecommendations() {
+                            const priceValue = document.getElementById('price').value;
+                            fetch('/get_price_recommendations', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ price: priceValue }),
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                const recommendationsDiv = document.getElementById('price-recommendations');
+                                recommendationsDiv.innerHTML = '<h3>Price Recommendations:</h3>';
+                                data.forEach(product => {
+                                    recommendationsDiv.innerHTML += `<p>${product}</p>`;
+                                });
+                            });
+                        }
+                    </script>
+                
+                
+
+    
+                <script src="{{ url_for('static', filename='js/recommendation.js') }}"></script>
+                <!-- <script src="{{ url_for('static', filename='C:\project\age-integrate-pachiko-tastetales\static\js\recommendation.js') }}"></script> -->
+</body>
+</html>

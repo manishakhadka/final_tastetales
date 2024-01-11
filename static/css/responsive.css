@@ -1,0 +1,138 @@
+@media only screen and (max-width: 600px) {
+
+
+
+    /* Order Page */
+    #order-wrap .order-form-wrap {
+        padding: 0px 5px;
+    }
+
+
+    /* Contact Page */
+    h1.section-heading-wrap {
+        margin: 20px 0 15px;
+        font-size: 30px;
+    }
+    #contact-wrap input[type="text"], #contact-wrap textarea, #contact-wrap input[type="email"] {
+        margin: 0 0 15px;
+    }
+    iframe {
+        height: 250px;
+        width: 100%;
+    }
+    h3.section-heading-wrap {
+        margin: 20px 0 10px;
+        font-size: 25px;
+    }
+
+    /* Login Page */
+    section#login-wrap {
+        padding: 0;
+    }
+    .main-tab-bar {
+        margin: 20px 0px;
+    }
+    .webshop-desc {
+        padding: 10px 0px;
+    }
+
+    /* register Page */
+    .reset-pw-form {
+        padding: 10px 10px;
+    }
+    button.btn-login {
+        margin: 15px 0px;
+        padding: 5px 10px;
+    }
+    .become-customer {
+        padding: 20px;
+    }
+
+    /* Register Page */
+    .notification {
+        padding: 0px 0 10px;
+    }
+    a.nav-link.active, a.nav-link  {
+        font-size: 13px;
+    }
+    a.nav-link:hover {
+        background: #98FB98 !important;
+    }
+    button.btn-reset {
+        padding: 5px 8px;
+    }
+
+    /* Shop Page */
+    /* Product List */
+    select#sortBy {
+        padding: 5px;
+        margin: 10px 0 15px;
+    }
+    .sorting.text-right {
+        padding: 5px 0 10px;
+    }
+    #productList {
+        margin: 0;
+        padding: 20px 0;
+    }
+    .product-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .img-wrap {
+        height: 130px;
+        width: 100%;
+    }
+    .product-card-discount {
+        border-radius: 45%;
+        width: 50px;
+        height: 54px;
+        padding: 8px;
+    }
+    .card-img-wrap {
+        padding: 30px 0 10px;
+    }
+    .product-card-title {
+        height: 30px;
+        padding: 0 10px;
+        margin-bottom: 10px;
+    }
+    .product-card-offer-valid {
+        padding: 2px;
+    }
+    .call-us {
+        padding: 20px 5px;
+        font-size: 17px;
+        background: #fff;
+        text-align: center;
+    }
+    #callSubscribe {
+        padding: 40px 0;
+    }
+    .subscribe {
+        padding: 25px 15px;
+        background: white;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .subscribe-text1 {
+        font-size: 20px;
+        line-height: 21px;
+        margin: 5px 0 10px;
+    }
+    .newsletter-form {
+        border: unset;
+    }
+    input#subscribeInput {
+        border: none;
+        width: 100%;
+        background: #f3f3f3;
+        margin: 20px 0 10px;
+    }
+    button.subscribe-btn {
+        padding: 5px 10px;
+        height: unset;
+        border-radius: 3px;
+    }
+  }

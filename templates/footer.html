@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="font-awesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css"/>
+	<link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/custom.css"/>
+	<link rel="stylesheet" type="text/css" href="css/responsive.css"/>
+	
+
+	<title>Soft Drinks</title>
+	
+  </head>
+  <body>
+  </body>
+<footer>
+    <div class="container">
+        <div id="footer-top">
+            <div class="row">
+                <div class="col-md-4 first">
+                    <h4>Contact Details</h4>
+                    <hr style="margin: 10px 0; border-top: 3px solid #009a46; width: 80px;">
+                    <div><i class="fa fa-map-marker-alt"></i>Kathmandu, Nepal</div>
+                    <div><i class="fa fa-phone"></i> +9779812345678/ +9779801234567</div>
+                    <div><i class="fa fa-envelope"></i><a href="mailto:info@greeline.com">info@TasteTales.com</a></div>
+                </div>
+                <div class="col-md-4 second">
+                    <h4>Quick Links</h4>
+                    <hr style="margin: 10px 0; border-top: 3px solid #009a46; width: 80px;">
+                    <p><a href="#">Home</a></p>
+                    <p><a href="#">About Us</a></p>
+                    <p><a href="#">Contact Us</a></p>
+                </div>
+                <div class="col-md-4 third">
+                    <h4>Useful Links</h4>
+                    <hr style="margin: 10px 0; border-top: 3px solid #009a46; width: 80px;">
+                    <div class="social">
+                        <p><a href="#">Offers</a></p>
+                        <p><a href="#">Terms & Conditions</a></p>
+                        <p><a href="#">Return Policy</a></p>
+                        <p><a href="#">Privacy Policy</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer-bottom">
+        <div class="container">
+            <div class="footer-social-section">
+                <div class="footer-social">
+                    <div class="footer-social-text">
+                        Find us on Social Media
+                    </div>
+                    <div class="footer-social-icons">
+                        <a href="#" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>	
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="payments-footer">
+                        <img src="img/payment.png"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="copyright">© 2023 Taste Tales Pvt. Ltd. All Rights Reserved.
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" href="#" class="btn back-to-top" role="button"><i class="fa fa-chevron-up"></i></a>	
+		
+		
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/popper.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/owl.carousel.js"></script>
+
+		<script>
+			$(document).ready(function(){
+				$(window).scroll(function () {
+				if ($(this).scrollTop() > 50) {
+					$('#back-to-top').fadeIn();
+				} else {
+					$('#back-to-top').fadeOut();
+				}
+			});
+			// scroll body to 0px on click
+			$('#back-to-top').click(function () {
+				$('body,html').animate({
+					scrollTop: 0
+				}, 400);
+				return false;
+			});
+			});
+		</script>
+		
+		<script>
+			$('#home-slide').owlCarousel({
+				loop:true,
+				autoplay:true,
+				autoplayTimeout:3000,
+				autoplayHoverPause:true,
+				nav:true,
+				navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
+				responsive:{
+					0:{
+						items:1
+					},
+					600:{
+						items:1
+					},
+					1000:{
+						items:1
+					}
+				}
+			})
+		
+			$('#recent-slide').owlCarousel({
+				nav:true,
+				margin:15,
+				slideBy:'page',
+				navText : ["<i class='fa fa-arrow-circle-left'></i>","<i class='fa fa-arrow-circle-right'></i>"],
+				responsive:{
+					0:{
+						items:1
+					},
+					600:{
+						items:2
+					},
+					1000:{
+						items:4
+					}
+				}
+			})
+
+			$('#testimonialSlider').owlCarousel({
+				nav:true,
+				dots:false,
+				margin:15,
+				slideBy:'page',
+				navText : ["<i class='fa fa-arrow-circle-left'></i>","<i class='fa fa-arrow-circle-right'></i>"],
+				responsive:{
+					0:{
+						items:1
+					},
+					600:{
+						items:2
+					},
+					1000:{
+						items:3
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
+
