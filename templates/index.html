@@ -5,34 +5,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap CSS -->
-	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="font-awesome/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css"/>
-	<link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/custom.css"/>
-	<link rel="stylesheet" type="text/css" href="css/responsive.css"/> -->
+    
+	
+    
 
-	<script src="js/custom.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-	<script src="C:\project\TasteTales\project\static\js\age_detection.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="{{ url_for('static', filename='C:\project\age-integrate-pachiko-tastetales\static\js\recommendation.js') }}"></script>
-
-	<!-- <script src="{{ url_for('static', filename='recommendation.js') }}"></script> -->
 
 
 	<!-- flask ko lagi gareko -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='C:\project\TasteTales\project\static\css\bootstrap.min.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='static\font-awesome/css/all.min.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='static\css/owl.carousel.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='static\css/owl.theme.default.min.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='static\css/css/css/custom.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='static\css/responsive.css') }}">
+	
+
+	
 
 
 
-
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	
+	<link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/css/all.min.css') }}">
 
 
 
@@ -65,193 +58,13 @@
 											<i class="fa fa-user"></i>
 										</a>
 									    <div class="dropdown-menu">
-									      <a class="dropdown-item" href="login.html">Sign in</a>
-									      <a class="dropdown-item" href="register.html">Register</a>
+											<a class="dropdown-item" href="{{ url_for('login') }}">Sign in</a>
+
+											<a class="dropdown-item" href="{{ url_for('register') }}">Register</a>
+
 									    </div>
 									</div>
-									<!--hatako cart symbol
-									<div class="nav-item dropdown mega-dropdown">
-										<a class="nav-link" href="#" id="minicart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="goToCartPage()" >
-	                                        <i class="fa fa-shopping-cart">
-												<span id="cart-count"></span>
-											</i>-->
-	                                    </a>
 									
-										<!--cart ma dekhauney tarika milauna baki,remove buttonma js halna baki,aru classma pani js halna baki
-	                                    <ul class="dropdown-menu mega-dropdown-menu" aria-labelledby="minicart">
-	                                    	<li class="row">
-	                                    		<ul class="col-1">
-	                                    			<div class="remove-btn">
-														<button class="remove-item-btn">
-															<i class="fa fa-times"></i>
-														</button>
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-	                                    			<div class="text-center">
-														<img class="cart-item-img" src="img/p4.jpg">
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-5">
-	                                    			<div class="cart-product-title">
-														iRobot Roomba 615 Vacuum Cleaner
-													</div>
-													<div class="cart-product-id">
-														#330338
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-													<div class="cart-qty">
-														x2
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-	                                    			<div class="cart-price">
-														Rs.<br>4350
-													</div>
-	                                    		</ul>
-	                                    	</li>
-	                                    	<li class="row">
-	                                    		<ul class="col-1">
-	                                    			<div class="remove-btn">
-														<button class="remove-item-btn">
-															<i class="fa fa-times"></i>
-														</button>
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-	                                    			<div class="text-center">
-														<img class="cart-item-img" src="img/p1.jpg">
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-5">
-	                                    			<div class="cart-product-title">
-														iRobot Roomba 615 Vacuum Cleaner
-													</div>
-													<div class="cart-product-id">
-														#330338
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-													<div class="cart-qty">
-														x2
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-	                                    			<div class="cart-price">
-														Rs.<br>4350
-													</div>
-	                                    		</ul>
-	                                    	</li>
-	                                    	<li class="row">
-	                                    		<ul class="col-1">
-	                                    			<div class="remove-btn">
-														<button class="remove-item-btn">
-															<i class="fa fa-times"></i>
-														</button>
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-	                                    			<div class="text-center">
-														<img class="cart-item-img" src="img/p2.jpg">
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-5">
-	                                    			<div class="cart-product-title">
-														iRobot Roomba 615 Vacuum Cleaner
-													</div>
-													<div class="cart-product-id">
-														#330338
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-													<div class="cart-qty">
-														x2
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-	                                    			<div class="cart-price">
-														Rs.<br>4350
-													</div>
-	                                    		</ul>
-	                                    	</li>
-	                                    	<li class="row">
-	                                    		<ul class="col-1">
-	                                    			<div class="remove-btn">
-														<button class="remove-item-btn">
-															<i class="fa fa-times"></i>
-														</button>
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-	                                    			<div class="text-center">
-														<img class="cart-item-img" src="img/p3.jpg">
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-5">
-	                                    			<div class="cart-product-title">
-														iRobot Roomba 615 Vacuum Cleaner
-													</div>
-													<div class="cart-product-id">
-														#330338
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-													<div class="cart-qty">
-														x2
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-	                                    			<div class="cart-price">
-														Rs.<br>4350
-													</div>
-	                                    		</ul>
-	                                    	</li>
-	                                    	<li class="row">
-	                                    		<ul class="col-1">
-	                                    			<div class="remove-btn">
-														<button class="remove-item-btn">
-															<i class="fa fa-times"></i>
-														</button>
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-	                                    			<div class="text-center">
-														<img class="cart-item-img" src="img/vodka.jpg">
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-5">
-	                                    			<div class="cart-product-title">
-														iRobot Roomba 615 Vacuum Cleaner
-													</div>
-													<div class="cart-product-id">
-														#330338
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-													<div class="cart-qty">
-														x2
-													</div>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-	                                    			<div class="cart-price">
-														Rs.<br>4350
-													</div>
-	                                    		</ul>
-	                                    	</li>
-	                                    	<li class="row mini-total"> 
-	                                    		<ul class="col-10">
-	                                    			<b>Subtotal</b>
-	                                    		</ul>
-	                                    		<ul class="col-2">
-	                                    			<b>Rs.10000</b>
-	                                    		</ul>
-	                                    	</li>
-	                                    	<li class="">
-	                                    		
-	                                    	</li>
-	                                    </ul>
-									-->
 									</div>
 								</div>
 								
@@ -280,13 +93,13 @@
 									<li class="nav-item">
 										<div class="dropdown header">
 
-											<a class="nav-link" href="index.html">Home</a>
+											<a class="nav-link" href="{{ url_for('index') }}">Home</a>
 											  
 										</div>										
 									</li>
 									<li class="nav-item">
 										<div class="dropdown header">
-											<a class="nav-link" href="contact.html">Contact Us</a>
+											<a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
 											  
 										</div>										
 									</li>
@@ -295,20 +108,11 @@
 										<div class="dropdown header">
 											<a class="nav-link" href="#">Drinks</a>
 											  <div class="dropdown-menu">
-												<a class="dropdown-item" href="softdrinks.html">Soft Drinks</a>
+												<a class="dropdown-item" href="{{ url_for('softdrinks') }}">Soft Drinks</a>
 
 
 
-												<!-- <button onclick="performAgeDetection()">Go to Hard Drinks</button>  -->
-												<!-- <a class="dropdown-item" href="harddrinks.html">Hard Drinks</a> -->
-												<!-- <a class="dropdown-item" href="#" onclick="redirectToHardDrinks()">Hard Drinks</a> -->
-
-												<!-- <a class="dropdown-item" id="hardDrinksButton" onclick="triggerAgeDetection()"href="harddrinks">Hard Drinks</a>
-
-												<video id="webcam-stream" width="640" height="480" autoplay></video>
-												 -->
 												
-												<!-- Your index page content -->
 												<a href="{{ url_for('permission') }}" class="dropdown-item">Hard Drinks</a>
 
 											  </div>
@@ -340,16 +144,16 @@
 				<section id="home-slider" class="homeSection">
 						<div class="owl-carousel owl-theme" id="home-slide">
 							<div class="item">
-								<img src="img/s1.jpg"/>
+								<img src="static/img/s1.jpg"/>
 							</div>
 							<div class="item">
-								<img src="img/s2.jpg"/>
+								<img src="static/img/s2.jpg"/>
 							</div>
 							<div class="item">
-								<img src="img/s3.jpg"/>
+								<img src="static/img/s3.jpg"/>
 							</div>
 							<div class="item">
-								<img src="img/s4.jpg"/>
+								<img src="static/img/s4.jpg"/>
 							</div>
 						</div>
 					</section>
@@ -358,15 +162,15 @@
 					<section id="home-banner-section" class="homeSection">
 						<div class="row">
 							<div class="col-md-4">
-								<a href="#"><img class="banner-img" src="img/banner-1.jpg">
+								<a href="#"><img class="banner-img" src="static/img/banner-1.jpg">
 								</a>
 							</div>
 							<div class="col-md-4">
-								<a href="#"><img class="banner-img" src="img/banner-2.jpg">
+								<a href="#"><img class="banner-img" src="static/img/banner-2.jpg">
 								</a>
 							</div>
 							<div class="col-md-4">
-								<a href="#"><img class="banner-img" src="img/banner-3.jpg">
+								<a href="#"><img class="banner-img" src="static/img/banner-3.jpg">
 								</a>
 							</div>
 						</div>
@@ -378,7 +182,7 @@
 								<div class="icon-block-left">
 									<div class="icon-block">
 										<div class="left-block">
-											<img class="icon-img" src="img/icon1.png">
+											<img class="icon-img" src="static/img/icon1.png">
 										</div>
 										<div class="right-block">
 											<h4 style="margin-bottom: 5px;">
@@ -393,7 +197,7 @@
 								<div class="icon-block-center">
 									<div class="icon-block">
 										<div class="left-block">
-											<img class="icon-img" src="img/icon2.png">
+											<img class="icon-img" src="static/img/icon2.png">
 										</div>
 										<div class="right-block">
 											<h4 style="margin-bottom: 5px;">
@@ -408,7 +212,7 @@
 								<div class="icon-block-right">
 									<div class="icon-block">
 										<div class="left-block">
-											<img class="icon-img" src="img/icon3.png">
+											<img class="icon-img" src="static/img/icon3.png">
 										</div>
 										<div class="right-block">
 											<h4 style="margin-bottom: 5px;">
@@ -452,7 +256,7 @@
 							<div class="item">
 								<div class="product-card">
 									<div class="card-img-wrap">
-										<img class="img-wrap" src="images/7 UP.jpg"/>
+										<img class="img-wrap" src="static/images/7 UP.jpg"/>
 									</div>
 									<div class="card-body text-center">
 										<div class="product-card-title">7 UP</div>
@@ -481,9 +285,9 @@
 										
 										<div class="card-btn">
 											<!-- Add a form around the "Add to Cart" button -->
-											<form action="addToCart.php" method="post">
+											<form action="{{ url_for('addToCart') }}" method="post">
 												<!-- Hidden input fields to store product information -->
-												<input type="hidden" name="image_url" value="images/7 UP.jpg">
+												<input type="hidden" name="image_url" value="static/images/7 UP.jpg">
 												<input type="hidden" name="product_name" value="7 UP">
 												<input type="hidden" name="price" id="price" value="20">
 												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
@@ -536,7 +340,7 @@
 							<div class="item">
 								<div class="product-card">
 									<div class="card-img-wrap">
-										<img class="img-wrap" src="images/coca cola.webp"/>
+										<img class="img-wrap" src="static/images/coca cola.webp"/>
 									</div>
 									<div class="card-body text-center">
 										<div class="product-card-title">Coke</div>
@@ -569,7 +373,7 @@
 											<!-- Add a form around the "Add to Cart" button -->
 											<form action="addToCart.php" method="post">
 												<!-- Hidden input fields to store product information -->
-												<input type="hidden" name="image_url" value="images/coca cola.webp">
+												<input type="hidden" name="image_url" value="static/images/coca cola.webp">
 												<input type="hidden" name="product_name" value="Coke">
 												<input type="hidden" name="price" id="price" value="20">
 												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
@@ -625,7 +429,7 @@
 							<div class="item">
 								<div class="product-card">
 									<div class="card-img-wrap">
-										<img class="img-wrap" src="images/charged.webp"/>
+										<img class="img-wrap" src="static/images/charged.webp"/>
 									</div>
 									<div class="card-body text-center">
 										<div class="product-card-title">Charged</div>
@@ -658,7 +462,7 @@
 											<!-- Add a form around the "Add to Cart" button -->
 											<form action="addToCart.php" method="post">
 												<!-- Hidden input fields to store product information -->
-												<input type="hidden" name="image_url" value="images/charged.webp">
+												<input type="hidden" name="image_url" value="static/images/charged.webp">
 												<input type="hidden" name="product_name" value="Charged">
 												<input type="hidden" name="price" id="price" value="20">
 												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
@@ -705,7 +509,7 @@
 							<div class="item">
 								<div class="product-card">
 									<div class="card-img-wrap">
-										<img class="img-wrap" src="images/ENO.jpg"/>
+										<img class="img-wrap" src="static/images/ENO.jpg"/>
 									</div>
 									<div class="card-body text-center">
 										<div class="product-card-title">ENO</div>
@@ -738,7 +542,7 @@
 											<!-- Add a form around the "Add to Cart" button -->
 											<form action="addToCart.php" method="post">
 												<!-- Hidden input fields to store product information -->
-												<input type="hidden" name="image_url" value="images/ENO.jpg">
+												<input type="hidden" name="image_url" value="static/images/ENO.jpg">
 												<input type="hidden" name="product_name" value="ENO">
 												<input type="hidden" name="price" id="price" value="20">
 												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
@@ -786,7 +590,7 @@
 							<div class="item">
 								<div class="product-card">
 									<div class="card-img-wrap">
-										<img class="img-wrap" src="images/7 UP.jpg"/>
+										<img class="img-wrap" src="static/images/7 UP.jpg"/>
 									</div>
 									<div class="card-body text-center">
 										<div class="product-card-title">7 UP</div>
@@ -817,7 +621,7 @@
 											<!-- Add a form around the "Add to Cart" button -->
 											<form action="addToCart.php" method="post">
 												<!-- Hidden input fields to store product information -->
-												<input type="hidden" name="image_url" value="img/p1.jpg">
+												<input type="hidden" name="image_url" value="static/img/p1.jpg">
 												<input type="hidden" name="product_name" value="Finlandia">
 												<input type="hidden" name="price" id="price" value="20">
 												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
@@ -865,7 +669,7 @@
 							<div class="item">
 								<div class="product-card">
 									<div class="card-img-wrap">
-										<img class="img-wrap" src="images/coca cola.webp"/>
+										<img class="img-wrap" src="static/images/coca cola.webp"/>
 									</div>
 									<div class="card-body text-center">
 										<div class="product-card-title">Coke</div>
@@ -898,7 +702,7 @@
 											<!-- Add a form around the "Add to Cart" button -->
 											<form action="addToCart.php" method="post">
 												<!-- Hidden input fields to store product information -->
-												<input type="hidden" name="image_url" value="images/coca cola.webp">
+												<input type="hidden" name="image_url" value="static/images/coca cola.webp">
 												<input type="hidden" name="product_name" value="Coke">
 												<input type="hidden" name="price" id="price" value="20">
 												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
@@ -954,7 +758,7 @@
 							<div class="item">
 								<div class="product-card">
 									<div class="card-img-wrap">
-										<img class="img-wrap" src="images/charged.webp"/>
+										<img class="img-wrap" src="static/images/charged.webp"/>
 									</div>
 									<div class="card-body text-center">
 										<div class="product-card-title">Charged</div>
@@ -987,7 +791,7 @@
 											<!-- Add a form around the "Add to Cart" button -->
 											<form action="addToCart.php" method="post">
 												<!-- Hidden input fields to store product information -->
-												<input type="hidden" name="image_url" value="images/charged.webp">
+												<input type="hidden" name="image_url" value="static/images/charged.webp">
 												<input type="hidden" name="product_name" value="Charged">
 												<input type="hidden" name="price" id="price" value="20">
 												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
@@ -1034,7 +838,7 @@
 							<div class="item">
 								<div class="product-card">
 									<div class="card-img-wrap">
-										<img class="img-wrap" src="images/ENO.jpg"/>
+										<img class="img-wrap" src="static/images/ENO.jpg"/>
 									</div>
 									<div class="card-body text-center">
 										<div class="product-card-title">ENO</div>
@@ -1067,7 +871,7 @@
 											<!-- Add a form around the "Add to Cart" button -->
 											<form action="addToCart.php" method="post">
 												<!-- Hidden input fields to store product information -->
-												<input type="hidden" name="image_url" value="images/ENO.jpg">
+												<input type="hidden" name="image_url" value="static/images/ENO.jpg">
 												<input type="hidden" name="product_name" value="ENO">
 												<input type="hidden" name="price" id="price" value="20">
 												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
@@ -1115,7 +919,7 @@
 							<div class="item">
 								<div class="product-card">
 									<div class="card-img-wrap">
-										<img class="img-wrap" src="images/7 UP.jpg"/>
+										<img class="img-wrap" src="static/images/7 UP.jpg"/>
 									</div>
 									<div class="card-body text-center">
 										<div class="product-card-title">7 UP</div>
@@ -1146,7 +950,7 @@
 											<!-- Add a form around the "Add to Cart" button -->
 											<form action="addToCart.php" method="post">
 												<!-- Hidden input fields to store product information -->
-												<input type="hidden" name="image_url" value="img/p1.jpg">
+												<input type="hidden" name="image_url" value="static/img/p1.jpg">
 												<input type="hidden" name="product_name" value="Finlandia">
 												<input type="hidden" name="price" id="price" value="20">
 												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
@@ -1194,7 +998,7 @@
 							<div class="item">
 								<div class="product-card">
 									<div class="card-img-wrap">
-										<img class="img-wrap" src="images/coca cola.webp"/>
+										<img class="img-wrap" src="static/images/coca cola.webp"/>
 									</div>
 									<div class="card-body text-center">
 										<div class="product-card-title">Coke</div>
@@ -1227,7 +1031,7 @@
 											<!-- Add a form around the "Add to Cart" button -->
 											<form action="addToCart.php" method="post">
 												<!-- Hidden input fields to store product information -->
-												<input type="hidden" name="image_url" value="images/coca cola.webp">
+												<input type="hidden" name="image_url" value="static/images/coca cola.webp">
 												<input type="hidden" name="product_name" value="Coke">
 												<input type="hidden" name="price" id="price" value="20">
 												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
@@ -1283,7 +1087,7 @@
 							<div class="item">
 								<div class="product-card">
 									<div class="card-img-wrap">
-										<img class="img-wrap" src="images/charged.webp"/>
+										<img class="img-wrap" src="static/images/charged.webp"/>
 									</div>
 									<div class="card-body text-center">
 										<div class="product-card-title">Charged</div>
@@ -1316,7 +1120,7 @@
 											<!-- Add a form around the "Add to Cart" button -->
 											<form action="addToCart.php" method="post">
 												<!-- Hidden input fields to store product information -->
-												<input type="hidden" name="image_url" value="images/charged.webp">
+												<input type="hidden" name="image_url" value="static/images/charged.webp">
 												<input type="hidden" name="product_name" value="Charged">
 												<input type="hidden" name="price" id="price" value="20">
 												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
@@ -1363,7 +1167,7 @@
 							<div class="item">
 								<div class="product-card">
 									<div class="card-img-wrap">
-										<img class="img-wrap" src="images/ENO.jpg"/>
+										<img class="img-wrap" src="static/images/ENO.jpg"/>
 									</div>
 									<div class="card-body text-center">
 										<div class="product-card-title">ENO</div>
@@ -1396,7 +1200,7 @@
 											<!-- Add a form around the "Add to Cart" button -->
 											<form action="addToCart.php" method="post">
 												<!-- Hidden input fields to store product information -->
-												<input type="hidden" name="image_url" value="images/ENO.jpg">
+												<input type="hidden" name="image_url" value="static/images/ENO.jpg">
 												<input type="hidden" name="product_name" value="ENO">
 												<input type="hidden" name="price" id="price" value="20">
 												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
@@ -1440,7 +1244,7 @@
 					<section id="homeCategory"  class="homeSection">
 						<div class="category-home">
 							<div class="category-home-block">
-								<img class="category-img" src="img/s1.jpg">
+								<img class="category-img" src="static/img/s1.jpg">
 								<div class="black-overlay"></div>
 								<div class="category-home-block-content">
 									<div class="category-home-block-title">
@@ -1455,7 +1259,7 @@
 								</div>
 							</div>
 							<div class="category-home-block">
-								<img class="category-img" src="img/vodka.jpg">
+								<img class="category-img" src="static/img/vodka.jpg">
 								<div class="black-overlay"></div>
 								<div class="category-home-block-content">
 									<div class="category-home-block-title">
@@ -1470,7 +1274,7 @@
 								</div>
 							</div>
 							<div class="category-home-block">
-								<img class="category-img" src="img/s3.jpg">
+								<img class="category-img" src="static/img/s3.jpg">
 								<div class="black-overlay"></div>
 								<div class="category-home-block-content">
 									<div class="category-home-block-title">
@@ -1494,7 +1298,7 @@
 						<div class="row">
 							<div class="col-md-6 text-center">
 								<div class="brand-block">
-									<img class="home-brand-img" src="img/s1.jpg">
+									<img class="home-brand-img" src="static/img/s1.jpg">
 									<div class="home-brand-title">Brand 1</div>
 									<div class="home-brand-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -1508,7 +1312,7 @@
 							</div>
 							<div class="col-md-6">
 								<div class="brand-block text-center">
-									<img  class="home-brand-img" src="img/s2.jpg">
+									<img  class="home-brand-img" src="static/img/s2.jpg">
 									<div class="home-brand-title">Brand 2</div>
 									<div class="home-brand-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -1593,7 +1397,7 @@
 				</div>
 			</div>
 			
-			<section id="callSubscribe" class="homeSection" style="background: url('img/s2.jpg'); background-attachment: fixed;">
+			<section id="callSubscribe" class="homeSection" style="background: url('static/img/s2.jpg'); background-attachment: fixed;">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-4">
@@ -1632,9 +1436,10 @@
 							<div class="col-md-4 second">
 								<h4>Quick Links</h4>
 								<hr style="margin: 10px 0; border-top: 3px solid #009a46; width: 80px;">
-								<p><a href="#">Home</a></p>
-								<p><a href="#">About Us</a></p>
-								<p><a href="#">Contact Us</a></p>
+								<p><a href="{{ url_for('home') }}">Home</a></p>
+								<p><a href="{{ url_for('about') }}">About Us</a></p>
+								<p><a href="{{ url_for('contact') }}">Contact Us</a></p>
+
 							</div>
 							<div class="col-md-4 third">
 								<h4>Useful Links</h4>
@@ -1678,7 +1483,7 @@
 						<div class="row">
 							<div class="col-md-3">
 								<div class="payments-footer">
-									<img src="img/payment.png"/>
+									<img src="static/img/payment.png"/>
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -1696,10 +1501,15 @@
 		<a id="back-to-top" href="#" class="btn back-to-top" role="button"><i class="fa fa-chevron-up"></i></a>	
 		
 		
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/popper.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/owl.carousel.js"></script>
+		
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
+
+
+
 
 		<script>
 			$(document).ready(function(){
@@ -1833,7 +1643,10 @@
 
 
 
-
+	<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 
 
