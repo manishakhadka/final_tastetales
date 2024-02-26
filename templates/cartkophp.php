@@ -1,3 +1,5 @@
+
+<!-- //table banako//not necessary for flask -->
 <?php
 $servername = "localhost";
 $username = "root";
@@ -21,12 +23,7 @@ $sql = "CREATE TABLE cart (
     price INT
 )";
 
-// Execute the SQL statement
-// if ($conn->query($sql) === TRUE) {
-//     echo "Table 'cart' created successfully";
-// } else {
-//     echo "Error creating table: " . $conn->error;
-// }
+/
 
 // Close the database connection
 $conn->close();

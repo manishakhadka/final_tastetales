@@ -1,4 +1,5 @@
-<?php
+<!--index bata yesma aaucha --> 
+    <?php 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $image_url = $_POST["image_url"];
     $product_name = $_POST["product_name"];

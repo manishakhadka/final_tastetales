@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="font-awesome/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css"/>
-	<link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/custom.css"/>
-	<link rel="stylesheet" type="text/css" href="css/responsive.css"/>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	
+	<link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/css/all.min.css') }}">
+
 	
 
 	<title>Order</title>
@@ -26,7 +29,7 @@
 						<div class="col-md-4"></div>
 						<div class="col-md-4 text-center">
 							<a class="navbar-brand" href="#">
-								<img src="img/logo-removebg-preview.png" width="160"/>
+								<img src="static/img/logo-removebg-preview.png" width="160"/>
 							</a>
 						</div>
 						<div class="col-md-4 my-auto text-right">
@@ -42,193 +45,13 @@
 										<i class="fa fa-user"></i>
 									</a>
 									<div class="dropdown-menu">
-									  <a class="dropdown-item" href="login.html">Sign in</a>
-									  <a class="dropdown-item" href="register.html">Register</a>
-									</div>
+											<a class="dropdown-item" href="{{ url_for('login') }}">Sign in</a>
+
+											<a class="dropdown-item" href="{{ url_for('register') }}">Register</a>
+
+									    </div>
 								</div>
-								<!--hatako cart symbol
-								<div class="nav-item dropdown mega-dropdown">
-									<a class="nav-link" href="#" id="minicart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="goToCartPage()" >
-										<i class="fa fa-shopping-cart">
-											<span id="cart-count"></span>
-										</i>-->
-									</a>
 								
-									<!--cart ma dekhauney tarika milauna baki,remove buttonma js halna baki,aru classma pani js halna baki
-									<ul class="dropdown-menu mega-dropdown-menu" aria-labelledby="minicart">
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p4.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p1.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p2.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p3.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/vodka.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row mini-total"> 
-											<ul class="col-10">
-												<b>Subtotal</b>
-											</ul>
-											<ul class="col-2">
-												<b>Rs.10000</b>
-											</ul>
-										</li>
-										<li class="">
-											
-										</li>
-									</ul>
-								-->
 								</div>
 							</div>
 							
@@ -257,27 +80,40 @@
 								<li class="nav-item">
 									<div class="dropdown header">
 
-										<a class="nav-link" href="index.html">Home</a>
+										<a class="nav-link" href="{{ url_for('index') }}">Home</a>
 										  
 									</div>										
 								</li>
 								<li class="nav-item">
 									<div class="dropdown header">
-										<a class="nav-link" href="contact.html">Contact Us</a>
+										<a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
 										  
 									</div>										
 								</li>
 
 								<li class="nav-item">
-									<div class="dropdown header">
-										<a class="nav-link" href="#">Drinks</a>
-										  <div class="dropdown-menu">
-											<a class="dropdown-item" href="softdrinks.html">Soft Drinks</a>
-											<a class="dropdown-item" href="harddrinks.html">Hard Drinks</a>
+										<div class="dropdown header">
+											<a class="nav-link" href="#">Drinks</a>
+											  <div class="dropdown-menu">
+												<a class="dropdown-item" href="{{ url_for('softdrinks') }}">Soft Drinks</a>
+
+
+
+												
+												<a href="{{ url_for('permission') }}" class="dropdown-item">Hard Drinks</a>
+
+											  </div>
+										</div>										
+									</li>
+
+
+									<li class="nav-item">
+										<div class="dropdown header">
+											<a class="nav-link" href="{{ url_for('recommendation') }}">Search</a>
 											
-										  </div>
-									</div>										
-								</li>
+											  
+										</div>										
+									</li>
 
 									</div>										
 								</li>
@@ -288,7 +124,7 @@
 			</div>
 		
 		</header>
-		<form action="connectdb.php" method="post">
+		<form action="{{ url_for('submit_order') }}" method="post">
             <section id="order-wrap">
                 <div class="container">
                     <div class="row">
@@ -378,78 +214,16 @@
                                         </div>
                                     </div>
                                 </div>
+
+								
+
+
+
+								
                                 <div style="text-align: right;"><button class="btn-order">Place Order</button></div>
                             </div>
                         </div>
-						<!--
-                        <div class="col-md-4">
-                            <div class="shopping-car-wrap">
-                                <h5 class="order-form-heading">My Shopping Cart</h5>
-                                <ul class="px-0" style="margin:10px 0;">Items
-                                    <li class="order-listing px-0">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <img class="item-img" src="img/p4.jpg">
-                                            </div>
-                                            <div class="col-4 my-auto">
-                                                <div class="item-title">Hineken</div>
-                                            </div>
-                                            <div class="col-2 my-auto">
-                                                <div class="qty"><span>X </span>1</div>
-                                            </div>
-                                            <div class="col-3 my-auto">
-                                                <div class="rupee"><span>Rs. </span>2700</div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="order-listing px-0">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <img class="item-img" src="img/vodka.jpg">
-                                            </div>
-                                            <div class="col-4 my-auto">
-                                                <div class="item-title">Vodka</div>
-                                            </div>
-                                            <div class="col-2 my-auto">
-                                                <div class="qty"><span>X </span>2</div>
-                                            </div>
-                                            <div class="col-3 my-auto">
-                                                <div class="rupee"><span>Rs. </span>3600</div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="shipping">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div style="margin: 10px 0 5px;">Sub-Total</div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div style="text-align: right;"><Span>Rs.</Span> 6300</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div style="margin: 5px 0 10px;">Shipping</div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div style="text-align: right;"><Span>Rs.</Span> 50</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="tax-fee">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div style="margin: 5px 0 10px;">Grand-Total</div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div style="text-align: right;"><Span>Rs.</Span> 6350</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-						-->
+						
                         </div>
                     </div>
                 </div>
@@ -534,10 +308,12 @@
 		<a id="back-to-top" href="#" class="btn back-to-top" role="button"><i class="fa fa-chevron-up"></i></a>	
 		
 		
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/popper.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/owl.carousel.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
+
+
 
 		<script>
 			$(document).ready(function(){

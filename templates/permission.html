@@ -1,8 +1,39 @@
-<h1>Permission Page</h1>
+<!-- permission.html -->
 
-<form action="{{ url_for('detect_age') }}" method="post">
-
-    <p>Do you give permission to access the age detection feature?</p>
-    <button type="submit" name="permission" value="yes">Yes</button>
-    <button type="submit" name="permission" value="no">No</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permission Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 24px;
+        }
+        .content {
+            text-align: center;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Permission Required</h1>
+        <p>To proceed, please grant permission to access the age detection feature:</p>
+        <form action="/permission_response/yes" method="get">
+            <button type="submit">Yes</button>
+        </form>
+        <form action="/permission_response/no" method="get">
+            <button type="submit">No</button>
+        </form>
+    </div>
+</body>
+</html>

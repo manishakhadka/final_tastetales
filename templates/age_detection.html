@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Detection</title>
+    <style>
+        #webcamFeed {
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Age Detection</h1>
+    <div id="webcamContainer" style="position: relative;">
+        <video id="webcamFeed" autoplay></video>
+        <canvas id="canvas" width="320" height="240"></canvas>
+        <div id="textContainer" style="position: absolute; bottom: 10px; left: 10px; color: white; font-size: 20px;"></div>
+    </div>
+    <script>
+        const video = document.getElementById('webcamFeed');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const textContainer = document.getElementById('textContainer');
+
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+                await new Promise(resolve => video.onloadedmetadata = resolve);
+            } catch (err) {
+                console.error('Error accessing webcam:', err);
+            }
+        }
+
+        startCamera();
+
+        function captureFrame() {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            setTimeout(displayText, 2000); // Display "18+" text after 2 seconds
+            setTimeout(redirectToHardDrinks, 3000); // Redirect after 3 seconds
+        }
+
+        function displayText() {
+            textContainer.innerText = '18+'; // Display "18+" text
+        }
+
+        function redirectToHardDrinks() {
+            window.location.href = '/harddrinks'; // Redirect to harddrinks page
+        }
+
+        // Capture frame when the webcam feed is ready
+        video.onloadeddata = () => {
+            setInterval(captureFrame, 5000); // Capture frame every 5 seconds (5000 milliseconds)
+        };
+    </script>
+</body>
+</html>

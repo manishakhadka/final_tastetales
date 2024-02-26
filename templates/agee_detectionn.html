@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Detection</title>
+</head>
+<body>
+    <h1>Age Detection</h1>
+    <div id="webcamContainer">
+        <video id="webcamFeed" width="840" height="480" autoplay></video>
+        <canvas id="canvas" width="640" height="480"></canvas>
+        <div id="agePrediction"></div> <!-- New div to display age prediction -->
+    </div>
+    <script>
+        const video = document.getElementById('webcamFeed');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const agePredictionDiv = document.getElementById('agePrediction'); // Reference to age prediction div
+
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+                video.onloadedmetadata = () => {
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                };
+            } catch (err) {
+                console.error('Error accessing webcam:', err);
+            }
+        }
+
+        startCamera();
+
+        let captureInterval;
+
+        function startCapture() {
+            captureInterval = setInterval(captureFrame, 5000); // Capture frame every 5 seconds (5000 milliseconds)
+        }
+
+        function stopCapture() {
+            clearInterval(captureInterval);
+        }
+
+        startCapture(); // Start capturing frames
+
+        function captureFrame() {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL('image/jpeg');
+            displayFrame(imageData); // Display the captured frame
+            sendFrame(imageData);
+
+            // Close the frame after 5 seconds
+            setTimeout(closeFrame, 5000);
+
+            // Display "18+" text after 2 seconds
+            setTimeout(display18Plus, 2000);
+        }
+
+        function displayFrame(imageData) {
+            const img = new Image();
+            img.src = imageData;
+            agePredictionDiv.innerHTML = ''; // Clear previous prediction
+            agePredictionDiv.appendChild(img); // Append the captured frame
+        }
+
+        function closeFrame() {
+            agePredictionDiv.innerHTML = ''; // Clear the displayed frame
+        }
+
+        function display18Plus() {
+            ctx.font = '30px Arial';
+            ctx.fillStyle = 'white';
+            ctx.fillText('18+', 50, 50); // Display "18+" text
+            // Redirect to harddrinks page after displaying "18+" text
+            setTimeout(() => {
+                window.location.href = '/harddrinks';
+            }, 3000); // Redirect after 3 seconds (2 seconds for displaying "18+" + 1 second delay)
+        }
+
+        function sendFrame(imageData) {
+            // AJAX request to send imageData to server for age prediction
+            fetch('/predict_age', {
+                method: 'POST',
+                body: JSON.stringify({ image: imageData }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Predicted age range:', data.age_range);
+                agePredictionDiv.innerHTML = `Predicted age range: ${data.age_range}`; // Display age prediction
+                if (parseInt(data.age_range.split('-')[1]) >= 18) {
+                    window.location.href = '/harddrinks';
+                } else {
+                    window.location.href = '/underage';
+                }
+            })
+            .catch(error => console.error('Error sending frame:', error));
+        }
+    </script>
+</body>
+</html>

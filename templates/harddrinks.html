@@ -7,12 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="font-awesome/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css" />
-    <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/custom.css" />
-    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	
+	<link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/css/all.min.css') }}">
 
     <title>Taste Tales</title>
 </head>
@@ -26,7 +28,7 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-4 text-center">
                             <a class="navbar-brand" href="#">
-                                <img src="img/logo-removebg-preview.png" width="160" />
+                                <img src="static/img/logo-removebg-preview.png" width="160" />
                             </a>
                         </div>
                         <div class="col-md-4 my-auto text-right">
@@ -42,193 +44,13 @@
                                         <i class="fa fa-user"></i>
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="login.html">Sign in</a>
-                                        <a class="dropdown-item" href="register.html">Register</a>
-                                    </div>
-                                </div>
-                                <!--hatako cart symbol
-								<div class="nav-item dropdown mega-dropdown">
-									<a class="nav-link" href="#" id="minicart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="goToCartPage()" >
-										<i class="fa fa-shopping-cart">
-											<span id="cart-count"></span>
-										</i>-->
-                                </a>
+											<a class="dropdown-item" href="{{ url_for('login') }}">Sign in</a>
 
-                                <!--cart ma dekhauney tarika milauna baki,remove buttonma js halna baki,aru classma pani js halna baki
-									<ul class="dropdown-menu mega-dropdown-menu" aria-labelledby="minicart">
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p4.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p1.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p2.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p3.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/vodka.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row mini-total"> 
-											<ul class="col-10">
-												<b>Subtotal</b>
-											</ul>
-											<ul class="col-2">
-												<b>Rs.10000</b>
-											</ul>
-										</li>
-										<li class="">
-											
-										</li>
-									</ul>
-								-->
+											<a class="dropdown-item" href="{{ url_for('register') }}">Register</a>
+
+									    </div>
+                                </div>
+                                
                             </div>
                         </div>
 
@@ -258,13 +80,13 @@
                         <li class="nav-item">
                             <div class="dropdown header">
 
-                                <a class="nav-link" href="index.html">Home</a>
+                                <a class="nav-link" href="{{ url_for('index') }}">Home</a>
 
                             </div>
                         </li>
                         <li class="nav-item">
                             <div class="dropdown header">
-                                <a class="nav-link" href="contact.html">Contact Us</a>
+                                <a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
 
                             </div>
                         </li>
@@ -312,13 +134,13 @@
         <div class="col-2 col-s-4">
 
 <div>
-     <img src="images/The-Glenlivet-12-Year-1L-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/The-Glenlivet-12-Year-1L-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">The-Glenlivet-12-Year-1L</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -332,13 +154,13 @@
 </div><br>
             
 <div>
-     <img src="images/red label.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/red label.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Red Label</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -352,13 +174,13 @@
 </div><br>
             
 <div>
-     <img src="images/Old-Durbar-Black-Chimney-Whisky-1L-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Old-Durbar-Black-Chimney-Whisky-1L-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Black-Chimney</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -377,13 +199,13 @@
         <div class="col-2 col-s-6">
 
 <div>
-     <img src="images\Choya-Classic-Umeshu-375ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static\images\Choya-Classic-Umeshu-375ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Choya-Classic-Umeshu-375ML</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -399,13 +221,13 @@
             
             
 <div>
-     <img src="images/Suntory-Old-Whisky-700ML-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Suntory-Old-Whisky-700ML-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Suntory-Old-Whisky</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -419,13 +241,13 @@
 </div><br>
                 
             <div>
-     <img src="images/The-Balvenie-17-Years-DoubleWood-700ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/The-Balvenie-17-Years-DoubleWood-700ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Suntory-Old-Whisky</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -444,13 +266,13 @@
 
         <div class="col-2 col-s-8">
         	<div>
-     <img src="images/Chivas-Regal-12-Years-1-LTR-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Chivas-Regal-12-Years-1-LTR-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Chivas-Regal-12-Years-1-LTR</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -463,13 +285,13 @@
 										</div>     
 </div><br>
 <div>
-     <img src="images/Jack-Daniels-1L-1-T-Shirt-Free-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Jack-Daniels-1L-1-T-Shirt-Free-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Jack-Daniels-1L-1</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -484,13 +306,13 @@
 
 
             <div>
-     <img src="images/The-Yamazaki-Single-Malt-12-Years-700ML-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/The-Yamazaki-Single-Malt-12-Years-700ML-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">The-Yamazaki</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -512,13 +334,13 @@
         <div class="col-2 col-s-10">
 
 <div>
-     <img src="images/Hennessy-XO-700ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Hennessy-XO-700ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Hennessy-XO-700ML</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -534,13 +356,13 @@
 
             
             <div>
-     <img src="images/Hibiki-Japanese-Harmony-Masters-Select-700ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Hibiki-Japanese-Harmony-Masters-Select-700ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Hibiki-Harmony</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -554,13 +376,13 @@
 </div><br>
 
 <div>
-     <img src="images/Hibiki-Japanese-Harmony-Masters-Select-700ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Hibiki-Japanese-Harmony-Masters-Select-700ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Hibiki-Harmony</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -587,13 +409,13 @@
         </div>
         <div class="col-2 col-s-4">
         	<div>
-     <img src="images/Lolita-Red-Wine-750ML-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Lolita-Red-Wine-750ML-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Lolita-Red-Wine-750ML</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -613,7 +435,7 @@
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -628,13 +450,13 @@
 
 
            <div>
-     <img src="images/Bombay-Sapphire-Gin-1L-200x200.jpg" alt="beer2" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Bombay-Sapphire-Gin-1L-200x200.jpg" alt="beer2" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Bombay-Sapphire-Gin-1L</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -654,13 +476,13 @@
         <div class="col-2 col-s-6">
 
 <div>
-     <img src="images/JP-Chenet-Ice-Edition-Sparkling-White-750ML-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/JP-Chenet-Ice-Edition-Sparkling-White-750ML-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">JP-Chenet-Ice-750ML</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -675,13 +497,13 @@
 
             
 <div>
-     <img src="images/Ruslan-Premium-Vodka-750ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Ruslan-Premium-Vodka-750ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Ruslan-Premium-Vodka-750ML</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -695,13 +517,13 @@
 </div><br>
 
            <div>
-     <img src="images/Monkey-47-Schwarzwald-Dry-Gin-500ML-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Monkey-47-Schwarzwald-Dry-Gin-500ML-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Monkey-Schwarzwald-Gin</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -721,13 +543,13 @@
         <div class="col-2 col-s-8">
 
 <div>
-     <img src="images/Calvet-Ice-Chardonnay-Sparkling-White-750ML-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Calvet-Ice-Chardonnay-Sparkling-White-750ML-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Calvet-Ice-Sparkling-White</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -744,13 +566,13 @@
 
 
 <div>
-     <img src="images/Ketel-One-Vodka-1L-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Ketel-One-Vodka-1L-200x200 (1).jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Ketel-One-Vodka-1L</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -766,13 +588,13 @@
            
 
 <div>
-     <img src="images/Bottega-Bacur-Distilled-Dry-Gin-700ML-200x200 (1).jpg" style="max-width:100%;height:auto;">
+     <img src="static/images/Bottega-Bacur-Distilled-Dry-Gin-700ML-200x200 (1).jpg" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Bottega-Bacur-Distilled-Dry-Gin</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -793,13 +615,13 @@
         <div class="col-2 col-s-10">
 
 <div>
-     <img src="images/Bodega-Septima-Malbec-750ML-200x200 (1).jpg" style="max-width:100%;height:auto;">
+     <img src="static/images/Bodega-Septima-Malbec-750ML-200x200 (1).jpg" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Bodega-Septima-Malbec-750ML</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -813,13 +635,13 @@
 </div><br>
             
 <div>
-     <img src="images/8848-Rye-Vodka-750ML-200x200 (1).jpg" style="max-width:100%;height:180px;">
+     <img src="static/images/8848-Rye-Vodka-750ML-200x200 (1).jpg" style="max-width:100%;height:180px;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">8848-Rye-Vodka-1L</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -842,7 +664,7 @@
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -864,13 +686,13 @@
         <div class="col-2 col-s-4">
 
 <!-- <div>
-     <img src="images/Khukri-White-Rum-750ML-200x200.jpg" style="max-width:100%;height:auto;">
+     <img src="static/images/Khukri-White-Rum-750ML-200x200.jpg" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Khukri-White-Rum-750ML</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -892,7 +714,7 @@
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -909,13 +731,13 @@
 
             
 <div>
-     <img src="images/Jose-Cuervo-Gold-750ML-200x200.jpg" style="max-width:100%;height:auto;">
+     <img src="static/images/Jose-Cuervo-Gold-750ML-200x200.jpg" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Jose-Cuervo-Gold-750ML</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -933,13 +755,13 @@
         <div class="col-2 col-s-6">
 
 <div>
-     <img src="images/Khukri-Spice-750ML-200x200.jpg" style="max-width:100%;height:auto;">
+     <img src="static/images/Khukri-Spice-750ML-200x200.jpg" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Khukri-Black-Rum-750ML</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -954,13 +776,13 @@
 
             
 <div>
-     <img src="images/Jose-Cuervo-Silver-750ML-200x200.jpg" style="max-width:100%;height:auto;">
+     <img src="static/images/Jose-Cuervo-Silver-750ML-200x200.jpg" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Jose-Cuervo-Silver-750MLs</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -982,7 +804,7 @@
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -1009,7 +831,7 @@
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -1025,13 +847,13 @@
             
 
 <div>
-     <img src="images/Khukri-XXX-750ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Khukri-XXX-750ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Khukri-Rum-XXX-750ML</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -1047,13 +869,13 @@
             
 
 <div>
-     <img src="images/Don-Julio-Reposado-750ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Don-Julio-Reposado-750ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Don-Julio-Reposado-750ML</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -1078,7 +900,7 @@
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -1093,13 +915,13 @@
 
 
 <div>
-     <img src="images/Captain-Morgan-Black-1LTR-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Captain-Morgan-Black-1LTR-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Captain-Morgan-Black-1LTR</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -1114,13 +936,13 @@
 
             
 <div>
-     <img src="images/Agavita-Gold-Tequila-750ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static/images/Agavita-Gold-Tequila-750ML-200x200.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Agavita-Gold-Tequila-750ML</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -1152,7 +974,7 @@
 
 
             <!--<div>
-                <img src="images/drink5.jpg" alt="drink5" style="max-width:100%;height:auto;">
+                <img src="static/images/drink5.jpg" alt="drink5" style="max-width:100%;height:auto;">
                 <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Jameson</h1>
                 <p style="color:brown;text-align:center;font-weight:bolder">Rs.1,200</p><br>
                 <p style="text-align:center"><button class="w3-button w3-brown w3-small w3-hover-black"
@@ -1170,7 +992,7 @@
 
 
             <!--<div>
-                <img src="images/vodka.webp" alt="vodka" style="max-width:100%;height:auto;">
+                <img src="static/images/vodka.webp" alt="vodka" style="max-width:100%;height:auto;">
                 <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Chivas</h1>
                 <p style="color:brown;text-align:center;font-weight:bolder">Rs.1,400</p><br>
                 <p style="text-align:center"><button class="w3-button w3-brown w3-small w3-hover-black"
@@ -1197,7 +1019,7 @@
            
 
             <!--<div>
-                <img src="images/whiskey.webp" alt="whiskey" style="max-width:100%;height:auto;padding-top:17px">
+                <img src="static/images/whiskey.webp" alt="whiskey" style="max-width:100%;height:auto;padding-top:17px">
                 <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Jura</h1>
                 <p style="color:brown;text-align:center;font-weight:bolder">Rs.6,995</p><br>
                 <p style="text-align:center"><button class="w3-button w3-brown w3-small w3-hover-black"
@@ -1287,7 +1109,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="payments-footer">
-                        <img src="img/payment.png"/>
+                        <img src="static/img/payment.png"/>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -1302,10 +1124,12 @@
 <a id="back-to-top" href="#" class="btn back-to-top" role="button"><i class="fa fa-chevron-up"></i></a>	
 		
 		
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/popper.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/owl.carousel.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
+
+
 
 		<script>
 			$(document).ready(function(){

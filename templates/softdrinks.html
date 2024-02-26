@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="font-awesome/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css"/>
-	<link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css"/>
-	<link rel="stylesheet" type="text/css" href="css/custom.css"/>
-	<link rel="stylesheet" type="text/css" href="css/responsive.css"/>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	
+	<link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/css/all.min.css') }}">
+
 
 	<title>Taste Tales</title>
 	
@@ -25,7 +28,7 @@
 						<div class="col-md-4"></div>
 						<div class="col-md-4 text-center">
 							<a class="navbar-brand" href="#">
-								<img src="img/logo-removebg-preview.png" width="160"/>
+								<img src="static/img/logo-removebg-preview.png" width="160"/>
 							</a>
 						</div>
 						<div class="col-md-4 my-auto text-right">
@@ -41,193 +44,13 @@
 										<i class="fa fa-user"></i>
 									</a>
 									<div class="dropdown-menu">
-									  <a class="dropdown-item" href="login.html">Sign in</a>
-									  <a class="dropdown-item" href="register.html">Register</a>
-									</div>
+											<a class="dropdown-item" href="{{ url_for('login') }}">Sign in</a>
+
+											<a class="dropdown-item" href="{{ url_for('register') }}">Register</a>
+
+									    </div>
 								</div>
-								<!--hatako cart symbol
-								<div class="nav-item dropdown mega-dropdown">
-									<a class="nav-link" href="#" id="minicart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="goToCartPage()" >
-										<i class="fa fa-shopping-cart">
-											<span id="cart-count"></span>
-										</i>-->
-									</a>
 								
-									<!--cart ma dekhauney tarika milauna baki,remove buttonma js halna baki,aru classma pani js halna baki
-									<ul class="dropdown-menu mega-dropdown-menu" aria-labelledby="minicart">
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p4.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p1.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p2.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p3.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/vodka.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row mini-total"> 
-											<ul class="col-10">
-												<b>Subtotal</b>
-											</ul>
-											<ul class="col-2">
-												<b>Rs.10000</b>
-											</ul>
-										</li>
-										<li class="">
-											
-										</li>
-									</ul>
-								-->
 								</div>
 							</div>
 							
@@ -256,27 +79,40 @@
 								<li class="nav-item">
 									<div class="dropdown header">
 
-										<a class="nav-link" href="index.html">Home</a>
+										<a class="nav-link" href="{{ url_for('index') }}">Home</a>
 										  
 									</div>										
 								</li>
 								<li class="nav-item">
 									<div class="dropdown header">
-										<a class="nav-link" href="contact.html">Contact Us</a>
+										<a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
 										  
 									</div>										
 								</li>
 
 								<li class="nav-item">
-									<div class="dropdown header">
-										<a class="nav-link" href="#">Drinks</a>
-										  <div class="dropdown-menu">
-											<a class="dropdown-item" href="softdrinks.html">Soft Drinks</a>
-											<a class="dropdown-item" href="harddrinks.html">Hard Drinks</a>
+										<div class="dropdown header">
+											<a class="nav-link" href="#">Drinks</a>
+											  <div class="dropdown-menu">
+												<a class="dropdown-item" href="{{ url_for('softdrinks') }}">Soft Drinks</a>
+
+
+
+												
+												<a href="{{ url_for('permission') }}" class="dropdown-item">Hard Drinks</a>
+
+											  </div>
+										</div>										
+									</li>
+
+
+									<li class="nav-item">
+										<div class="dropdown header">
+											<a class="nav-link" href="{{ url_for('recommendation') }}">Search</a>
 											
-										  </div>
-									</div>										
-								</li>
+											  
+										</div>										
+									</li>
 
 									</div>										
 								</li>
@@ -322,13 +158,13 @@
 
 <!-- yo wala try ho-->
 	  <div>
-     <img src="images\mirinda.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static\images\mirinda.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Mirinda</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -341,8 +177,8 @@
 										<div class="card-btn">
 											<!-- Add a form around the "Add to Cart" button -->
 											 <form action="addToCart.php" method="post">
-												Hidden input fields to store product information 
-												<input type="hidden" name="image_url" value="images\mirinda.jpg">
+												
+												<input type="hidden" name="image_url" value="static\images\mirinda.jpg">
 												<input type="hidden" name="product_name" value="Mirinda">
 												<input type="hidden" name="price" id="price" value="2500">
 												<input type="hidden" name="total_quantity" id="total_quantity" value="1">
@@ -371,7 +207,7 @@
 										<div class="item">
 											<div class="product-card">
 												<div class="card-img-wrap">
-													<img class="img-wrap" src="images/mirinda.jpg"/>
+													<img class="img-wrap" src="static/images/mirinda.jpg"/>
 												</div>
 												<div class="card-body text-center">
 													<div class="product-card-title">7 UP</div>
@@ -402,7 +238,7 @@
 														<!-- Add a form around the "Add to Cart" button -->
 														<form action="addToCart.php" method="post">
 															<!-- Hidden input fields to store product information -->
-															<input type="hidden" name="image_url" value="images/mirinda.jpg">
+															<input type="hidden" name="image_url" value="static/images/mirinda.jpg">
 															<input type="hidden" name="product_name" value="7 UP">
 															<input type="hidden" name="price" id="price" value="20">
 															<input type="hidden" name="total_quantity" id="total_quantity" value="1">
@@ -454,13 +290,13 @@
 										     
 </div><br>
 	   <div>
-     <img src="images\coca cola.webp" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static\images\coca cola.webp" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Coca Cola</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -477,13 +313,13 @@
 
 
 <div>
-     <img src="images\7 UP.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static\images\7 UP.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">7 UP</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -500,13 +336,13 @@
 
  <div class="col-2 col-s-6">
 <div>
-     <img src="images\eno.webp" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static\images\eno.webp" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Eno</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -519,13 +355,13 @@
 										</div>     
 </div><br>
 <div>
-     <img src="images\LITCHI.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static\images\LITCHI.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Litchi Juice</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -542,13 +378,13 @@
 
 
 <div>
-     <img src="images\7up.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static\images\7up.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:70px">7up</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -564,13 +400,13 @@
 
  <div class="col-2 col-s-8">
 <div>
-     <img src="images\charged.webp" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static\images\charged.webp" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Charged</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -584,13 +420,13 @@
 </div><br>
 
 <div>
-     <img src="images\mirinda.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static\images\mirinda.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Mirinda</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -604,13 +440,13 @@
 </div><br>
 
 <div>
-     <img src="images\nimbu paani.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static\images\nimbu paani.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Nimbu Paani</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -627,13 +463,13 @@
 
  <div class="col-2 col-s-10">
 <div>
-     <img src="images\sprite.jpg" alt="drink5" style="max-width:70%;height:auto;">
+     <img src="static\images\sprite.jpg" alt="drink5" style="max-width:70%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Sprite</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -647,13 +483,13 @@
 </div><br>
 
 <div>
-     <img src="images\LITCHI.jpg" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static\images\LITCHI.jpg" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Litchi</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -667,13 +503,13 @@
 </div><br>
 
 <div>
-     <img src="images\charged.webp" alt="drink5" style="max-width:100%;height:auto;">
+     <img src="static\images\charged.webp" alt="drink5" style="max-width:100%;height:auto;">
      <h1 style="color:black;text-align:center;font-size:20px;padding-top:10px">Charged</h1>
      <div class="product-card-price">
 
 									
 										</div>
-										<p style="color:brown;text-align:center;font-weight:bolder">Ksh.2,500</p>
+										<p style="color:brown;text-align:center;font-weight:bolder">Rs.2,500</p>
 
 										<div class="def-number-input number-input safari_only mx-auto">
 										  	<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
@@ -769,7 +605,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="payments-footer">
-                        <img src="img/payment.png"/>
+                        <img src="static/img/payment.png"/>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -784,10 +620,12 @@
 <a id="back-to-top" href="#" class="btn back-to-top" role="button"><i class="fa fa-chevron-up"></i></a>	
 		
 		
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/popper.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/owl.carousel.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
+
+
 
 		<script>
 			$(document).ready(function(){
