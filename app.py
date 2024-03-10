@@ -1,13 +1,148 @@
+# Code to predict age using cv2 and cnn model
+
+# age_detection_code.py
+
+import cv2
+import random
+import numpy as np
+from tensorflow.keras.models import load_model
+
+import matplotlib.pyplot as plt
+
+# custom cnn code
+from train import (
+    CHECKPOINTS_DIR,
+    NUM_AGE_CATEGORIES,
+    AGE_CATEGORY_MAP,
+    initialize_model,
+    parse_filepath,
+    load_checkpoint_and_predict
+)
+
+# Load the pre-trained age detection model
+FCAES_DIR = "faces"
+
+age_model = initialize_model()
+
+# Open the webcam
+cap = cv2.VideoCapture(0)
+
+# Define the face detection cascade
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
+# Function to preprocess the face image for the age model
+def preprocess_face_for_age_model(face_image):
+    # Resize the face image to match the expected input shape of the model
+    face_image = cv2.resize(face_image, (200, 200))
+    face_image = face_image / 255.0  # Normalize pixel values between 0 and 1
+    # Add an additional dimension to represent the single channel (grayscale)
+    face_image = np.expand_dims(face_image, axis=-1)
+    return face_image
+
+# Function to postprocess the age prediction
+def postprocess_age_prediction(age_prediction):
+    # Find the index with the highest probability
+    predicted_age_index = np.argmax(age_prediction)
+    
+    # Convert the index to an age range using your custom function
+    predicted_age = class_labels_reassign(predicted_age_index)
+    
+    return predicted_age
+
+# Function to reassign age labels to ranges
+def class_labels_reassign(age_label):
+    if age_label == 0:
+        return "1-2"
+    elif age_label == 1:
+        return "3-9"
+    elif age_label == 2:
+        return "10-17"
+    elif age_label == 3:
+        return "18-27"
+    elif age_label == 4:
+        return "28-45"
+    elif age_label == 5:
+        return "46-65"
+    else:
+        return "66-100"
+
+def save_and_get_path(face_image, face_number):
+    face_path = FCAES_DIR + "/face_" + str(face_number) + ".jpg"
+    cv2.imwrite(face_path, face_image)
+    return face_path
+
+
+def get_permission_and_age():
+    print("Attempting to access the webcam...")
+    # Check if the webcam is accessible
+    cap = cv2.VideoCapture(0)
+    if not cap.isOpened():
+        print("Error: Couldn't open the webcam.")
+        return -1  # or handle the error accordingly
+    
+    # Add code to request permission from the user
+    # Example: permission_result = input("Do you give permission to access the age detection feature? (yes/no): ")
+    permission_result = "yes"  # Replace with actual code
+    
+    if permission_result.lower() == 'yes':
+        # Capture frame from webcam and process age detection
+        ret, frame = cap.read()
+        if not ret or frame is None:
+            print("Error: Couldn't read frame from webcam.")
+            return -1  # or handle the error accordingly
+
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
+        print("faces", faces)
+        for (x, y, w, h) in faces:
+            face_roi = gray[y:y+h, x:x+w]
+            face_input = preprocess_face_for_age_model(face_roi)
+            face_number = random.randint(1, 1000)
+            face_path = save_and_get_path(face_roi, face_number)
+            # age_prediction = age_model.predict(face_input.reshape(1, *face_input.shape))
+            print("face_path", face_path)
+            y_pred = load_checkpoint_and_predict(age_model, CHECKPOINTS_DIR, face_path)
+            y_pred_age, y_pred_category = y_pred['age_output'], y_pred['age_category_output']
+            predicted_age_int = int(y_pred_age[0][0])
+            cap.release()
+            return predicted_age_int
+
+            # predicted_age_range = postprocess_age_prediction(age_prediction)
+            # return predicted_age_range
+    else:
+        # Return a value indicating that permission was denied
+        print("Permission denied!")
+        return -1
+
+
+# if __name__ == "__main__":
+#     age = get_permission_and_age()
+#     if age != -1:
+#         print(f"The predicted age range is: {age}")
+#     else:
+#         print("Error: Age detection failed.")
+#     cap.release()
+ 
+# Release the webcam and close the OpenCV windows
+# cap.release()
+# cv2.destroyAllWindows()
+
+
+
+
+# Web Application code
+
+
+
+from imp import load_module
 from flask import Flask, render_template, request, redirect, url_for,jsonify
 import cv2
+
+from tensorflow.keras.models import load_model
 import numpy as np
 import mysql.connector
 
-
-
-
-
-from age_detection_code import get_permission_and_age
+# from age_detection_code import get_permission_and_age
 from age_detection_code import face_cascade
 from age_detection_code import age_model
 import mysql.connector
@@ -24,6 +159,39 @@ from sklearn.preprocessing import StandardScaler
 
 # app = Flask(__name__)
 app = Flask(__name__, static_url_path='/static')
+
+
+
+# Function to process age detection and return age prediction
+# app.py
+
+
+
+@app.route('/detect_age', methods=['POST'])
+def detect_age():
+    permission_result = request.form.get('permission')
+    if permission_result == 'yes':
+        # Use the modified get_permission_and_age function
+        age = get_permission_and_age()
+        print("Predicted Age:", age)
+
+        
+        if age == -1 or age is None:
+            # Redirect to a page indicating no permission
+            return "Permission denied! You cannot access this feature."
+
+        # Extract the last number from the age range string
+        # age_str = str(age)
+        # last_age_number = int(age_str.split('-')[-1])
+
+        if age > 18:
+            return redirect(url_for('harddrinks'))
+        else:
+            return redirect(url_for('underage'))
+
+
+
+
   
 @app.route('/')
 def index():
@@ -128,41 +296,41 @@ def deleteCartItem():
 def permission():
     return render_template('permission.html')
 
-@app.route('/permission_response/<response>')
-def permission_response(response):
-    # Check if the user granted permission
-    if response.lower() == 'yes':
-        # Redirect to the age detection route
-        return redirect(url_for('age_detection'))
-    else:
-        # Handle denial of permission (if needed)
-        return "Permission denied"
+# @app.route('/permission_response/<response>')
+# def permission_response(response):
+#     # Check if the user granted permission
+#     if response.lower() == 'yes':
+#         # Redirect to the age detection route
+#         return redirect(url_for('age_detection'))
+#     else:
+#         # Handle denial of permission (if needed)
+#         return "Permission denied"
 
 
-@app.route('/age_detection')
-def age_detection():
-    # Redirect to a page with JavaScript to handle age detection in the browser
-    return render_template('age_detection.html')
+# @app.route('/age_detection')
+# def age_detection():
+#     # Redirect to a page with JavaScript to handle age detection in the browser
+#     return render_template('age_detection.html')
 
 
 
 
 
-import numpy as np
-import base64
+# import numpy as np
+# import base64
 
-@app.route('/predict_age', methods=['POST'])
-def predict_age():
-    data = request.get_json()
-    image_data = data.get('image')
+# @app.route('/predict_age', methods=['POST'])
+# def predict_age():
+#     data = request.get_json()
+#     image_data = data.get('image')
 
-    # Decode base64-encoded image string to bytes
-    image_bytes = base64.b64decode(image_data.split(',')[1])
+#     # Decode base64-encoded image string to bytes
+#     image_bytes = base64.b64decode(image_data.split(',')[1])
 
-    # Process image_bytes to detect age
-    # For demonstration purposes, let's assume a dummy age prediction
-    age_range = '18-25'
-    return jsonify({'age_range': age_range})
+#     # Process image_bytes to detect age
+#     # For demonstration purposes, let's assume a dummy age prediction
+#     age_range = '18-25'
+#     return jsonify({'age_range': age_range})
 
 
 
@@ -194,7 +362,7 @@ def underage():
 
 
 # Load your DataFrame
-df1 = pd.read_excel(r'C:\project\board_pachi_herney_wala\Nepal_cheers_Liquor_Online_ALcololic_Beveragee.xlsx')
+df1 = pd.read_excel(r'Nepal_cheers_Liquor_Online_ALcololic_Beveragee.xlsx')
 
 # TF-IDF vectorizer for name recommendations
 tfidf_vectorizer_name = TfidfVectorizer(stop_words='english', max_df=0.85, min_df=0.05, max_features=500)
@@ -566,6 +734,29 @@ def edit_order(order_id):
     conn.close()
 
 
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
