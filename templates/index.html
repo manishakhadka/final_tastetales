@@ -1,19 +1,19 @@
-{% extends 'base.html' %} {% block title %}About{% endblock %} {% block content
-%}
+{% extends 'base.html' %} {% block title %}Welcome{% endblock %} {% block
+content %}
 <div class="main-body">
   <section id="home-slider" class="homeSection">
     <div class="owl-carousel owl-theme" id="home-slide">
       <div class="item">
-        <img src="static/img/s1.jpg" />
+        <img src="/static/img/s1.jpg" />
       </div>
       <div class="item">
-        <img src="static/img/s2.jpg" />
+        <img src="/static/img/s2.jpg" />
       </div>
       <div class="item">
-        <img src="static/img/s3.jpg" />
+        <img src="/static/img/s3.jpg" />
       </div>
       <div class="item">
-        <img src="static/img/s4.jpg" />
+        <img src="/static/img/s4.jpg" />
       </div>
     </div>
   </section>
@@ -88,917 +88,78 @@
         <h3 class="section-header text-center">RECENT PRODUCTS</h3>
       </div>
       <div class="owl-carousel owl-theme" id="recent-slide">
+        {% for drink in drinks %}
         <div class="item">
           <div class="product-card">
             <div class="card-img-wrap">
-              <img class="img-wrap" src="static/images/7 UP.jpg" />
+              <img
+                class="img-wrap"
+                src="{{ drink.image or 'static/images/default-image.jpg' }}"
+                alt="{{ drink.name }} image"
+              />
             </div>
             <div class="card-body text-center">
-              <div class="product-card-title">7 UP</div>
+              <div class="product-card-title">{{ drink.name }}</div>
               <div class="product-card-price">
-                <span class="before-discount"><b>Rs. 30</b></span>
-                <span class="after-discount"><b>Rs. 20</b></span>
+                <span class="before-discount"
+                  ><b>Rs. {{ drink.price }}</b></span
+                >
+                <span class="after-discount"
+                  ><b
+                    >Rs. {{ "%.2f"|format(drink.price * (1 - drink.discount))
+                    }}</b
+                  ></span
+                >
               </div>
 
+              <!-- Unique IDs for each drink's quantity input -->
               <div class="def-number-input number-input safari_only mx-auto">
-                <button onclick="decrement()" class="minus"></button>
-                <!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
+                <button
+                  onclick="decrement('{{ drink.id }}')"
+                  class="minus"
+                ></button>
                 <input
-                  id="quantity"
+                  id="quantity-{{ drink.id }}"
                   class="quantity"
-                  min="0"
+                  min="1"
                   name="quantity"
                   value="1"
                   type="number"
-                  oninput="updateTotalQuantityAndPrice()"
                 />
-
-                <button onclick="increment()" class="plus"></button>
+                <button
+                  onclick="increment('{{ drink.id }}')"
+                  class="plus"
+                ></button>
               </div>
 
               <div class="card-btn">
-                <!-- Add a form around the "Add to Cart" button -->
-                <form action="{{ url_for('carts.cart') }}" method="post">
-                  <!-- Hidden input fields to store product information -->
+                {% if current_user.is_authenticated %}
+                <form action="{{ url_for('carts.add_to_cart') }}" method="post">
+                  <input type="hidden" name="drink_id" value="{{ drink.id }}" />
                   <input
                     type="hidden"
-                    name="image_url"
-                    value="static/images/7 UP.jpg"
-                  />
-                  <input type="hidden" name="product_name" value="7 UP" />
-                  <input type="hidden" name="price" id="price" value="20" />
-                  <input
-                    type="hidden"
-                    name="total_quantity"
-                    id="total_quantity"
+                    name="quantity"
+                    id="total-quantity-{{ drink.id }}"
                     value="1"
                   />
-                  <!-- Add this hidden input to store the total price -->
-                  <input
-                    type="hidden"
-                    name="total_price"
-                    id="total_price"
-                    value="20"
-                  />
 
-                  <!-- <input type="hidden" name="quantity" value="1"> -->
-
-                  <!-- Add to Cart button inside the form -->
                   <button type="submit" class="btn-primary add-to-cart">
                     Add To Cart
                   </button>
                 </form>
-              </div>
-            </div>
-            <div class="product-card-id">#030202</div>
-            <div class="product-card-offer text-center">
-              <div class="product-card-discount mx-auto">
-                <div class="percent">40%</div>
-                <div class="text">OFF</div>
-              </div>
-              <div class="product-card-offer-valid">
-                <div class="text1">Offer valid until</div>
-                <div class="text2">MAR 01,2024</div>
+                {% else %}
+                <a
+                  href="{{ url_for('users.login') }}"
+                  class="btn-primary add-to-cart"
+                >
+                  Add To Cart
+                </a>
+                {% endif %}
               </div>
             </div>
           </div>
         </div>
-
-        <div class="item">
-          <div class="product-card">
-            <div class="card-img-wrap">
-              <img class="img-wrap" src="static/images/coca cola.webp" />
-            </div>
-            <div class="card-body text-center">
-              <div class="product-card-title">Coke</div>
-              <div class="product-card-price">
-                <span class="before-discount"><b>Rs. 30</b></span>
-                <span class="after-discount"><b>Rs. 20</b></span>
-              </div>
-
-              <div class="def-number-input number-input safari_only mx-auto">
-                <button onclick="decrement()" class="minus"></button>
-                <!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
-                <input
-                  id="quantity"
-                  class="quantity"
-                  min="0"
-                  name="quantity"
-                  value="1"
-                  type="number"
-                  oninput="updateTotalQuantityAndPrice()"
-                />
-
-                <button onclick="increment()" class="plus"></button>
-              </div>
-
-              <div class="card-btn">
-                <!-- Add a form around the "Add to Cart" button -->
-                <form action="addToCart.php" method="post">
-                  <!-- Hidden input fields to store product information -->
-                  <input
-                    type="hidden"
-                    name="image_url"
-                    value="static/images/coca cola.webp"
-                  />
-                  <input type="hidden" name="product_name" value="Coke" />
-                  <input type="hidden" name="price" id="price" value="20" />
-                  <input
-                    type="hidden"
-                    name="total_quantity"
-                    id="total_quantity"
-                    value="1"
-                  />
-                  <!-- Add this hidden input to store the total price -->
-                  <input
-                    type="hidden"
-                    name="total_price"
-                    id="total_price"
-                    value="20"
-                  />
-
-                  <!-- <input type="hidden" name="quantity" value="1"> -->
-
-                  <!-- Add to Cart button inside the form -->
-                  <button type="submit" class="btn-primary add-to-cart">
-                    Add To Cart
-                  </button>
-                </form>
-              </div>
-            </div>
-            <div class="product-card-id">#030202</div>
-            <div class="product-card-offer text-center">
-              <div class="product-card-discount mx-auto">
-                <div class="percent">40%</div>
-                <div class="text">OFF</div>
-              </div>
-              <div class="product-card-offer-valid">
-                <div class="text1">Offer valid until</div>
-                <div class="text2">MAR 01,2024</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="product-card">
-            <div class="card-img-wrap">
-              <img class="img-wrap" src="static/images/charged.webp" />
-            </div>
-            <div class="card-body text-center">
-              <div class="product-card-title">Charged</div>
-              <div class="product-card-price">
-                <span class="before-discount"><b>Rs. 30</b></span>
-                <span class="after-discount"><b>Rs. 20</b></span>
-              </div>
-
-              <div class="def-number-input number-input safari_only mx-auto">
-                <button onclick="decrement()" class="minus"></button>
-                <!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
-                <input
-                  id="quantity"
-                  class="quantity"
-                  min="0"
-                  name="quantity"
-                  value="1"
-                  type="number"
-                  oninput="updateTotalQuantityAndPrice()"
-                />
-
-                <button onclick="increment()" class="plus"></button>
-              </div>
-
-              <div class="card-btn">
-                <!-- Add a form around the "Add to Cart" button -->
-                <form action="addToCart.php" method="post">
-                  <!-- Hidden input fields to store product information -->
-                  <input
-                    type="hidden"
-                    name="image_url"
-                    value="static/images/charged.webp"
-                  />
-                  <input type="hidden" name="product_name" value="Charged" />
-                  <input type="hidden" name="price" id="price" value="20" />
-                  <input
-                    type="hidden"
-                    name="total_quantity"
-                    id="total_quantity"
-                    value="1"
-                  />
-                  <!-- Add this hidden input to store the total price -->
-                  <input
-                    type="hidden"
-                    name="total_price"
-                    id="total_price"
-                    value="20"
-                  />
-
-                  <!-- <input type="hidden" name="quantity" value="1"> -->
-
-                  <!-- Add to Cart button inside the form -->
-                  <button type="submit" class="btn-primary add-to-cart">
-                    Add To Cart
-                  </button>
-                </form>
-              </div>
-            </div>
-            <div class="product-card-id">#030202</div>
-            <div class="product-card-offer text-center">
-              <div class="product-card-discount mx-auto">
-                <div class="percent">40%</div>
-                <div class="text">OFF</div>
-              </div>
-              <div class="product-card-offer-valid">
-                <div class="text1">Offer valid until</div>
-                <div class="text2">MAR 01,2024</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="product-card">
-            <div class="card-img-wrap">
-              <img class="img-wrap" src="static/images/ENO.jpg" />
-            </div>
-            <div class="card-body text-center">
-              <div class="product-card-title">ENO</div>
-              <div class="product-card-price">
-                <span class="before-discount"><b>Rs. 30</b></span>
-                <span class="after-discount"><b>Rs. 20</b></span>
-              </div>
-
-              <div class="def-number-input number-input safari_only mx-auto">
-                <button onclick="decrement()" class="minus"></button>
-                <!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
-                <input
-                  id="quantity"
-                  class="quantity"
-                  min="0"
-                  name="quantity"
-                  value="1"
-                  type="number"
-                  oninput="updateTotalQuantityAndPrice()"
-                />
-
-                <button onclick="increment()" class="plus"></button>
-              </div>
-
-              <div class="card-btn">
-                <!-- Add a form around the "Add to Cart" button -->
-                <form action="addToCart.php" method="post">
-                  <!-- Hidden input fields to store product information -->
-                  <input
-                    type="hidden"
-                    name="image_url"
-                    value="static/images/ENO.jpg"
-                  />
-                  <input type="hidden" name="product_name" value="ENO" />
-                  <input type="hidden" name="price" id="price" value="20" />
-                  <input
-                    type="hidden"
-                    name="total_quantity"
-                    id="total_quantity"
-                    value="1"
-                  />
-                  <!-- Add this hidden input to store the total price -->
-                  <input
-                    type="hidden"
-                    name="total_price"
-                    id="total_price"
-                    value="20"
-                  />
-
-                  <!-- <input type="hidden" name="quantity" value="1"> -->
-
-                  <!-- Add to Cart button inside the form -->
-                  <button type="submit" class="btn-primary add-to-cart">
-                    Add To Cart
-                  </button>
-                </form>
-              </div>
-            </div>
-            <div class="product-card-id">#030202</div>
-            <div class="product-card-offer text-center">
-              <div class="product-card-discount mx-auto">
-                <div class="percent">40%</div>
-                <div class="text">OFF</div>
-              </div>
-              <div class="product-card-offer-valid">
-                <div class="text1">Offer valid until</div>
-                <div class="text2">MAR 01,2024</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="product-card">
-            <div class="card-img-wrap">
-              <img class="img-wrap" src="static/images/7 UP.jpg" />
-            </div>
-            <div class="card-body text-center">
-              <div class="product-card-title">7 UP</div>
-              <div class="product-card-price">
-                <span class="before-discount"><b>Rs. 30</b></span>
-                <span class="after-discount"><b>Rs. 20</b></span>
-              </div>
-
-              <div class="def-number-input number-input safari_only mx-auto">
-                <button onclick="decrement()" class="minus"></button>
-                <!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
-                <input
-                  id="quantity"
-                  class="quantity"
-                  min="0"
-                  name="quantity"
-                  value="1"
-                  type="number"
-                  oninput="updateTotalQuantityAndPrice()"
-                />
-
-                <button onclick="increment()" class="plus"></button>
-              </div>
-
-              <div class="card-btn">
-                <!-- Add a form around the "Add to Cart" button -->
-                <form action="addToCart.php" method="post">
-                  <!-- Hidden input fields to store product information -->
-                  <input
-                    type="hidden"
-                    name="image_url"
-                    value="static/img/p1.jpg"
-                  />
-                  <input type="hidden" name="product_name" value="Finlandia" />
-                  <input type="hidden" name="price" id="price" value="20" />
-                  <input
-                    type="hidden"
-                    name="total_quantity"
-                    id="total_quantity"
-                    value="1"
-                  />
-                  <!-- Add this hidden input to store the total price -->
-                  <input
-                    type="hidden"
-                    name="total_price"
-                    id="total_price"
-                    value="20"
-                  />
-
-                  <!-- <input type="hidden" name="quantity" value="1"> -->
-
-                  <!-- Add to Cart button inside the form -->
-                  <button type="submit" class="btn-primary add-to-cart">
-                    Add To Cart
-                  </button>
-                </form>
-              </div>
-            </div>
-            <div class="product-card-id">#030202</div>
-            <div class="product-card-offer text-center">
-              <div class="product-card-discount mx-auto">
-                <div class="percent">40%</div>
-                <div class="text">OFF</div>
-              </div>
-              <div class="product-card-offer-valid">
-                <div class="text1">Offer valid until</div>
-                <div class="text2">MAR 01,2024</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="product-card">
-            <div class="card-img-wrap">
-              <img class="img-wrap" src="static/images/coca cola.webp" />
-            </div>
-            <div class="card-body text-center">
-              <div class="product-card-title">Coke</div>
-              <div class="product-card-price">
-                <span class="before-discount"><b>Rs. 30</b></span>
-                <span class="after-discount"><b>Rs. 20</b></span>
-              </div>
-
-              <div class="def-number-input number-input safari_only mx-auto">
-                <button onclick="decrement()" class="minus"></button>
-                <!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
-                <input
-                  id="quantity"
-                  class="quantity"
-                  min="0"
-                  name="quantity"
-                  value="1"
-                  type="number"
-                  oninput="updateTotalQuantityAndPrice()"
-                />
-
-                <button onclick="increment()" class="plus"></button>
-              </div>
-
-              <div class="card-btn">
-                <!-- Add a form around the "Add to Cart" button -->
-                <form action="addToCart.php" method="post">
-                  <!-- Hidden input fields to store product information -->
-                  <input
-                    type="hidden"
-                    name="image_url"
-                    value="static/images/coca cola.webp"
-                  />
-                  <input type="hidden" name="product_name" value="Coke" />
-                  <input type="hidden" name="price" id="price" value="20" />
-                  <input
-                    type="hidden"
-                    name="total_quantity"
-                    id="total_quantity"
-                    value="1"
-                  />
-                  <!-- Add this hidden input to store the total price -->
-                  <input
-                    type="hidden"
-                    name="total_price"
-                    id="total_price"
-                    value="20"
-                  />
-
-                  <!-- <input type="hidden" name="quantity" value="1"> -->
-
-                  <!-- Add to Cart button inside the form -->
-                  <button type="submit" class="btn-primary add-to-cart">
-                    Add To Cart
-                  </button>
-                </form>
-              </div>
-            </div>
-            <div class="product-card-id">#030202</div>
-            <div class="product-card-offer text-center">
-              <div class="product-card-discount mx-auto">
-                <div class="percent">40%</div>
-                <div class="text">OFF</div>
-              </div>
-              <div class="product-card-offer-valid">
-                <div class="text1">Offer valid until</div>
-                <div class="text2">MAR 01,2024</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="product-card">
-            <div class="card-img-wrap">
-              <img class="img-wrap" src="static/images/charged.webp" />
-            </div>
-            <div class="card-body text-center">
-              <div class="product-card-title">Charged</div>
-              <div class="product-card-price">
-                <span class="before-discount"><b>Rs. 30</b></span>
-                <span class="after-discount"><b>Rs. 20</b></span>
-              </div>
-
-              <div class="def-number-input number-input safari_only mx-auto">
-                <button onclick="decrement()" class="minus"></button>
-                <!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
-                <input
-                  id="quantity"
-                  class="quantity"
-                  min="0"
-                  name="quantity"
-                  value="1"
-                  type="number"
-                  oninput="updateTotalQuantityAndPrice()"
-                />
-
-                <button onclick="increment()" class="plus"></button>
-              </div>
-
-              <div class="card-btn">
-                <!-- Add a form around the "Add to Cart" button -->
-                <form action="addToCart.php" method="post">
-                  <!-- Hidden input fields to store product information -->
-                  <input
-                    type="hidden"
-                    name="image_url"
-                    value="static/images/charged.webp"
-                  />
-                  <input type="hidden" name="product_name" value="Charged" />
-                  <input type="hidden" name="price" id="price" value="20" />
-                  <input
-                    type="hidden"
-                    name="total_quantity"
-                    id="total_quantity"
-                    value="1"
-                  />
-                  <!-- Add this hidden input to store the total price -->
-                  <input
-                    type="hidden"
-                    name="total_price"
-                    id="total_price"
-                    value="20"
-                  />
-
-                  <!-- <input type="hidden" name="quantity" value="1"> -->
-
-                  <!-- Add to Cart button inside the form -->
-                  <button type="submit" class="btn-primary add-to-cart">
-                    Add To Cart
-                  </button>
-                </form>
-              </div>
-            </div>
-            <div class="product-card-id">#030202</div>
-            <div class="product-card-offer text-center">
-              <div class="product-card-discount mx-auto">
-                <div class="percent">40%</div>
-                <div class="text">OFF</div>
-              </div>
-              <div class="product-card-offer-valid">
-                <div class="text1">Offer valid until</div>
-                <div class="text2">MAR 01,2024</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="product-card">
-            <div class="card-img-wrap">
-              <img class="img-wrap" src="static/images/ENO.jpg" />
-            </div>
-            <div class="card-body text-center">
-              <div class="product-card-title">ENO</div>
-              <div class="product-card-price">
-                <span class="before-discount"><b>Rs. 30</b></span>
-                <span class="after-discount"><b>Rs. 20</b></span>
-              </div>
-
-              <div class="def-number-input number-input safari_only mx-auto">
-                <button onclick="decrement()" class="minus"></button>
-                <!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
-                <input
-                  id="quantity"
-                  class="quantity"
-                  min="0"
-                  name="quantity"
-                  value="1"
-                  type="number"
-                  oninput="updateTotalQuantityAndPrice()"
-                />
-
-                <button onclick="increment()" class="plus"></button>
-              </div>
-
-              <div class="card-btn">
-                <!-- Add a form around the "Add to Cart" button -->
-                <form action="addToCart.php" method="post">
-                  <!-- Hidden input fields to store product information -->
-                  <input
-                    type="hidden"
-                    name="image_url"
-                    value="static/images/ENO.jpg"
-                  />
-                  <input type="hidden" name="product_name" value="ENO" />
-                  <input type="hidden" name="price" id="price" value="20" />
-                  <input
-                    type="hidden"
-                    name="total_quantity"
-                    id="total_quantity"
-                    value="1"
-                  />
-                  <!-- Add this hidden input to store the total price -->
-                  <input
-                    type="hidden"
-                    name="total_price"
-                    id="total_price"
-                    value="20"
-                  />
-
-                  <!-- <input type="hidden" name="quantity" value="1"> -->
-
-                  <!-- Add to Cart button inside the form -->
-                  <button type="submit" class="btn-primary add-to-cart">
-                    Add To Cart
-                  </button>
-                </form>
-              </div>
-            </div>
-            <div class="product-card-id">#030202</div>
-            <div class="product-card-offer text-center">
-              <div class="product-card-discount mx-auto">
-                <div class="percent">40%</div>
-                <div class="text">OFF</div>
-              </div>
-              <div class="product-card-offer-valid">
-                <div class="text1">Offer valid until</div>
-                <div class="text2">MAR 01,2024</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="product-card">
-            <div class="card-img-wrap">
-              <img class="img-wrap" src="static/images/7 UP.jpg" />
-            </div>
-            <div class="card-body text-center">
-              <div class="product-card-title">7 UP</div>
-              <div class="product-card-price">
-                <span class="before-discount"><b>Rs. 30</b></span>
-                <span class="after-discount"><b>Rs. 20</b></span>
-              </div>
-
-              <div class="def-number-input number-input safari_only mx-auto">
-                <button onclick="decrement()" class="minus"></button>
-                <!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
-                <input
-                  id="quantity"
-                  class="quantity"
-                  min="0"
-                  name="quantity"
-                  value="1"
-                  type="number"
-                  oninput="updateTotalQuantityAndPrice()"
-                />
-
-                <button onclick="increment()" class="plus"></button>
-              </div>
-
-              <div class="card-btn">
-                <!-- Add a form around the "Add to Cart" button -->
-                <form action="addToCart.php" method="post">
-                  <!-- Hidden input fields to store product information -->
-                  <input
-                    type="hidden"
-                    name="image_url"
-                    value="static/img/p1.jpg"
-                  />
-                  <input type="hidden" name="product_name" value="Finlandia" />
-                  <input type="hidden" name="price" id="price" value="20" />
-                  <input
-                    type="hidden"
-                    name="total_quantity"
-                    id="total_quantity"
-                    value="1"
-                  />
-                  <!-- Add this hidden input to store the total price -->
-                  <input
-                    type="hidden"
-                    name="total_price"
-                    id="total_price"
-                    value="20"
-                  />
-
-                  <!-- <input type="hidden" name="quantity" value="1"> -->
-
-                  <!-- Add to Cart button inside the form -->
-                  <button type="submit" class="btn-primary add-to-cart">
-                    Add To Cart
-                  </button>
-                </form>
-              </div>
-            </div>
-            <div class="product-card-id">#030202</div>
-            <div class="product-card-offer text-center">
-              <div class="product-card-discount mx-auto">
-                <div class="percent">40%</div>
-                <div class="text">OFF</div>
-              </div>
-              <div class="product-card-offer-valid">
-                <div class="text1">Offer valid until</div>
-                <div class="text2">MAR 01,2024</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="product-card">
-            <div class="card-img-wrap">
-              <img class="img-wrap" src="static/images/coca cola.webp" />
-            </div>
-            <div class="card-body text-center">
-              <div class="product-card-title">Coke</div>
-              <div class="product-card-price">
-                <span class="before-discount"><b>Rs. 30</b></span>
-                <span class="after-discount"><b>Rs. 20</b></span>
-              </div>
-
-              <div class="def-number-input number-input safari_only mx-auto">
-                <button onclick="decrement()" class="minus"></button>
-                <!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
-                <input
-                  id="quantity"
-                  class="quantity"
-                  min="0"
-                  name="quantity"
-                  value="1"
-                  type="number"
-                  oninput="updateTotalQuantityAndPrice()"
-                />
-
-                <button onclick="increment()" class="plus"></button>
-              </div>
-
-              <div class="card-btn">
-                <!-- Add a form around the "Add to Cart" button -->
-                <form action="addToCart.php" method="post">
-                  <!-- Hidden input fields to store product information -->
-                  <input
-                    type="hidden"
-                    name="image_url"
-                    value="static/images/coca cola.webp"
-                  />
-                  <input type="hidden" name="product_name" value="Coke" />
-                  <input type="hidden" name="price" id="price" value="20" />
-                  <input
-                    type="hidden"
-                    name="total_quantity"
-                    id="total_quantity"
-                    value="1"
-                  />
-                  <!-- Add this hidden input to store the total price -->
-                  <input
-                    type="hidden"
-                    name="total_price"
-                    id="total_price"
-                    value="20"
-                  />
-
-                  <!-- <input type="hidden" name="quantity" value="1"> -->
-
-                  <!-- Add to Cart button inside the form -->
-                  <button type="submit" class="btn-primary add-to-cart">
-                    Add To Cart
-                  </button>
-                </form>
-              </div>
-            </div>
-            <div class="product-card-id">#030202</div>
-            <div class="product-card-offer text-center">
-              <div class="product-card-discount mx-auto">
-                <div class="percent">40%</div>
-                <div class="text">OFF</div>
-              </div>
-              <div class="product-card-offer-valid">
-                <div class="text1">Offer valid until</div>
-                <div class="text2">MAR 01,2024</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="product-card">
-            <div class="card-img-wrap">
-              <img class="img-wrap" src="static/images/charged.webp" />
-            </div>
-            <div class="card-body text-center">
-              <div class="product-card-title">Charged</div>
-              <div class="product-card-price">
-                <span class="before-discount"><b>Rs. 30</b></span>
-                <span class="after-discount"><b>Rs. 20</b></span>
-              </div>
-
-              <div class="def-number-input number-input safari_only mx-auto">
-                <button onclick="decrement()" class="minus"></button>
-                <!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
-                <input
-                  id="quantity"
-                  class="quantity"
-                  min="0"
-                  name="quantity"
-                  value="1"
-                  type="number"
-                  oninput="updateTotalQuantityAndPrice()"
-                />
-
-                <button onclick="increment()" class="plus"></button>
-              </div>
-
-              <div class="card-btn">
-                <!-- Add a form around the "Add to Cart" button -->
-                <form action="addToCart.php" method="post">
-                  <!-- Hidden input fields to store product information -->
-                  <input
-                    type="hidden"
-                    name="image_url"
-                    value="static/images/charged.webp"
-                  />
-                  <input type="hidden" name="product_name" value="Charged" />
-                  <input type="hidden" name="price" id="price" value="20" />
-                  <input
-                    type="hidden"
-                    name="total_quantity"
-                    id="total_quantity"
-                    value="1"
-                  />
-                  <!-- Add this hidden input to store the total price -->
-                  <input
-                    type="hidden"
-                    name="total_price"
-                    id="total_price"
-                    value="20"
-                  />
-
-                  <!-- <input type="hidden" name="quantity" value="1"> -->
-
-                  <!-- Add to Cart button inside the form -->
-                  <button type="submit" class="btn-primary add-to-cart">
-                    Add To Cart
-                  </button>
-                </form>
-              </div>
-            </div>
-            <div class="product-card-id">#030202</div>
-            <div class="product-card-offer text-center">
-              <div class="product-card-discount mx-auto">
-                <div class="percent">40%</div>
-                <div class="text">OFF</div>
-              </div>
-              <div class="product-card-offer-valid">
-                <div class="text1">Offer valid until</div>
-                <div class="text2">MAR 01,2024</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="product-card">
-            <div class="card-img-wrap">
-              <img class="img-wrap" src="static/images/ENO.jpg" />
-            </div>
-            <div class="card-body text-center">
-              <div class="product-card-title">ENO</div>
-              <div class="product-card-price">
-                <span class="before-discount"><b>Rs. 30</b></span>
-                <span class="after-discount"><b>Rs. 20</b></span>
-              </div>
-
-              <div class="def-number-input number-input safari_only mx-auto">
-                <button onclick="decrement()" class="minus"></button>
-                <!-- <input id="quantity" class="quantity" min="0" name="quantity" value="1" type="number" oninput="updateTotalQuantity()"> -->
-                <input
-                  id="quantity"
-                  class="quantity"
-                  min="0"
-                  name="quantity"
-                  value="1"
-                  type="number"
-                  oninput="updateTotalQuantityAndPrice()"
-                />
-
-                <button onclick="increment()" class="plus"></button>
-              </div>
-
-              <div class="card-btn">
-                <!-- Add a form around the "Add to Cart" button -->
-                <form action="addToCart.php" method="post">
-                  <!-- Hidden input fields to store product information -->
-                  <input
-                    type="hidden"
-                    name="image_url"
-                    value="static/images/ENO.jpg"
-                  />
-                  <input type="hidden" name="product_name" value="ENO" />
-                  <input type="hidden" name="price" id="price" value="20" />
-                  <input
-                    type="hidden"
-                    name="total_quantity"
-                    id="total_quantity"
-                    value="1"
-                  />
-                  <!-- Add this hidden input to store the total price -->
-                  <input
-                    type="hidden"
-                    name="total_price"
-                    id="total_price"
-                    value="20"
-                  />
-
-                  <!-- <input type="hidden" name="quantity" value="1"> -->
-
-                  <!-- Add to Cart button inside the form -->
-                  <button type="submit" class="btn-primary add-to-cart">
-                    Add To Cart
-                  </button>
-                </form>
-              </div>
-            </div>
-            <div class="product-card-id">#030202</div>
-            <div class="product-card-offer text-center">
-              <div class="product-card-discount mx-auto">
-                <div class="percent">40%</div>
-                <div class="text">OFF</div>
-              </div>
-              <div class="product-card-offer-valid">
-                <div class="text1">Offer valid until</div>
-                <div class="text2">MAR 01,2024</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </section>
 
@@ -1194,18 +355,24 @@
   <div class="subscribe-overlay"></div>
 </section>
 
-<!-- quantity functional banaunalai haleko -->
 <script>
-  function increment() {
-    var quantityInput = document.getElementById("quantity");
-    quantityInput.stepUp();
-    updateTotalQuantityAndPrice();
+  function increment(id) {
+    var quantityInput = document.getElementById(`quantity-${id}`);
+    var value = parseInt(quantityInput.value, 10);
+    quantityInput.value = value + 1;
+    // Update hidden total quantity field for form submission
+    document.getElementById(`total-quantity-${id}`).value = quantityInput.value;
   }
 
-  function decrement() {
-    var quantityInput = document.getElementById("quantity");
-    quantityInput.stepDown();
-    updateTotalQuantityAndPrice();
+  function decrement(id) {
+    var quantityInput = document.getElementById(`quantity-${id}`);
+    var value = parseInt(quantityInput.value, 10);
+    if (value > 1) {
+      quantityInput.value = value - 1;
+      // Update hidden total quantity field for form submission
+      document.getElementById(`total-quantity-${id}`).value =
+        quantityInput.value;
+    }
   }
 
   function updateTotalQuantityAndPrice() {

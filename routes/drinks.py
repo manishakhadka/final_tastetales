@@ -27,7 +27,7 @@ def recommended():
 @drinks_blueprint.route('/drinks/softdrinks', methods=['GET'])
 def softdrinks():
     with get_session() as session:
-        drinks = session.query(Drink).filter_by(category='softdrink').all()
+        drinks = session.query(Drink).filter_by(drink_type='soft').all()
         return flask.render_template('drinks.html', drinks=drinks)
 
 
@@ -37,7 +37,7 @@ def harddrinks():
     if not current_user.is_adult:
         return redirect(url_for('age_verification.verify_age'))
     with get_session() as session:
-        drinks = session.query(Drink).filter_by(category='harddrink').all()
+        drinks = session.query(Drink).filter_by(drink_type='hard').all()
         return flask.render_template('drinks.html', drinks=drinks)
 
 
@@ -46,10 +46,10 @@ def harddrinks():
 def add_drink():
     if request.method == 'POST':
         name = request.form['name']
-        category = request.form['category']
+        drink_type = request.form['drink_type']
         price = request.form['price']
         with get_session() as session:
-            drink = Drink(name=name, category=category, price=price)
+            drink = Drink(name=name, drink_type=drink_type, price=price)
             session.add(drink)
             session.commit()
         return redirect(url_for('drinks.drinks'))
@@ -64,7 +64,7 @@ def edit_drink():
         drink = session.query(Drink).filter_by(id=drink_id).first()
         if request.method == 'POST':
             drink.name = request.form['name']
-            drink.category = request.form['category']
+            drink.drink_type = request.form['drink_type']
             drink.price = request.form['price']
             session.commit()
             return redirect(url_for('drinks.drinks'))

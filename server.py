@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
-from flask_login import LoginManager, UserMixin
+from flask_login import LoginManager, UserMixin, current_user
 
 from extensions.db import get_session, get_db
-from models import User
+from models import User, Drink
 
 from routes.user import users_blueprint
 from routes.drinks import drinks_blueprint
@@ -33,17 +33,30 @@ def user_loader(user_id):
     session.close()
     return user
 
+
 @login_manager.unauthorized_handler
 def unauthorized():
     return redirect(url_for('users.login'))
 
+
 @app.route('/')
 def index():
-    return render_template('index.html')
+    is_adult = False
+    if current_user.is_authenticated:
+        is_adult = current_user.is_adult
+
+    with get_session() as session:
+        if is_adult:
+            drinks = session.query(Drink).all()
+        else:
+            drinks = session.query(Drink).filter_by(drink_type='soft').all()
+        return render_template('index.html', drinks=drinks)
+
 
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
 
 @app.route('/about')
 def about():

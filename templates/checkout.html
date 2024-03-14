@@ -1,0 +1,132 @@
+{% extends 'base.html' %} {% block title %}Checkout{% endblock %} {% block
+content %}
+
+<form action="{{ url_for('carts.checkout') }}" method="post">
+  <section id="order-wrap">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="order-form">
+            <h4 class="order-form-heading">PERSONAL INFORMATION</h4>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="order-form-wrap">
+                  <div class="order-form-titile">Social title</div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="order-input-form">
+                  <input type="radio" name="gender" value="Mr." /> Mr.
+                  <input type="radio" name="gender" value="Miss." /> Mrs.
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="order-form-wrap">
+                  <div class="order-form-titile">First Name</div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="order-input-form">
+                  <input
+                    type="text"
+                    name="first_name"
+                    value="{{ current_user.first_name }}"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="order-form-wrap">
+                  <div class="order-form-titile">Last Name</div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="order-input-form">
+                  <input
+                    type="text"
+                    name="last_name"
+                    required
+                    value="{{ current_user.last_name }}"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="order-form-wrap">
+                  <div class="order-form-titile">Contact No.</div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="order-input-form">
+                  <input type="text" name="contact" required />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="order-form-wrap">
+                  <div class="order-form-titile">Email</div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="order-input-form">
+                  <input
+                    type="email"
+                    name="email"
+                    value="{{ current_user.email }}"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="order-form-wrap">
+                  <div class="order-form-titile">Shipping Address</div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="order-input-form">
+                  <input type="text" name="address" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="order-form-wrap">
+                  <div class="order-form-titile">Payment Option</div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="order-input-form">
+                  <input
+                    type="text"
+                    name="payment_mode"
+                    value="cash"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="order-form-wrap">
+                  <div class="order-form-titile">Message Box</div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="order-input-form">
+                  <textarea name="message" rows="5"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align: right">
+              <button type="submit" class="btn-order">
+                Place order of Rs. {{ "%.2f"|format(total_price) }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+
+<script>
+  $('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
+    e.target; // newly activated tab
+    e.relatedTarget; // previous active tab
+  });
+</script>
+{% endblock %}

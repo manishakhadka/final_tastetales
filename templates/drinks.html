@@ -1,0 +1,145 @@
+{% extends 'base.html' %} {% block title %}Drinks{% endblock %} {% block content
+%}
+
+<div class="main-body">
+  <section id="homeIconSection" class="homeSection">
+    <div class="row icon-list">
+      <div class="col-md-4 p-0">
+        <div class="icon-block-left">
+          <div class="icon-block">
+            <div class="left-block">
+              <img class="icon-img" src="/static/img/icon1.png" />
+            </div>
+            <div class="right-block">
+              <h4 style="margin-bottom: 5px">Free Shipping</h4>
+              <div>On order over NPR9000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 p-0">
+        <div class="icon-block-center">
+          <div class="icon-block">
+            <div class="left-block">
+              <img class="icon-img" src="/static/img/icon2.png" />
+            </div>
+            <div class="right-block">
+              <h4 style="margin-bottom: 5px">Discount on Offers</h4>
+              <div>Tellus aodio consequat odio sed.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 p-0">
+        <div class="icon-block-right">
+          <div class="icon-block">
+            <div class="left-block">
+              <img class="icon-img" src="/static/img/icon3.png" />
+            </div>
+            <div class="right-block">
+              <h4 style="margin-bottom: 5px">Need on Help</h4>
+              <div>On order over NPR9000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="recent-slider" class="homeSection">
+    <div class="text-center">
+      <h3 class="section-header text-center">BUY YOURSELF A DRINK</h3>
+    </div>
+  </section>
+  <div class="owl-carousel owl-theme" id="recent-slide">
+    {% for drink in drinks %}
+    <div class="item">
+      <div class="product-card">
+        <div class="card-img-wrap">
+          <img
+            class="img-wrap"
+            src="{{ drink.image or 'static/images/default-image.jpg' }}"
+            alt="{{ drink.name }} image"
+          />
+        </div>
+        <div class="card-body text-center">
+          <div class="product-card-title">{{ drink.name }}</div>
+          <div class="product-card-price">
+            <span class="before-discount"><b>Rs. {{ drink.price }}</b></span>
+            <span class="after-discount"
+              ><b
+                >Rs. {{ "%.2f"|format(drink.price * (1 - drink.discount)) }}</b
+              ></span
+            >
+          </div>
+
+          <!-- Unique IDs for each drink's quantity input -->
+          <div class="def-number-input number-input safari_only mx-auto">
+            <button
+              onclick="decrement('{{ drink.id }}')"
+              class="minus"
+            ></button>
+            <input
+              id="quantity-{{ drink.id }}"
+              class="quantity"
+              min="1"
+              name="quantity"
+              value="1"
+              type="number"
+            />
+            <button onclick="increment('{{ drink.id }}')" class="plus"></button>
+          </div>
+
+          <div class="card-btn">
+            {% if current_user.is_authenticated %}
+            <form action="{{ url_for('carts.add_to_cart') }}" method="post">
+              <input type="hidden" name="drink_id" value="{{ drink.id }}" />
+              <input
+                type="hidden"
+                name="quantity"
+                id="total-quantity-{{ drink.id }}"
+                value="1"
+              />
+
+              <button type="submit" class="btn-primary add-to-cart">
+                Add To Cart
+              </button>
+            </form>
+            {% else %}
+            <a
+              href="{{ url_for('users.login') }}"
+              class="btn-primary add-to-cart"
+            >
+              Add To Cart
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    function increment(id) {
+      var quantityInput = document.getElementById(`quantity-${id}`);
+      var value = parseInt(quantityInput.value, 10);
+      quantityInput.value = value + 1;
+      // Update hidden total quantity field for form submission
+      document.getElementById(`total-quantity-${id}`).value =
+        quantityInput.value;
+    }
+
+    function decrement(id) {
+      var quantityInput = document.getElementById(`quantity-${id}`);
+      var value = parseInt(quantityInput.value, 10);
+      if (value > 1) {
+        quantityInput.value = value - 1;
+        // Update hidden total quantity field for form submission
+        document.getElementById(`total-quantity-${id}`).value =
+          quantityInput.value;
+      }
+    }
+  </script>
+</div>
+
+{% endblock %}

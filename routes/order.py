@@ -9,10 +9,10 @@ from models import Order, OrderItem, CartItem, Drink, User
 orders_blueprint = Blueprint('orders', __name__)
 
 
-@orders_blueprint.route('/orders', methods=['GET'])
+@orders_blueprint.route('/my-orders', methods=['GET'])
 @login_required
-def orders():
+def my_orders():
     with get_session() as session:
         orders = session.query(Order).filter_by(
-            user_id=current_user.id).all()
-        return flask.render_template('orders.html', orders=orders)
+            user_id=current_user.id).order_by(Order.created_on.desc()).all()
+        return flask.render_template('my_orders.html', orders=orders)
