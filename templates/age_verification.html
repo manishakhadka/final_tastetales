@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block title %}Age Verification{% endblock %} {%
+block content %}
+<style>
+  .video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  #video {
+    border: 3px solid #007bff;
+    border-radius: 5px;
+  }
+</style>
+<div class="container mt-5 pb-5">
+  <h2 class="text-center mb-4">Verify your age</h2>
+  <div class="video-container">
+    <video id="video" width="640" height="480" autoplay></video>
+  </div>
+  <div class="text-center">
+    <button id="capture" class="btn btn-success w-50">Verify</button>
+  </div>
+</div>
+<script>
+  var video = document.getElementById("video");
+
+  // Get access to the camera
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices
+      .getUserMedia({ video: true })
+      .then(function (stream) {
+        video.srcObject = stream;
+        video.play();
+      });
+  }
+
+  // Trigger photo capture
+  document.getElementById("capture").addEventListener("click", function () {
+    var canvas = document.createElement("canvas");
+    canvas.width = 640;
+    canvas.height = 480;
+    var context = canvas.getContext("2d");
+    context.drawImage(video, 0, 0, 640, 480);
+    var imageDataUrl = canvas.toDataURL("image/png");
+
+    // Send the image data to the server
+    $.post("/verify-age", { image_data: imageDataUrl }, function (data) {
+      alert("Age verified successfully!");
+      window.location.href = "/age-verified"; // Redirect on success
+    }).fail(function (response) {
+      alert("Failed to verify age: " + response.responseText);
+    });
+  });
+</script>
+{% endblock %}

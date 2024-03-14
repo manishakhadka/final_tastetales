@@ -1,475 +1,115 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'base.html' %}
 
-    <!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-	
-	<link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/css/all.min.css') }}">
+{% block title %}Login{% endblock %}
 
-	
+{% block content %}
+<section id="login-wrap">
+  <div class="container">
+    <h1 class="section-heading-wrap">Login</h1>
+    <hr />
+    <div class="row">
+      <div class="col-md-3">
+        <div class="main-tab-bar">
+          <div class="tab-bar1">
+            <a class="tab-bar2 active" href="{{ url_for('users.login') }}"
+              >Login</a
+            >
+          </div>
+          <div class="tab-bar1">
+            <a class="tab-bar2-1" href="reset-pw.html"> Reset Password</a>
+          </div>
+          <div class="tab-bar1">
+            <a class="tab-bar2-2" href="{{ url_for('users.register') }}">
+              Register Account
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="webshop-desc">
+          <p style="font-weight: 600">
+            Welcome to our new webshop. You can still use your old
+            account. Just remember to reset your password when you login
+            for the first time.
+          </p>
+          <p></p>
 
-	<title>Login</title>
-	
-</head>
-<body>
-	<div id="app">
-		<header>
-			<div id="logo-header">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-4"></div>
-						<div class="col-md-4 text-center">
-							<a class="navbar-brand" href="#">
-								<img src="static/img/logo-removebg-preview.png" width="160"/>
-							</a>
-						</div>
-						<div class="col-md-4 my-auto text-right">
-							<div class="header-right ml-auto">
-								<form id="search-form">
-									<div class="search-box">
-										<input type="text" name="" class="search-input" placeholder="Search...."/> 
-										<button class="search-btn"><i class="fa fa-search"></i></button>
-									</div>						        
-								</form>
-								<div class="dropdown">
-									<a href="#" class="dropdown" data-toggle="dropdown">
-										<i class="fa fa-user"></i>
-									</a>
-									<div class="dropdown-menu">
-											<a class="dropdown-item" href="{{ url_for('login') }}">Sign in</a>
+          <p style="font-weight: 600">
+            Click on "Forgot your password?" to reset or
+          </p>
+          <p style="font-weight: 600">
+            Contact websupport:info@TasteTales.com
+          </p>
 
-											<a class="dropdown-item" href="{{ url_for('register') }}">Register</a>
+          {% from "_formhelpers.html" import render_field %}
+          <form method="post" action="{{ url_for('users.login') }}">
+            {{ form.csrf_token }}
+            <dl class="login-form">
+              {{ render_field(form.email) }}
+              <br />
+              {{ render_field(form.password) }}
+              <!-- <div class="input-title">
+                Your Username or Email address
+              </div>
+              <input
+                type="text"
+                name="name"
+                placeholder="Username or Email"
+              />
 
-									    </div>
-								</div>
-								<!--hatako cart symbol
-								<div class="nav-item dropdown mega-dropdown">
-									<a class="nav-link" href="#" id="minicart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="goToCartPage()" >
-										<i class="fa fa-shopping-cart">
-											<span id="cart-count"></span>
-										</i>-->
-									</a>
-								
-									<!--cart ma dekhauney tarika milauna baki,remove buttonma js halna baki,aru classma pani js halna baki
-									<ul class="dropdown-menu mega-dropdown-menu" aria-labelledby="minicart">
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p4.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p1.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p2.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/p3.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row">
-											<ul class="col-1">
-												<div class="remove-btn">
-													<button class="remove-item-btn">
-														<i class="fa fa-times"></i>
-													</button>
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="text-center">
-													<img class="cart-item-img" src="img/vodka.jpg">
-												</div>
-											</ul>
-											<ul class="col-5">
-												<div class="cart-product-title">
-													iRobot Roomba 615 Vacuum Cleaner
-												</div>
-												<div class="cart-product-id">
-													#330338
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-qty">
-													x2
-												</div>
-											</ul>
-											<ul class="col-2">
-												<div class="cart-price">
-													Rs.<br>4350
-												</div>
-											</ul>
-										</li>
-										<li class="row mini-total"> 
-											<ul class="col-10">
-												<b>Subtotal</b>
-											</ul>
-											<ul class="col-2">
-												<b>Rs.10000</b>
-											</ul>
-										</li>
-										<li class="">
-											
-										</li>
-									</ul>
-								-->
-								</div>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</div>
+              <div class="input-title">Your Password</div>
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+              /> -->
 
-
-
-
-
-
-				<div id="main-menu">
-				<div class="container">
-
-					<nav class="navbar navbar-toggleable-md navbar-expand-lg">
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-							<i class="fa fa-bars"></i>
-						</button>			
-						<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-
-							<ul class="navbar-nav mx-auto">
-
-
-								<li class="nav-item">
-									<div class="dropdown header">
-
-										<a class="nav-link" href="{{ url_for('index') }}">Home</a>
-										  
-									</div>										
-								</li>
-								<li class="nav-item">
-									<div class="dropdown header">
-										<a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a>
-										  
-									</div>										
-								</li>
-
-								<li class="nav-item">
-										<div class="dropdown header">
-											<a class="nav-link" href="#">Drinks</a>
-											  <div class="dropdown-menu">
-												<a class="dropdown-item" href="{{ url_for('softdrinks') }}">Soft Drinks</a>
-
-
-
-												
-												<a href="{{ url_for('permission') }}" class="dropdown-item">Hard Drinks</a>
-
-											  </div>
-										</div>										
-									</li>
-
-
-									<li class="nav-item">
-										<div class="dropdown header">
-											<a class="nav-link" href="{{ url_for('recommendation') }}">Search</a>
-											
-											  
-										</div>										
-									</li>
-
-									</div>										
-								</li>
-							</ul>
-						</div>
-					</nav>
-				</div>
-			</div>
-		
-		</header>
-            
-            <section id="login-wrap">
-                <div class="container"> 
-                    <h1 class="section-heading-wrap">Login</h1>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="main-tab-bar">
-                                <div class="tab-bar1"><a class="tab-bar2 active" href="login.html">Login</a></div>
-                                <div class="tab-bar1"><a class="tab-bar2-1" href="reset-pw.html">Reset Password</a></div>
-                                <div class="tab-bar1"><a class="tab-bar2-2" href="register.html">Register Account</a></div>
-                                </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="webshop-desc">
-								<p style="font-weight: 600;">Welcome to our new webshop. You can still use your old account.
-									Just remember to reset your password when you login for the first time.<p>
-	
-								<p style="font-weight: 600;">Click on "Forgot your password?" to reset or</p>
-								<p style="font-weight: 600;">Contact websupport:info@TasteTales.com</p>
-	
-								<div class="login-form">
-									<div class="input-title">Your Username or Email address</div>
-									<input type="text" name="name" placeholder="Username or Email">
-	
-									<div class="input-title">Your Password</div>
-									<input type="password" name="password" placeholder="Password">
-	
-									<div class="row">
-										<div class="col-6 col-md-6">
-											<div><input type="checkbox" name="input-checkbox"> <span>Remember Me</span> </div>
-										</div>
-										<div class="col-6 col-md-6">
-											<div style="text-align: right;"><button class="btn-login">Login</button></div>
-										</div>
-									</div>
-									
-	
-									<div class="forget-link-main"><a class="forget-link" href="#">Forget your password?</a></div>
-								</div>
-							</div>
-                        </div>
-                        <div class="col-md-4 my-auto">
-                            <div class="become-customer">
-                                <h3 class="customer-section-heading">Become a customer</h3>
-                                <ul>
-                                    <li class="customer-list">A world of duty free shopping</li>
-                                    <li class="customer-list">Excellent customer service</li>
-                                    <li class="customer-list">Reliable transport to your destination</li>
-                                </ul>
-                                <div class="btn-customer"><a class="btn-bcom-customer" href="register.html">Become a Customer</a></div>
-                            </div>
-                        </div>
-                    </div>
+              <div class="row">
+                <div class="col-6 col-md-6">
+                  <div>
+                    <input type="checkbox" name="input-checkbox" />
+                    <span>Remember Me</span>
+                  </div>
                 </div>
-            </section> 
+                <div class="col-6 col-md-6">
+                  <div style="text-align: right">
+                    <!-- <button class="btn-login">Login</button> -->
+                    <input
+                      type="submit"
+                      value="Login"
+                      class="btn-login"
+                    />
+                  </div>
+                </div>
+              </div>
 
-
-			<footer>
-				<div class="container">
-					<div id="footer-top">
-						<div class="row">
-							<div class="col-md-4 first">
-								<h4>Contact Details</h4>
-								<hr style="margin: 10px 0; border-top: 3px solid #009a46; width: 80px;">
-								<div><i class="fa fa-map-marker-alt"></i>Kathmandu, Nepal</div>
-								<div><i class="fa fa-phone"></i> +9779812345678/ +9779801234567</div>
-								<div><i class="fa fa-envelope"></i><a href="mailto:info@greeline.com">info@TasteTales.com</a></div>
-							</div>
-							<div class="col-md-4 second">
-								<h4>Quick Links</h4>
-								<hr style="margin: 10px 0; border-top: 3px solid #009a46; width: 80px;">
-								<p><a href="#">Home</a></p>
-								<p><a href="#">About Us</a></p>
-								<p><a href="#">Contact Us</a></p>
-							</div>
-							<div class="col-md-4 third">
-								<h4>Useful Links</h4>
-								<hr style="margin: 10px 0; border-top: 3px solid #009a46; width: 80px;">
-								<div class="social">
-									<p><a href="#">Offers</a></p>
-									<p><a href="#">Terms & Conditions</a></p>
-									<p><a href="#">Return Policy</a></p>
-									<p><a href="#">Privacy Policy</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="footer-bottom">
-					<div class="container">
-						<div class="footer-social-section">
-							<div class="footer-social">
-								<div class="footer-social-text">
-									Find us on Social Media
-								</div>
-								<div class="footer-social-icons">
-									<a href="#" target="_blank">
-										<i class="fab fa-facebook-f"></i>
-									</a>
-									<a href="#" target="_blank">
-										<i class="fab fa-linkedin-in"></i>
-									</a>
-									<a href="#" target="_blank">
-										<i class="fab fa-twitter"></i>
-									</a>
-									<a href="#" target="_blank">
-										<i class="fab fa-instagram"></i>
-									</a>
-									<a href="#" target="_blank">
-										<i class="fab fa-youtube"></i>
-									</a>	
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-3">
-								<div class="payments-footer">
-									<img src="img/payment.png"/>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="copyright">© 2023 Taste Tales Pvt. Ltd. All Rights Reserved.
-								</div>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</footer>
-		
-		</div>
-		
-		<a id="back-to-top" href="#" class="btn back-to-top" role="button"><i class="fa fa-chevron-up"></i></a>	
-		
-		
-		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
-
-
-
-		<script>
-			$(document).ready(function(){
-				$(window).scroll(function () {
-				if ($(this).scrollTop() > 50) {
-					$('#back-to-top').fadeIn();
-				} else {
-					$('#back-to-top').fadeOut();
-				}
-			});
-			// scroll body to 0px on click
-			$('#back-to-top').click(function () {
-				$('body,html').animate({
-					scrollTop: 0
-				}, 400);
-				return false;
-			});
-			});
-		</script>
-        
-        
-	</body>
-</html>
-			
-			
+              <div class="forget-link-main">
+                <a class="forget-link" href="#">Forget your password?</a>
+              </div>
+            </dl>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-4 my-auto">
+        <div class="become-customer">
+          <h3 class="customer-section-heading">Become a customer</h3>
+          <ul>
+            <li class="customer-list">A world of duty free shopping</li>
+            <li class="customer-list">Excellent customer service</li>
+            <li class="customer-list">
+              Reliable transport to your destination
+            </li>
+          </ul>
+          <div class="btn-customer">
+            <a
+              class="btn-bcom-customer"
+              href="{{ url_for('users.register') }}"
+              >Become a Customer</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

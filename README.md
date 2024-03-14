@@ -18,6 +18,18 @@ pip install -r requirements.txt
 
 ### Usage
 
+To generate migrations, run the following command:
+
+```bash
+alembic revision --autogenerate -m "<migration message>"
+```
+
+To apply migrations, run the following command:
+
+```bash
+alembic upgrade head
+```
+
 To train the model, run the following command:
 
 ```bash

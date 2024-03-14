@@ -1,0 +1,129 @@
+<header>
+  <div id="logo-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 text-center">
+          <a class="navbar-brand" href="#">
+            <img src="static/img/logo-removebg-preview.png" width="160" />
+          </a>
+        </div>
+        <div class="col-md-4 my-auto text-right">
+          <div class="header-right ml-auto">
+            <form id="search-form">
+              <div class="search-box">
+                <input
+                  type="text"
+                  name=""
+                  class="search-input"
+                  placeholder="Search...."
+                />
+                <button class="search-btn">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </form>
+
+            {% if current_user.is_authenticated %}
+            <div class="dropdown">
+              <a href="#" class="dropdown" data-toggle="dropdown">
+                <i class="fa fa-user"></i>
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{ url_for('users.logout') }}"
+                  >Logout</a
+                >
+              </div>
+            </div>
+            {% else %}
+
+            <div class="dropdown">
+              <a href="#" class="dropdown" data-toggle="dropdown">
+                <i class="fa fa-user"></i>
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{ url_for('users.login') }}"
+                  >Sign in</a
+                >
+
+                <a class="dropdown-item" href="{{ url_for('users.register') }}"
+                  >Register</a
+                >
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="main-menu">
+      <div class="container">
+        <nav class="navbar navbar-toggleable-md navbar-expand-lg">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fa fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <div class="dropdown header">
+                  <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <div class="dropdown header">
+                  <a class="nav-link" href="{{ url_for('contact') }}"
+                    >Contact Us</a
+                  >
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <div class="dropdown header">
+                  <a class="nav-link" href="#">Drinks</a>
+                  <div class="dropdown-menu">
+                    <a
+                      class="dropdown-item"
+                      href="{{ url_for('drinks.softdrinks') }}"
+                      >Soft Drinks</a
+                    >
+                    {% if current_user.is_authenticated and
+                    current_user.is_adult %}
+                    <a
+                      href="{{ url_for('drinks.harddrinks') }}"
+                      class="dropdown-item"
+                      >Hard Drinks</a
+                    >
+                    {% else %}
+                    <a
+                      href="{{ url_for('age_verification.verify_age') }}"
+                      class="dropdown-item"
+                      >Hard Drinks</a
+                    >
+                    {% endif %}
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <div class="dropdown header">
+                  <a class="nav-link" href="{{ url_for('drinks.recommended') }}"
+                    >Search</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>

@@ -2,6 +2,17 @@
 
 # age_detection_code.py
 
+from flask import Flask, render_template, request, redirect, url_for, jsonify
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics.pairwise import linear_kernel
+from sklearn.feature_extraction.text import TfidfVectorizer
+import pandas as pd
+from flask import jsonify
+from age_detection_code import age_model
+from age_detection_code import face_cascade
+import mysql.connector
+from imp import load_module
 import cv2
 import random
 import numpy as np
@@ -28,9 +39,12 @@ age_model = initialize_model()
 cap = cv2.VideoCapture(0)
 
 # Define the face detection cascade
-face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+face_cascade = cv2.CascadeClassifier(
+    cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
 # Function to preprocess the face image for the age model
+
+
 def preprocess_face_for_age_model(face_image):
     # Resize the face image to match the expected input shape of the model
     face_image = cv2.resize(face_image, (200, 200))
@@ -40,16 +54,20 @@ def preprocess_face_for_age_model(face_image):
     return face_image
 
 # Function to postprocess the age prediction
+
+
 def postprocess_age_prediction(age_prediction):
     # Find the index with the highest probability
     predicted_age_index = np.argmax(age_prediction)
-    
+
     # Convert the index to an age range using your custom function
     predicted_age = class_labels_reassign(predicted_age_index)
-    
+
     return predicted_age
 
 # Function to reassign age labels to ranges
+
+
 def class_labels_reassign(age_label):
     if age_label == 0:
         return "1-2"
@@ -66,6 +84,7 @@ def class_labels_reassign(age_label):
     else:
         return "66-100"
 
+
 def save_and_get_path(face_image, face_number):
     face_path = FCAES_DIR + "/face_" + str(face_number) + ".jpg"
     cv2.imwrite(face_path, face_image)
@@ -79,11 +98,11 @@ def get_permission_and_age():
     if not cap.isOpened():
         print("Error: Couldn't open the webcam.")
         return -1  # or handle the error accordingly
-    
+
     # Add code to request permission from the user
     # Example: permission_result = input("Do you give permission to access the age detection feature? (yes/no): ")
     permission_result = "yes"  # Replace with actual code
-    
+
     if permission_result.lower() == 'yes':
         # Capture frame from webcam and process age detection
         ret, frame = cap.read()
@@ -92,7 +111,8 @@ def get_permission_and_age():
             return -1  # or handle the error accordingly
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
+        faces = face_cascade.detectMultiScale(
+            gray, scaleFactor=1.3, minNeighbors=5)
         print("faces", faces)
         for (x, y, w, h) in faces:
             face_roi = gray[y:y+h, x:x+w]
@@ -101,7 +121,8 @@ def get_permission_and_age():
             face_path = save_and_get_path(face_roi, face_number)
             # age_prediction = age_model.predict(face_input.reshape(1, *face_input.shape))
             print("face_path", face_path)
-            y_pred = load_checkpoint_and_predict(age_model, CHECKPOINTS_DIR, face_path)
+            y_pred = load_checkpoint_and_predict(
+                age_model, CHECKPOINTS_DIR, face_path)
             y_pred_age, y_pred_category = y_pred['age_output'], y_pred['age_category_output']
             predicted_age_int = int(y_pred_age[0][0])
             cap.release()
@@ -122,60 +143,34 @@ def get_permission_and_age():
 #     else:
 #         print("Error: Age detection failed.")
 #     cap.release()
- 
+
 # Release the webcam and close the OpenCV windows
 # cap.release()
 # cv2.destroyAllWindows()
 
 
-
-
 # Web Application code
 
 
-
-from imp import load_module
-from flask import Flask, render_template, request, redirect, url_for,jsonify
-import cv2
-
-from tensorflow.keras.models import load_model
-import numpy as np
-import mysql.connector
-
 # from age_detection_code import get_permission_and_age
-from age_detection_code import face_cascade
-from age_detection_code import age_model
-import mysql.connector
 
-#recommendation ko lagi import
-from flask import jsonify
-import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import linear_kernel
-from sklearn.preprocessing import MinMaxScaler
-
-from sklearn.preprocessing import StandardScaler
-
-
+# recommendation ko lagi import
 # app = Flask(__name__)
 app = Flask(__name__, static_url_path='/static')
-
 
 
 # Function to process age detection and return age prediction
 # app.py
 
 
-
 @app.route('/detect_age', methods=['POST'])
 def detect_age():
-    permission_result = request.form.get('permission')
+    permission_result = request.form.get('age_verification.verify_age')
     if permission_result == 'yes':
         # Use the modified get_permission_and_age function
         age = get_permission_and_age()
         print("Predicted Age:", age)
 
-        
         if age == -1 or age is None:
             # Redirect to a page indicating no permission
             return "Permission denied! You cannot access this feature."
@@ -190,20 +185,20 @@ def detect_age():
             return redirect(url_for('underage'))
 
 
-
-
-  
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/login')
 def login():
     return render_template('login.html')
 
+
 @app.route('/register')
 def register():
     return render_template('register.html')
+
 
 @app.route('/contact')
 def contact():
@@ -214,13 +209,16 @@ def contact():
 def softdrinks():
     return render_template('softdrinks.html')
 
+
 @app.route('/home')
 def home():
     return render_template('home.html')
 
+
 @app.route('/about')
 def about():
     return render_template('about.html')
+
 
 # Replace these credentials with your MySQL database credentials
 db_config = {
@@ -228,8 +226,10 @@ db_config = {
     'user': 'root',
     'password': '',
     'database': 'tastetales',
-    'auth_plugin': 'mysql_native_password'  # Use 'mysql_native_password' for MySQL 8
+    # Use 'mysql_native_password' for MySQL 8
+    'auth_plugin': 'mysql_native_password'
 }
+
 
 @app.route('/addToCart', methods=['POST'])
 def addToCart():
@@ -237,7 +237,8 @@ def addToCart():
         # Access form data using request.form
         image_url = request.form['image_url']
         product_name = request.form['product_name']
-        total_quantity = int(request.form['total_quantity'])  # Ensure it's an integer
+        # Ensure it's an integer
+        total_quantity = int(request.form['total_quantity'])
         total_price = float(request.form['total_price'])  # Ensure it's a float
 
         # Connect to the MySQL database
@@ -246,7 +247,8 @@ def addToCart():
 
         # Insert data into the "cart" table
         sql = "INSERT INTO cart (image_url, product_name, quantity, price) VALUES (%s, %s, %s, %s)"
-        cursor.execute(sql, (image_url, product_name, total_quantity, total_price))
+        cursor.execute(sql, (image_url, product_name,
+                       total_quantity, total_price))
 
         # Commit the changes to the database
         conn.commit()
@@ -257,14 +259,18 @@ def addToCart():
         # Redirect to the cart page
         return redirect(url_for('cartpage'))
 
+
 @app.route('/cartpage')
 def cartpage():
     # Render the cart page template
     return render_template('cartpage.html')
+
+
 @app.route('/order')
 def order():
-   
+
     return render_template('order.html')
+
 
 @app.route('/deleteCartItem', methods=['POST'])
 def deleteCartItem():
@@ -277,7 +283,8 @@ def deleteCartItem():
     password = ""
     dbname = "tastetales"
 
-    conn = pymysql.connect(host=servername, user=username, password=password, database=dbname)
+    conn = pymysql.connect(host=servername, user=username,
+                           password=password, database=dbname)
 
     try:
         with conn.cursor() as cursor:
@@ -313,9 +320,6 @@ def permission():
 #     return render_template('age_detection.html')
 
 
-
-
-
 # import numpy as np
 # import base64
 
@@ -333,45 +337,34 @@ def permission():
 #     return jsonify({'age_range': age_range})
 
 
-
-
-
-
 @app.route('/recommendation')
 def recommendation():
     return render_template('recommendation.html')
-
-
 
 
 @app.route('/harddrinks')
 def harddrinks():
     return render_template('harddrinks.html')
 
+
 @app.route('/underage')
 def underage():
     return render_template('underage.html')
-
-
-
-
-
-
-
-
 
 
 # Load your DataFrame
 df1 = pd.read_excel(r'Nepal_cheers_Liquor_Online_ALcololic_Beveragee.xlsx')
 
 # TF-IDF vectorizer for name recommendations
-tfidf_vectorizer_name = TfidfVectorizer(stop_words='english', max_df=0.85, min_df=0.05, max_features=500)
+tfidf_vectorizer_name = TfidfVectorizer(
+    stop_words='english', max_df=0.85, min_df=0.05, max_features=500)
 name_data = df1['Name']
 tfidf_matrix_name = tfidf_vectorizer_name.fit_transform(name_data)
 cosine_similarities_name = linear_kernel(tfidf_matrix_name, tfidf_matrix_name)
 
 # TF-IDF vectorizer for brand recommendations
-brand_vectorizer = TfidfVectorizer(analyzer='word', ngram_range=(1, 2), min_df=1, stop_words='english')
+brand_vectorizer = TfidfVectorizer(
+    analyzer='word', ngram_range=(1, 2), min_df=1, stop_words='english')
 brand_matrix = brand_vectorizer.fit_transform(df1['Brand'])
 brand_cosine_similarities = linear_kernel(brand_matrix, brand_matrix)
 
@@ -379,15 +372,8 @@ brand_cosine_similarities = linear_kernel(brand_matrix, brand_matrix)
 numeric_features = df1[['Price', 'Alcohol']]
 scaler = MinMaxScaler()
 numeric_features_normalized = scaler.fit_transform(numeric_features)
-combined_matrix_price = np.concatenate([cosine_similarities_name, numeric_features_normalized], axis=1)
-
-
-
-
-
-
-
-
+combined_matrix_price = np.concatenate(
+    [cosine_similarities_name, numeric_features_normalized], axis=1)
 
 
 @app.route('/get_name_recommendations', methods=['POST'])
@@ -396,7 +382,8 @@ def get_name_recommendations():
     print(f"User Input Name: {user_input_name}")
 
     # Ensure the 'Name' column is converted to lowercase before comparison
-    input_index = df1.index[df1['Name'].str.lower() == user_input_name.lower()].tolist()
+    input_index = df1.index[df1['Name'].str.lower(
+    ) == user_input_name.lower()].tolist()
 
     if not input_index:
         print(f"Name not found: {user_input_name}")
@@ -405,16 +392,15 @@ def get_name_recommendations():
     input_index = input_index[0]
     print(f"Input Index: {input_index}")
 
-    name_similarity_scores = list(enumerate(cosine_similarities_name[input_index]))
-    sorted_names = sorted(name_similarity_scores, key=lambda x: x[1], reverse=True)
+    name_similarity_scores = list(
+        enumerate(cosine_similarities_name[input_index]))
+    sorted_names = sorted(name_similarity_scores,
+                          key=lambda x: x[1], reverse=True)
     top5_recommendations = [df1['Name'][i[0]] for i in sorted_names[1:6]]
 
     print(f"Top 5 Recommendations: {top5_recommendations}")
 
     return jsonify(top5_recommendations)
-
-
-
 
 
 @app.route('/get_brand_recommendations', methods=['POST'])
@@ -423,7 +409,8 @@ def get_brand_recommendations():
     print(f"User Input Brand: {user_input_brand}")
 
     # Ensure the 'Brand' column is converted to lowercase before comparison
-    user_brand_index = df1.index[df1['Brand'].str.lower() == user_input_brand.lower()].tolist()
+    user_brand_index = df1.index[df1['Brand'].str.lower(
+    ) == user_input_brand.lower()].tolist()
 
     if not user_brand_index:
         print(f"Brand not found: {user_input_brand}")
@@ -447,15 +434,10 @@ def get_brand_recommendations():
     return jsonify(list(recommended_products))
 
 
-
-
-
-
-
 @app.route('/get_price_recommendations', methods=['POST'])
 def get_price_recommendations():
     user_input_price = request.json['price']
-   
+
     print(f"Received Price: {user_input_price}")
 
     try:
@@ -465,14 +447,15 @@ def get_price_recommendations():
         return jsonify([])
 
     # Find products with prices similar to or higher than the user input
-    similar_products = df1[df1['Price'] >= user_input_price].sort_values(by='Price').head(5)
+    similar_products = df1[df1['Price'] >=
+                           user_input_price].sort_values(by='Price').head(5)
 
     if similar_products.empty:
         print("No similar products found.")
         return jsonify([])
 
     recommended_products = list(similar_products['Name'])
-    
+
     print(f"Recommended Products: {recommended_products}")
 
     return jsonify(recommended_products)
@@ -485,11 +468,7 @@ def adminlogin():
     return render_template('adminlogin.html')
 
 
-
-
 # databaselai
-
-
 # MySQL configurations
 mysql_config = {
     'host': 'localhost',
@@ -500,6 +479,7 @@ mysql_config = {
 
 # Connect to MySQL database
 db_connection = mysql.connector.connect(**mysql_config)
+
 
 @app.route('/insert_data', methods=['POST'])
 def insert_data():
@@ -516,13 +496,9 @@ def insert_data():
         cursor.close()
 # pahila simple ma cartpage.php ma thiyo ailey cartpage.php lai cartpage1.php banako
         return redirect('/cart')
-    
 
 
 # yeta bata databaseko fetch garera cartpage2.html maprint garney
-    
-import mysql.connector
-
 
 
 # MySQL Configuration
@@ -534,6 +510,8 @@ mysql_config = {
 }
 
 # Route to display the cart page
+
+
 @app.route('/cart')
 def cart():
     # Connect to MySQL database
@@ -543,7 +521,6 @@ def cart():
     # Fetch items from the cart table
     cursor.execute("SELECT * FROM cart")
     cart_items = cursor.fetchall()
-    
 
     # Close MySQL connection
     cursor.close()
@@ -552,8 +529,6 @@ def cart():
     print("Fetched Cart Items:", cart_items)
     # Render the cart page template with cart items
     return render_template('cartpage2.html', cart_items=cart_items)
-
-
 
 
 # item del vayo vannalai
@@ -576,7 +551,8 @@ def delete_cart_item():
 
         # Return a response indicating success
         return 'Item deleted successfully', 200
-    
+
+
     # order ko lagi database connection
     # MySQL Configuration
 mysql_config = {
@@ -586,6 +562,8 @@ mysql_config = {
     'database': 'tastetales'
 }
 # Route to handle form submission
+
+
 @app.route('/submit_order', methods=['POST'])
 def submit_order():
     global mysql_config
@@ -615,15 +593,17 @@ def submit_order():
         paypal_sandbox_url = "https://www.sandbox.paypal.com/cgi-bin/webscr"
         paypal_params = {
             'cmd': '_xclick',
-            'business': 'sb-moje129178071@personal.example.com',  # Replace with your PayPal sandbox email
+            # Replace with your PayPal sandbox email
+            'business': 'sb-moje129178071@personal.example.com',
             'currency_code': 'USD',
             'amount': '20'  # Replace with the total amount to be paid
         }
-        paypal_redirect_url = paypal_sandbox_url + '?' + '&'.join([f"{key}={value}" for key, value in paypal_params.items()])
-        
+        paypal_redirect_url = paypal_sandbox_url + '?' + \
+            '&'.join([f"{key}={value}" for key,
+                     value in paypal_params.items()])
+
         # Redirect to PayPal sandbox payment gateway
         return redirect(paypal_redirect_url)
-
 
     # admin pageko lagi retrive garna
 mysql_config = {
@@ -632,18 +612,21 @@ mysql_config = {
     'password': '',
     'database': 'tastetales'
 }
+
+
 @app.route('/checkcredential', methods=['POST'])
 def check_credential():
     username = request.form.get('username')
     password = request.form.get('password')
 
-    
     if username == 'manisha' and password == 'khadka':
-         return redirect('/admin')
+        return redirect('/admin')
     else:
-        return "Invalid credentials"    
+        return "Invalid credentials"
 
 # Route to display the admin page
+
+
 @app.route('/admin')
 def admin():
     # Connect to MySQL database
@@ -661,6 +644,7 @@ def admin():
     # Render the admin page template with the fetched data
     return render_template('admin.html', orders=orders)
 
+
 # deletion in admin panel
 mysql_config = {
     'host': 'localhost',
@@ -670,6 +654,8 @@ mysql_config = {
 }
 
 # Route for deleting an order
+
+
 @app.route('/deleteorder/<int:order_id>', methods=['POST'])
 def delete_order(order_id):
     # Connect to MySQL database
@@ -686,6 +672,8 @@ def delete_order(order_id):
     conn.close()
 
     return redirect(url_for('admin'))
+
+
 # update admin panellai
 # MySQL Configuration
 mysql_config = {
@@ -696,6 +684,8 @@ mysql_config = {
 }
 
 # Route to display the edit order page
+
+
 @app.route('/editorder/<int:order_id>', methods=['GET', 'POST'])
 def edit_order(order_id):
     # Connect to MySQL database
@@ -734,29 +724,5 @@ def edit_order(order_id):
     conn.close()
 
 
-
-
 if __name__ == '__main__':
     app.run(debug=True)
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

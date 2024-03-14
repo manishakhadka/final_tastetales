@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<section id="contact-wrap">
+    <div class="container">
+        <h1 class="section-heading-wrap">Contact</h1>
+        <hr>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="contact-form">
+                    <div class="input-title">Name / Workplace</div>
+                    <input type="text" name="name-work" placeholder="eg. John / IT arrow">
+
+                    <div class="input-title">Phone</div>
+                    <input type="text" name="phone" placeholder="eg. 98XXXXXXXX">
+
+                    <div class="input-title">Email</div>
+                    <input type="email" name="email" placeholder="eg. example@gmail.com">
+                    
+                    <div class="input-title">Address</div>
+                    <input type="text" name="address" placeholder="Baneshwor">
+
+                    <div class="input-title">Message</div>
+                    <textarea name="message" rows="6" placeholder="Type your Message*"></textarea>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="location">
+                    <iframe src="static/images/location.png" width="100%" height="390" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                </div>
+                <h3 class="section-heading-wrap">Our Branch Offices</h3>
+                <div class="branch-shop">
+                    <div><i class="fa fa-map-marker-alt"> </i>Darbar Marg </div>
+                    <div> <i class="fa fa-phone-volume"> </i>+01-4257277</div>
+                    <div><i class="fa fa-envelope"> </i>info@TasteTalescenter.com</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

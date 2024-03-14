@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %} {% endblock %} - Tast Tales</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/all.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/owl.carousel.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/custom.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/responsive.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='font-awesome/css/all.min.css') }}"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul class="flashes">
+      {% for message in messages %}
+      <li class="text-center">{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %} {% include 'header.html' %}
+    <div class="content">{% block content %} {% endblock %}</div>
+    {% include 'footer.html' %}
+  </body>
+  		
+  <script
+  type="text/javascript"
+  src="{{ url_for('static', filename='js/jquery.min.js') }}"
+></script>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='js/popper.min.js') }}"
+></script>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='js/bootstrap.min.js') }}"
+></script>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='js/owl.carousel.js') }}"
+></script>
+          <script>
+              $(document).ready(function(){
+                  $(window).scroll(function () {
+                  if ($(this).scrollTop() > 50) {
+                      $('#back-to-top').fadeIn();
+                  } else {
+                      $('#back-to-top').fadeOut();
+                  }
+              });
+              // scroll body to 0px on click
+              $('#back-to-top').click(function () {
+                  $('body,html').animate({
+                      scrollTop: 0
+                  }, 400);
+                  return false;
+              });
+              });
+          </script>
+          
+          <script>
+              $('#home-slide').owlCarousel({
+                  loop:true,
+                  autoplay:true,
+                  autoplayTimeout:3000,
+                  autoplayHoverPause:true,
+                  nav:true,
+                  navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
+                  responsive:{
+                      0:{
+                          items:1
+                      },
+                      600:{
+                          items:1
+                      },
+                      1000:{
+                          items:1
+                      }
+                  }
+              })
+          
+              $('#recent-slide').owlCarousel({
+                  nav:true,
+                  margin:15,
+                  slideBy:'page',
+                  navText : ["<i class='fa fa-arrow-circle-left'></i>","<i class='fa fa-arrow-circle-right'></i>"],
+                  responsive:{
+                      0:{
+                          items:1
+                      },
+                      600:{
+                          items:2
+                      },
+                      1000:{
+                          items:4
+                      }
+                  }
+              })
+  
+              $('#testimonialSlider').owlCarousel({
+                  nav:true,
+                  dots:false,
+                  margin:15,
+                  slideBy:'page',
+                  navText : ["<i class='fa fa-arrow-circle-left'></i>","<i class='fa fa-arrow-circle-right'></i>"],
+                  responsive:{
+                      0:{
+                          items:1
+                      },
+                      600:{
+                          items:2
+                      },
+                      1000:{
+                          items:3
+                      }
+                  }
+              })
+          </script>
+  
+  
+</html>

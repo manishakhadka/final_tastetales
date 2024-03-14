@@ -47,9 +47,9 @@
 											<i class="fa fa-user"></i>
 										</a>
 									    <div class="dropdown-menu">
-											<a class="dropdown-item" href="{{ url_for('login') }}">Sign in</a>
+											<a class="dropdown-item" href="{{ url_for('users.login') }}">Sign in</a>
 
-											<a class="dropdown-item" href="{{ url_for('register') }}">Register</a>
+											<a class="dropdown-item" href="{{ url_for('users.register') }}">Register</a>
 
 									    </div>
 									</div>
@@ -97,12 +97,12 @@
 										<div class="dropdown header">
 											<a class="nav-link" href="#">Drinks</a>
 											  <div class="dropdown-menu">
-												<a class="dropdown-item" href="{{ url_for('softdrinks') }}">Soft Drinks</a>
+												<a class="dropdown-item" href="{{ url_for('drinks.softdrinks') }}">Soft Drinks</a>
 
 
 
 												
-												<a href="{{ url_for('permission') }}" class="dropdown-item">Hard Drinks</a>
+												<a href="{{ url_for('age_verification.verify_age') }}" class="dropdown-item">Hard Drinks</a>
 
 											  </div>
 										</div>										
@@ -111,7 +111,7 @@
 
 									<li class="nav-item">
 										<div class="dropdown header">
-											<a class="nav-link" href="{{ url_for('recommendation') }}">Search</a>
+											<a class="nav-link" href="{{ url_for('drinks.recommended') }}">Search</a>
 											
 											  
 										</div>										

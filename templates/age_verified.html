@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block title %}Age Verified{% endblock %} {% block
+content %}
+<div
+  class="container mt-5 mb-5 d-flex flex-column align-items-center justify-content-center"
+>
+  <h1>Age verified</h1>
+  <p>Congratulations! Your age has been successfully verified.</p>
+  <p>Age predicted: {{ current_user.predicted_age }}</p>
+  {% if current_user.predicted_age < 18 %}
+  <p>
+    You are under 18 years old. You are eligible to order from soft drinks only.
+  </p>
+  {% else %}
+  <p>You are over 18 years old. You are eligible to order from hard liquor.</p>
+  {% endif %}
+  <a href="{{ url_for('drinks.harddrinks') }}" class="btn btn-secondary">Buy yourself a drink</a>
+  <!-- You can also redirect users to other parts of the site they now have access to -->
+</div>
+{% endblock %}
